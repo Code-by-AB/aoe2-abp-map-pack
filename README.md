@@ -1,8 +1,20 @@
 # AbP Map Pack
 
-Custom AoE2:DE random map scripts. Install by dropping this folder into
-`Games\Age of Empires 2 DE\<profile-id>\mods\local\` and restarting the game —
-the maps appear under Custom maps.
+Custom AoE2:DE random map scripts.
+
+## Install / update
+
+One-time setup: open [`update.ps1`](update.ps1) in this repo, click **Raw**,
+and save the file somewhere handy (e.g. your Desktop).
+
+Then, whenever you want to install the pack or grab the latest map changes:
+**right-click `update.ps1` → Run with PowerShell**, and restart AoE2 DE.
+The maps appear under Custom maps. The script finds your game profile
+automatically and syncs this repo's newest version into
+`Games\Age of Empires 2 DE\<profile-id>\mods\local\AbP Map Pack\`.
+
+Manual alternative: download this repo as ZIP (green **Code** button →
+Download ZIP) and drop its contents into that same folder.
 
 ## Maps
 
