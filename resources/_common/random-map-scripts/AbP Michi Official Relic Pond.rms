@@ -1,0 +1,5503 @@
+
+/* Michi 2023 */
+
+/* PH SEASONS */
+/* updated for ANTIQUITY_MODE November 2023 */
+
+if ANTIQUITY_MODE
+	start_random
+		percent_chance 20 #define PH_SPRING
+		percent_chance 20 #define PH_ALPINE
+		percent_chance 10 #define PH_FROZEN
+		percent_chance 50 #define PH_MEDISOUTH
+	end_random
+else 
+	start_random
+		percent_chance 20 #define PH_SPRING
+		percent_chance 25 #define PH_ALPINE
+		percent_chance 10 #define PH_TROPHICALSOUTH
+		percent_chance 10 #define PH_TROPHICALEAST
+		percent_chance 25 #define PH_FROZEN
+		percent_chance 10 #define PH_MEDISOUTH
+	end_random
+endif
+
+#include_drs F_seasons.inc
+
+<PLAYER_SETUP>
+
+/* no-collision trade carts */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off like Tres Leches 2 - both radii zeroed causes issues */
+
+if 2_PLAYER_GAME
+
+  #define MICHI_DIRECTFOREST
+  #define MICHI_SPMARKETS
+
+endif
+
+effect_amount GAIA_SET_ATTRIBUTE MARKET ATTR_FOG_FLAG 1 /* Ensures neutral markets are visible through the fog of war. */
+
+
+if 2_TEAM_GAME
+  #define MICHI_DIRECTFOREST
+elseif 1_TEAM_GAME
+	if TEAM1_SIZE7
+  #define MICHI_DIRECTFOREST
+	elseif TEAM1_SIZE6
+		if 7_PLAYER_GAME
+  #define MICHI_DIRECTFOREST
+		endif
+	elseif TEAM1_SIZE5
+		if 6_PLAYER_GAME
+  #define MICHI_DIRECTFOREST
+		endif
+	elseif TEAM1_SIZE4
+		if 5_PLAYER_GAME
+  #define MICHI_DIRECTFOREST
+		endif
+	elseif TEAM1_SIZE3
+		if 4_PLAYER_GAME
+  #define MICHI_DIRECTFOREST
+		endif
+	elseif TEAM1_SIZE2
+		if 3_PLAYER_GAME
+  #define MICHI_DIRECTFOREST
+		endif
+	else
+	endif
+else
+endif
+
+if MICHI_DIRECTFOREST
+  direct_placement
+else
+  random_placement
+  grouped_by_team
+endif
+
+  ai_info_map_type BLACK_FOREST 0 1 0
+
+
+<LAND_GENERATION>
+base_terrain LAYER_C
+enable_waves 0 
+
+if MICHI_SPMARKETS
+
+create_land
+{
+  terrain_type				LAYER_F
+  land_percent                     0
+  base_size                        8
+  border_fuzziness		   100
+  land_position 0 0
+}
+
+create_land
+{
+  terrain_type				LAYER_F
+  land_percent                     0
+  base_size                        8
+  border_fuzziness		   100
+  land_position 100 100
+}
+
+endif
+
+
+
+if MICHI_DIRECTFOREST
+
+	if LUDIKRIS_MAP
+
+start_random
+percent_chance 50 #define MICHI_AB
+percent_chance 50 #define MICHI_BA
+end_random
+
+	else
+
+start_random
+percent_chance 25 #define MICHI_AB
+percent_chance 25 #define MICHI_BA
+percent_chance 25 #define MICHI_AA
+percent_chance 25 #define MICHI_BB
+end_random
+
+	endif
+
+endif
+
+if MICHI_AB
+
+start_random
+percent_chance 50 #define MICHI_UP
+percent_chance 50 #define MICHI_DOWN
+end_random
+
+	if 2_PLAYER_GAME
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	else
+
+	if TEAM1_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 20
+		else
+  land_position 20 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 80
+		else
+  land_position 20 80
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	
+	elseif TEAM1_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 20
+		else
+  land_position 20 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 80
+		else
+  land_position 20 80
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 18
+		else
+  land_position 20 18
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 40
+		else
+  land_position 20 40
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 60
+		else
+  land_position 20 60
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 82
+		else
+  land_position 20 82
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 15
+		else
+  land_position 20 15
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 35
+		else
+  land_position 20 35
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 65
+		else
+  land_position 20 65
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 85
+		else
+  land_position 20 85
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 12
+		else
+  land_position 20 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 30
+		else
+  land_position 20 30
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 43
+		else
+  land_position 20 43
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 57
+		else
+  land_position 20 57
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 70
+		else
+  land_position 20 70
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 88
+		else
+  land_position 20 88
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 12
+		else
+  land_position 20 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 25
+		else
+  land_position 20 25
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 37
+		else
+  land_position 20 37
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 63
+		else
+  land_position 20 63
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 75
+		else
+  land_position 20 75
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 88
+		else
+  land_position 20 88
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	endif
+
+	if TEAM2_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 20
+		else
+  land_position 80 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 80
+		else
+  land_position 80 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	
+	elseif TEAM2_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 20
+		else
+  land_position 80 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 80
+		else
+  land_position 80 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 18
+		else
+  land_position 80 18
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 40
+		else
+  land_position 80 40
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 60
+		else
+  land_position 80 60
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 82
+		else
+  land_position 80 82
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 15
+		else
+  land_position 80 15
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 35
+		else
+  land_position 80 35
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 65
+		else
+  land_position 80 65
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 85
+		else
+  land_position 80 85
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 12
+		else
+  land_position 80 12
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 30
+		else
+  land_position 80 30
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 43
+		else
+  land_position 80 43
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 57
+		else
+  land_position 80 57
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 70
+		else
+  land_position 80 70
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 88
+		else
+  land_position 80 88
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 12
+		else
+  land_position 80 12
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 25
+		else
+  land_position 80 25
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 37
+		else
+  land_position 80 37
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 63
+		else
+  land_position 80 63
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 75
+		else
+  land_position 80 75
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 88
+		else
+  land_position 80 88
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	endif
+
+	endif
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 45
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 40
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 30
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 25
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 20
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 15
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 10
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 5
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 0
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 55
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 60
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 70
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 75
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 80
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 85
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 90
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 95
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 100
+}
+
+
+elseif MICHI_BA
+
+start_random
+percent_chance 50 #define MICHI_UP
+percent_chance 50 #define MICHI_DOWN
+end_random
+
+
+	if 2_PLAYER_GAME
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	else
+
+	if TEAM1_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 80
+		else
+  land_position 20 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 80
+		else
+  land_position 80 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	
+	elseif TEAM1_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 80
+		else
+  land_position 20 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 80
+		else
+  land_position 80 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 18 80
+		else
+  land_position 18 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 40 80
+		else
+  land_position 40 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 60 80
+		else
+  land_position 60 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 80
+		else
+  land_position 82 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 15 80
+		else
+  land_position 15 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 80
+		else
+  land_position 35 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 80
+		else
+  land_position 65 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 85 80
+		else
+  land_position 85 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 80
+		else
+  land_position 12 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 30 80
+		else
+  land_position 30 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 43 80
+		else
+  land_position 43 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 57 80
+		else
+  land_position 57 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 70 80
+		else
+  land_position 70 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 80
+		else
+  land_position 88 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 80
+		else
+  land_position 12 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 25 80
+		else
+  land_position 25 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 37 80
+		else
+  land_position 37 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 63 80
+		else
+  land_position 63 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 75 80
+		else
+  land_position 75 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 80
+		else
+  land_position 88 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	endif
+
+	if TEAM2_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 20
+		else
+  land_position 20 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 20
+		else
+  land_position 80 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	
+	elseif TEAM2_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 20
+		else
+  land_position 20 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 20
+		else
+  land_position 80 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 18 20
+		else
+  land_position 18 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 40 20
+		else
+  land_position 40 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 60 20
+		else
+  land_position 60 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 20
+		else
+  land_position 82 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 15 20
+		else
+  land_position 15 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 20
+		else
+  land_position 35 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 20
+		else
+  land_position 65 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 85 20
+		else
+  land_position 85 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 20
+		else
+  land_position 12 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 30 20
+		else
+  land_position 30 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 43 20
+		else
+  land_position 43 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 57 20
+		else
+  land_position 57 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 70 20
+		else
+  land_position 70 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 20
+		else
+  land_position 88 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 20
+		else
+  land_position 12 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 25 20
+		else
+  land_position 25 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 37 20
+		else
+  land_position 37 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 63 20
+		else
+  land_position 63 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 75 20
+		else
+  land_position 75 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 20
+		else
+  land_position 88 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	endif
+	
+	endif
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 50 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 45 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 40 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 35 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 30 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 25 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 20 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 15 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 10 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 5 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 0 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 55 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 60 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 65 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 70 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 75 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 80 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 85 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 90 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 95 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+	if LUDIKRIS_MAP
+  base_size                        20
+	else
+  base_size                        10
+	endif
+  border_fuzziness		   50
+  land_position 100 50
+}
+
+
+elseif MICHI_AA
+
+start_random
+percent_chance 50 #define MICHI_UP
+percent_chance 50 #define MICHI_DOWN
+end_random
+
+	if 2_PLAYER_GAME
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	else
+
+	if TEAM1_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 90 20
+		else
+  land_position 35 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 80
+		else
+  land_position 12 80
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	
+	elseif TEAM1_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 90 20
+		else
+  land_position 35 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 50
+		else
+  land_position 28 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 80
+		else
+  land_position 14 80
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 90 18
+		else
+  land_position 37 18
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 40
+		else
+  land_position 27 40
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 75 60
+		else
+  land_position 18 60
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 82
+		else
+  land_position 12 82
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 86 15
+		else
+  land_position 26 15
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 83 35
+		else
+  land_position 23 35
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 81 50
+		else
+  land_position 21 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 65
+		else
+  land_position 20 65
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 85
+		else
+  land_position 20 85
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 87 12
+		else
+  land_position 27 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 84 30
+		else
+  land_position 24 30
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 43
+		else
+  land_position 22 43
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 57
+		else
+  land_position 20 57
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 70
+		else
+  land_position 20 70
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 88
+		else
+  land_position 20 88
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 12
+		else
+  land_position 20 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 25
+		else
+  land_position 20 25
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 37
+		else
+  land_position 20 37
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 50
+		else
+  land_position 20 50
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 63
+		else
+  land_position 20 63
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 75
+		else
+  land_position 20 75
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 88
+		else
+  land_position 20 88
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	endif
+
+	if TEAM2_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 37 20
+		else
+  land_position 90 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 80
+		else
+  land_position 65 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	
+	elseif TEAM2_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 20
+		else
+  land_position 88 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 80
+		else
+  land_position 65 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 18
+		else
+  land_position 90 18
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 24 40
+		else
+  land_position 82 40
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 16 60
+		else
+  land_position 75 60
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 10 82
+		else
+  land_position 63 82
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 15
+		else
+  land_position 80 15
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 35
+		else
+  land_position 80 35
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 65
+		else
+  land_position 80 65
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 85
+		else
+  land_position 80 85
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 12
+		else
+  land_position 80 12
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 30
+		else
+  land_position 80 30
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 43
+		else
+  land_position 80 43
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 57
+		else
+  land_position 80 57
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 70
+		else
+  land_position 80 70
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 88
+		else
+  land_position 80 88
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 12
+		else
+  land_position 80 12
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 25
+		else
+  land_position 80 25
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 37
+		else
+  land_position 80 37
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 50
+		else
+  land_position 80 50
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 63
+		else
+  land_position 80 63
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 75
+		else
+  land_position 80 75
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 88
+		else
+  land_position 80 88
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	endif
+
+	endif
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 50 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 48 53
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 54 44
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 46 56
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 52 47
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 57 40
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 62 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 30
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 25
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 20
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 15
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 10
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 5
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 0
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 43 60
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 38 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 70
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 75
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 80
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 85
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 90
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 95
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 100
+}
+
+elseif MICHI_BB
+
+start_random
+percent_chance 50 #define MICHI_UP
+percent_chance 50 #define MICHI_DOWN
+end_random
+
+	if 2_PLAYER_GAME
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	else
+
+	if TEAM1_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 90
+		else
+  land_position 20 35
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 65
+		else
+  land_position 80 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	
+	elseif TEAM1_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 90
+		else
+  land_position 20 35
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 82
+		else
+  land_position 50 28
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 65
+		else
+  land_position 80 14
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 18 90
+		else
+  land_position 18 37
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 40 82
+		else
+  land_position 40 27
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 60 75
+		else
+  land_position 60 18
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 65
+		else
+  land_position 82 12
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 15 86
+		else
+  land_position 15 26
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 83
+		else
+  land_position 35 23
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 81
+		else
+  land_position 50 21
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 80
+		else
+  land_position 65 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 85 80
+		else
+  land_position 85 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 87
+		else
+  land_position 12 27
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 30 84
+		else
+  land_position 30 24
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 43 82
+		else
+  land_position 43 22
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 57 80
+		else
+  land_position 57 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 70 80
+		else
+  land_position 70 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 80
+		else
+  land_position 88 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	elseif TEAM1_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 80
+		else
+  land_position 12 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 25 80
+		else
+  land_position 25 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 37 80
+		else
+  land_position 37 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 80
+		else
+  land_position 50 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 63 80
+		else
+  land_position 63 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 75 80
+		else
+  land_position 75 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 80
+		else
+  land_position 88 20
+		endif
+  assign_to AT_TEAM 1 -1 0
+}
+
+	endif
+
+	if TEAM2_SIZE1
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE2
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 37
+		else
+  land_position 20 90
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 12
+		else
+  land_position 80 65
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	
+	elseif TEAM2_SIZE3
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 20 35
+		else
+  land_position 20 88
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 80 12
+		else
+  land_position 80 65
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE4
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 18 35
+		else
+  land_position 18 90
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 40 24
+		else
+  land_position 40 82
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 60 16
+		else
+  land_position 60 75
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 82 10
+		else
+  land_position 82 63
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE5
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 15 20
+		else
+  land_position 15 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 35 20
+		else
+  land_position 35 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 65 20
+		else
+  land_position 65 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 85 20
+		else
+  land_position 85 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE6
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 20
+		else
+  land_position 12 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 30 20
+		else
+  land_position 30 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 43 20
+		else
+  land_position 43 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 57 20
+		else
+  land_position 57 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 70 20
+		else
+  land_position 70 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 20
+		else
+  land_position 88 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	elseif TEAM2_SIZE7
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 12 20
+		else
+  land_position 12 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 25 20
+		else
+  land_position 25 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 37 20
+		else
+  land_position 37 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 50 20
+		else
+  land_position 50 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 63 20
+		else
+  land_position 63 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 75 20
+		else
+  land_position 75 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        16
+  border_fuzziness		   100
+		if MICHI_UP
+  land_position 88 20
+		else
+  land_position 88 80
+		endif
+  assign_to AT_TEAM -10 -1 0
+}
+
+	endif
+
+	endif
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 50 50
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 53 48
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 44 54
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 56 46
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 47 52
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 40 57
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 35 62
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 30 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 25 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 20 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 15 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 10 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 5 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 0 65
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 60 43
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 65 38
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 70 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 75 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 80 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 85 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 90 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     0
+  base_size                        10
+  border_fuzziness		   50
+  land_position 95 35
+}
+
+create_land
+{
+  terrain_type				WOODIES
+  land_percent                     1
+  base_size                        10
+  border_fuzziness		   50
+  land_position 100 35
+}
+
+
+
+else
+
+create_player_lands 
+{
+  terrain_type				LAYER_A
+  land_percent                     100
+  base_size                        12
+  circle_radius 		   42 0
+  other_zone_avoidance_distance    34
+  border_fuzziness	10
+  set_zone_by_team
+/*
+  top_border	6
+  bottom_border	6
+  left_border	6
+  right_border  6
+*/
+}
+
+endif
+
+/* ****************************************************** */
+<TERRAIN_GENERATION>
+
+if MICHI_DIRECTFOREST
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+}
+
+else
+
+  create_terrain WOODIES
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 100
+  spacing_to_other_terrain_types 3
+}
+
+  create_terrain WOODIES
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 100
+  spacing_to_other_terrain_types 3
+}
+
+  create_terrain WOODIES
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 100
+  spacing_to_other_terrain_types 3
+}
+
+  create_terrain WOODIES
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 100
+  spacing_to_other_terrain_types 3
+}
+
+endif
+
+  create_terrain WOODIES
+{
+  base_terrain LAYER_A
+  land_percent 8
+  number_of_clumps 12
+	if MICHI_SPMARKETS
+  spacing_to_other_terrain_types 7
+	else
+  spacing_to_other_terrain_types 3
+	endif
+  set_scale_by_groups
+  set_avoid_player_start_areas
+}
+
+
+
+if MICHI_SPMARKETS
+
+	if PH_FROZEN
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+
+/* **** */
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 4
+}
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 4
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+  terrain_mask 1
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+  terrain_mask 1
+}
+
+  create_terrain LAYER_E
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 2
+}
+
+  create_terrain LAYER_E
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 2
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_A
+  land_percent 100
+  number_of_clumps 1000
+}
+	else
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 4
+}
+
+  create_terrain LAYER_B
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 4
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_F
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+  terrain_mask 1
+}
+
+  create_terrain LAYER_A
+{
+  base_terrain LAYER_C
+  land_percent 100
+  number_of_clumps 1000
+  terrain_mask 1
+}
+
+  create_terrain LAYER_E
+{
+  base_terrain LAYER_B
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 2
+}
+
+  create_terrain LAYER_E
+{
+  base_terrain LAYER_B
+  land_percent 100
+  number_of_clumps 1000
+  spacing_to_other_terrain_types 2
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_B
+  land_percent 100
+  number_of_clumps 1000
+}
+
+  create_terrain LAYER_C
+{
+  base_terrain LAYER_B
+  land_percent 100
+  number_of_clumps 1000
+}
+
+	endif
+endif
+
+
+/* PRIMARY PATCH */
+
+if PH_FROZEN
+
+
+   create_terrain LAYER_A
+{
+  base_terrain                   LAYER_B
+  number_of_clumps               16
+  spacing_to_other_terrain_types 0
+  land_percent                   20
+  set_scale_by_size
+}
+
+   create_terrain DLC_ROCK
+{
+  base_terrain                   LAYER_A
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 2
+  land_percent                   100
+  set_scale_by_size
+}
+
+   create_terrain LAYER_B
+{
+  base_terrain                   LAYER_A
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+terrain_mask 1
+}
+
+   create_terrain LAYER_A
+{
+  base_terrain                   DLC_ROCK
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+}
+
+   create_terrain LAYER_A
+{
+  base_terrain                   DLC_ROCK
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+}
+
+
+else
+
+   create_terrain LAYER_B
+{
+  base_terrain                   LAYER_A
+  number_of_clumps               16
+  spacing_to_other_terrain_types 0
+  land_percent                   20
+  set_scale_by_size
+}
+
+   create_terrain DLC_ROCK
+{
+  base_terrain                   LAYER_B
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 2
+  land_percent                   100
+  set_scale_by_size
+}
+
+   create_terrain LAYER_A
+{
+  base_terrain                   LAYER_B
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+terrain_mask 1
+}
+
+   create_terrain LAYER_B
+{
+  base_terrain                   DLC_ROCK
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+}
+
+   create_terrain LAYER_B
+{
+  base_terrain                   DLC_ROCK
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 0
+  land_percent                   100
+  set_scale_by_size
+}
+
+endif
+
+/* ****************************************************** */
+/* FISH PONDS - dockable, scales 1-2 per player */
+
+if 8_PLAYER_GAME
+  #define PND_GE3
+  #define PND_GE4
+  #define PND_GE5
+  #define PND_GE6
+  #define PND_GE7
+  #define PND_GE8
+elseif 7_PLAYER_GAME
+  #define PND_GE3
+  #define PND_GE4
+  #define PND_GE5
+  #define PND_GE6
+  #define PND_GE7
+elseif 6_PLAYER_GAME
+  #define PND_GE3
+  #define PND_GE4
+  #define PND_GE5
+  #define PND_GE6
+elseif 5_PLAYER_GAME
+  #define PND_GE3
+  #define PND_GE4
+  #define PND_GE5
+elseif 4_PLAYER_GAME
+  #define PND_GE3
+  #define PND_GE4
+elseif 3_PLAYER_GAME
+  #define PND_GE3
+endif
+
+start_random
+  percent_chance 50 #define PND_X1
+end_random
+start_random
+  percent_chance 50 #define PND_X2
+end_random
+start_random
+  percent_chance 50 #define PND_X3
+end_random
+start_random
+  percent_chance 50 #define PND_X4
+end_random
+start_random
+  percent_chance 50 #define PND_X5
+end_random
+start_random
+  percent_chance 50 #define PND_X6
+end_random
+start_random
+  percent_chance 50 #define PND_X7
+end_random
+start_random
+  percent_chance 50 #define PND_X8
+end_random
+
+/* one guaranteed pond per player */
+
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+
+if PND_GE3
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE4
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE5
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE6
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE7
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE8
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+/* 50% chance of a second pond per player */
+
+if PND_X1
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_X2
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+
+if PND_GE3
+if PND_X3
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+if PND_GE4
+if PND_X4
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+if PND_GE5
+if PND_X5
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+if PND_GE6
+if PND_X6
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+if PND_GE7
+if PND_X7
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+if PND_GE8
+if PND_X8
+create_terrain WATER
+{
+  base_terrain LAYER_A
+  number_of_tiles 32
+  number_of_clumps 1
+  clumping_factor 15
+  set_avoid_player_start_areas 14
+  spacing_to_other_terrain_types 3
+  set_flat_terrain_only
+  height_limits 0 0
+}
+endif
+endif
+
+<OBJECTS_GENERATION>
+
+#define GNR_NORMALTC
+#define GNR_STARTVILLS_TRIPLE
+#define GNR_CLASSICSCOUT
+
+#define GNR_REGICIDECLASSIC
+#define GNR_6KER
+
+#define GNR_STARTINGGOLD
+
+#define GNR_STARTGOLD744CL
+#define GNR_SPLITSTARTGOLDS
+
+#define GNR_STARTINGSTONE
+#define GNR_STARTSTONE54CL
+
+#define GNR_GIVEHERD_A
+#define GNR_GIVEHERD_B
+
+#define GNR_HERD4CLASSIC_A
+#define GNR_HERD22CLASSIC_B
+
+#define GNR_GIVEHUNT
+
+#define GNR_HUNT4MODERN
+
+#define GNR_GIVELURES
+#define GNR_CLASSICLURES
+#define GNR_CLASSICPRED
+
+#define GNR_HOMESTRAGGLE
+#define GNR_NORMALBIRDS
+
+if LUDIKRIS_MAP
+
+
+#define GNR_FARGORIG_GIVE
+#define GNR_FARSORIG_GIVE
+
+#define GNR_FARGORIG_TYPE1
+#define GNR_FARSORIG_TYPE1
+
+else
+endif
+
+
+
+
+#include_drs GeneratingObjects.inc
+
+/* TEN RELICS PER PLAYER */
+
+create_object RELIC
+{
+   number_of_objects            10
+   set_gaia_object_only
+   set_place_for_every_player
+   min_distance_to_players     15
+   max_distance_to_players     35
+   min_distance_group_placement 4
+   avoid_forest_zone 2
+   avoid_cliff_zone 3
+}
+
+/* POND FISH */
+
+create_object SHORE_FISH
+{
+  number_of_objects 16
+  set_gaia_object_only
+  set_scaling_to_map_size
+  min_distance_group_placement 3
+}
+
+create_object OYSTERS
+{
+  second_object PLANT_WEEDS
+  number_of_objects 2
+  number_of_groups 10
+  set_loose_grouping
+  group_placement_radius 2
+  set_gaia_object_only
+  set_scaling_to_map_size
+  temp_min_distance_group_placement 8
+  terrain_to_place_on WATER
+  ignore_terrain_restrictions
+}
+
+create_object HOUSE
+{
+	number_of_objects 2
+        set_place_for_every_player
+        min_distance_to_players 10
+        max_distance_to_players 30
+	find_closest
+	avoid_actor_area 12
+	avoid_actor_area 14
+	avoid_forest_zone 3
+}
+
+if MICHI_SPMARKETS
+
+	if INFINITE_RESOURCES
+	else
+
+#const SPECIAL_MARKET 1646 /* no longer used, placing standard market instead */
+
+create_object MARKET
+{
+  terrain_to_place_on	LAYER_E
+  number_of_objects	     1
+  group_placement_radius     2
+  set_gaia_object_only
+  set_gaia_unconvertible
+  make_indestructible
+}
+
+create_object MARKET
+{
+  terrain_to_place_on	LAYER_E
+  number_of_objects	     1
+  group_placement_radius     2
+  set_gaia_object_only
+  set_gaia_unconvertible
+  make_indestructible
+}
+
+/*
+
+create_object MARKET
+{
+  number_of_objects	     1
+  group_placement_radius     2
+  set_gaia_object_only
+  actor_area 1413
+  actor_area_radius 10
+  avoid_actor_area 1411
+  avoid_actor_area 1412
+  terrain_to_place_on	LAYER_F
+  set_gaia_unconvertible
+  make_indestructible
+}
+
+create_object MARKET
+{
+  number_of_objects	     1
+  group_placement_radius     2
+  set_gaia_object_only
+  avoid_actor_area 1411
+  avoid_actor_area 1412
+  avoid_actor_area 1413
+  terrain_to_place_on	LAYER_F
+  set_gaia_unconvertible
+  make_indestructible
+}
+
+*/
+
+	endif
+endif
+
+
+
+
+/* fourth player gold */
+
+if INFINITE_RESOURCES
+else
+
+create_object GOLD
+{
+  number_of_objects	     4
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    24
+  max_distance_to_players    42
+  find_closest
+  avoid_actor_area 6163
+  min_distance_group_placement  3
+  max_distance_to_other_zones  3
+  avoid_forest_zone 1
+
+		if EMPIRE_WARS
+  avoid_actor_area 171
+  avoid_actor_area 40
+  avoid_actor_area 94
+  avoid_actor_area 8
+  avoid_actor_area 9
+  avoid_actor_area 99
+  avoid_actor_area 80 /* blacksmith */
+  avoid_actor_area 51 /* barracks */
+		else
+  avoid_actor_area 14 /* kericek */
+  avoid_actor_area 12 /* Primary gold, only use if no ew */
+		endif
+}
+
+endif
+
+
+/* third player stone */
+
+if INFINITE_RESOURCES
+else
+
+create_object STONE
+{
+  number_of_objects	     3
+  group_placement_radius     3
+  set_tight_grouping
+  set_gaia_object_only
+  set_place_for_every_player
+  min_distance_to_players    24
+  max_distance_to_players    42
+  find_closest
+  avoid_actor_area 6163
+  min_distance_group_placement  3
+  max_distance_to_other_zones  3
+  avoid_forest_zone 1
+
+		if EMPIRE_WARS
+  avoid_actor_area 171
+  avoid_actor_area 40
+  avoid_actor_area 94
+  avoid_actor_area 8
+  avoid_actor_area 9
+  avoid_actor_area 99
+  avoid_actor_area 80 /* blacksmith */
+  avoid_actor_area 51 /* barracks */
+		else
+  avoid_actor_area 14 /* kericek */
+  avoid_actor_area 12 /* Primary gold, only use if no ew */
+		endif
+}
+
+endif
+
+
+
+
+/* ****************************************************** */
+
+<ELEVATION_GENERATION>
+
+/* mild layer A elevation */
+
+/* ****************************************************** */
+<CONNECTION_GENERATION>
+
+
+
+
+
+
+
+

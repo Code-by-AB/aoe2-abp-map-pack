@@ -1,0 +1,1104 @@
+
+/* PH SEASONS */
+
+start_random
+percent_chance 50 #define PH_SPRING
+percent_chance 50 #define PH_AUTUMN
+end_random
+
+#include_drs F_seasons.inc
+
+#const AT_PLAYER 0
+#const AT_COLOR 1
+#const AT_TEAM 2
+<PLAYER_SETUP>
+  ai_info_map_type BLACK_FOREST 0 0 0
+#include_drs thebr_setup.inc
+direct_placement
+
+
+<LAND_GENERATION>
+
+base_terrain GRASS3
+enable_waves 1 
+
+
+;------------------------------------------------------ Side openings
+create_land {
+  terrain_type DIRT 
+  land_position 50 8
+  if TINY_MAP
+  	  base_size 6
+  elseif SMALL_MAP
+  	  base_size 8
+  elseif MEDIUM_MAP
+  	  base_size 11
+  elseif LARGE_MAP
+  	  base_size 13
+  elseif HUGE_MAP
+  	  base_size 16
+  elseif GIGANTIC_MAP
+  	  base_size 16
+  elseif LUDIKRIS_MAP
+  	  base_size 27
+  endif
+  number_of_tiles 0
+  zone 25
+}
+
+create_land {
+  terrain_type DIRT 
+  land_position 50 17
+  base_size 3
+  number_of_tiles 0
+  
+  zone 25
+}
+
+create_land {
+  terrain_type DIRT 
+  land_position 50 92
+    if TINY_MAP
+  	  base_size 6
+  elseif SMALL_MAP
+  	  base_size 8
+  elseif MEDIUM_MAP
+  	  base_size 11
+  elseif LARGE_MAP
+  	  base_size 13
+  elseif HUGE_MAP
+  	  base_size 16
+  elseif GIGANTIC_MAP
+  	  base_size 16  
+  elseif LUDIKRIS_MAP
+  	  base_size 27
+  endif
+  endif
+  number_of_tiles 0
+  zone 25
+}
+
+create_land {
+  terrain_type DIRT 
+  land_position 50 83
+  base_size 3
+  number_of_tiles 0
+  zone 25
+}
+
+
+;------------------------------------------------------ 1st team border water
+
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 25
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 30
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 35
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 40
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 45
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 50
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 55
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 60
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 65
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 70
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 75
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  29 80
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+
+;------------------------------------------------------ 2nd team border water
+
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 25
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 30
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 35
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 40
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 45
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 50
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 55
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 60
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 65
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 70
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 75
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  71 80
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+
+;------------------------------------------------------ 1st Team Base outline
+
+create_land {
+  terrain_type GRASS2 
+  land_position 15 20
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+create_land {
+  terrain_type GRASS2 
+  land_position 15 40
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+create_land {
+  terrain_type GRASS2 
+  land_position 15 60
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+create_land {
+  terrain_type GRASS2 
+  land_position 15 80
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+
+;------------------------------------------------------ 2nd Team Base outline
+
+create_land {
+  terrain_type GRASS2 
+  land_position 85 20
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+create_land {
+  terrain_type GRASS2 
+  land_position 85 40
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+create_land {
+  terrain_type GRASS2 
+  land_position 85 60
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+create_land {
+  terrain_type GRASS2 
+  land_position 85 80
+  base_size 27
+  number_of_tiles 0
+  zone 19
+}
+
+
+;------------------------------------------------------ 1st Team (ordered: lobby order = top to bottom)
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS2
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 12 14
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 12 39
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 12 61
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 12 86
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 18 24
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 18 50
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 1 -1 0
+    other_zone_avoidance_distance    30
+    land_position 18 73
+}
+
+;------------------------------------------------------ 2nd Team (ordered, mirrors 1st team)
+
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS2
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 88 14
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 88 39
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 88 61
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 88 86
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 82 24
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 82 50
+}
+create_land
+{
+    number_of_tiles 0
+    terrain_type GRASS
+    assign_to AT_TEAM 2 -1 0
+    other_zone_avoidance_distance    30
+    land_position 82 73
+}
+
+;------------------------------------------------------ Top lane
+
+create_land {
+  terrain_type DLC_MANGROVESHALLOW
+  land_position 71 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 67 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 62 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 57 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 52 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 47 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 42 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 37 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 32 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position  30 20
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+
+
+
+;------------------------------------------------------ Middle lane: mangrove ford, solid stone gate, relic alley
+
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 64 50
+  base_size 10
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 58 50
+  base_size 10
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 50 50
+  base_size 30
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 42 50
+  base_size 10
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 36 50
+  base_size 10
+  number_of_tiles 0
+  zone 18
+}
+
+;------------------------------------------------------ stone gate walls, columns overlap so band is seamless
+
+create_land { terrain_type DIRT2 land_position 48 28 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 30 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 32 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 34 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 36 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 38 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 40 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 42 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 44 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 46 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 48 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 50 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 52 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 54 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 56 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 58 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 60 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 62 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 64 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 66 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 68 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 70 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 48 72 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 28 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 30 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 32 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 34 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 36 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 38 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 40 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 42 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 44 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 46 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 48 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 50 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 52 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 54 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 56 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 58 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 60 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 62 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 64 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 66 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 68 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 70 base_size 3 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT2 land_position 52 72 base_size 3 number_of_tiles 0 zone 18 }
+
+;------------------------------------------------------ relic alley carved down the center, painted over the walls
+
+create_land { terrain_type DIRT3 land_position 50 28 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 30 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 32 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 34 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 36 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 38 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 40 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 42 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 44 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 46 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 48 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 50 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 52 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 54 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 56 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 58 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 60 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 62 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 64 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 66 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 68 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 70 base_size 2 number_of_tiles 0 zone 18 }
+create_land { terrain_type DIRT3 land_position 50 72 base_size 2 number_of_tiles 0 zone 18 }
+
+
+;------------------------------------------------------ Bottom lane
+
+
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 57 80
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 52 80
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+create_land {
+  terrain_type DLC_MANGROVESHALLOW 
+  land_position 47 80
+  base_size 5
+  number_of_tiles 0
+  zone 18
+}
+if TINY_MAP 
+  	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 42 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}	
+	create_land {
+	  terrain_type GRASS2 
+	  land_position  37 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 19
+	}
+  elseif SMALL_MAP
+  	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 42 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}	
+	create_land {
+	  terrain_type GRASS2 
+	  land_position  36 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 19
+	}
+  	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 62 80
+	  base_size 4
+	  number_of_tiles 0
+	  zone 18
+	}
+  else
+  	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 66 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}
+	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 62 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}
+	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 42 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}
+	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 37 80
+	  base_size 5
+	  number_of_tiles 0
+	  zone 18
+	}
+	create_land {
+	  terrain_type DLC_MANGROVESHALLOW 
+	  land_position 32 80
+      base_size 5
+	  number_of_tiles 20
+	  zone 18
+	}
+	create_land {
+	  terrain_type DLC_MANGROVESHALLOW
+	  land_position 70 80
+	  base_size 6
+	  number_of_tiles 0
+	  zone 19
+	}
+endif
+
+ 
+<TERRAIN_GENERATION>
+
+create_terrain FOREST
+{
+	base_terrain                   GRASS3
+	spacing_to_other_terrain_types 0
+	land_percent                   100
+	number_of_clumps               70
+	set_avoid_player_start_areas     30
+	set_scale_by_groups
+	clumping_factor                1
+	height_limits 0 4                      
+}
+
+#const WELL 1567
+#const GOODS  916
+#const VULTURE 1305
+#const ROCK 623
+
+<OBJECTS_GENERATION>
+
+#define GNR_NORMALTC
+#define GNR_STARTVILLS
+#define GNR_CLASSICSCOUT
+
+#define GNR_RELICMODERN_MEDIUM
+
+#define GNR_RESCLOSE
+
+#define GNR_REGICIDECLASSIC
+
+#define GNR_HUNT3OR4CLASSIC
+
+#define GNR_FARGMODERN_GIVE
+#define GNR_FARSMODERN_GIVE
+
+#define GNR_FARG_CLASSIC
+#define GNR_FARS_CLASSIC
+
+#define GNR_ADDITIONALPRED
+
+
+#include_drs GeneratingObjects.inc
+
+
+create_object OAKTREE
+{ 
+	number_of_objects				40
+	number_of_groups				5
+	group_placement_radius			3
+	set_tight_grouping 
+	set_gaia_object_only 
+	set_place_for_every_player
+	min_distance_to_players			15
+	max_distance_to_players			19
+	min_distance_group_placement	4
+} 
+
+create_object RELIC
+{
+   number_of_objects            1
+   min_distance_to_players     20
+	max_distance_to_players			25
+	set_gaia_object_only
+	set_place_for_every_player
+}
+
+create_object RELIC
+{
+   number_of_objects            1
+   number_of_groups 5
+   set_gaia_object_only
+   set_scaling_to_map_size
+   terrain_to_place_on DIRT
+}
+
+create_object RELIC {
+    number_of_objects 21
+    set_gaia_object_only
+    min_distance_group_placement 2
+    terrain_to_place_on DIRT3
+    ignore_terrain_restrictions
+}
+
+create_object OYSTERS {
+    second_object PLANT_WEEDS
+    number_of_objects 2
+    number_of_groups 12
+    set_loose_grouping
+    group_placement_radius 2
+    set_gaia_object_only
+    set_scaling_to_map_size
+    temp_min_distance_group_placement 10
+    terrain_to_place_on DLC_MANGROVESHALLOW
+    ignore_terrain_restrictions
+}
+
+create_object MARLIN1 {
+    number_of_objects 10
+    set_gaia_object_only
+    set_scaling_to_map_size
+    min_distance_group_placement 5
+    terrain_to_place_on DLC_MANGROVESHALLOW
+    ignore_terrain_restrictions
+}
+
+create_object MARLIN2 {
+    number_of_objects 10
+    set_gaia_object_only
+    set_scaling_to_map_size
+    min_distance_group_placement 5
+    terrain_to_place_on DLC_MANGROVESHALLOW
+    ignore_terrain_restrictions
+}
+
+create_object GOLD
+{
+	number_of_objects					4
+	number_of_groups					2
+	set_avoid_player_start_areas
+	set_gaia_object_only
+	set_scaling_to_map_size
+	set_tight_grouping
+    avoid_forest_zone 1
+	min_distance_group_placement			2
+	terrain_to_place_on DIRT
+	actor_area 65
+}
+
+create_object STONE
+{
+	number_of_objects					4
+	number_of_groups					2
+	set_avoid_player_start_areas
+	set_gaia_object_only
+	set_scaling_to_map_size
+	set_tight_grouping
+    avoid_forest_zone 1
+	min_distance_group_placement			2
+	terrain_to_place_on DIRT
+	actor_area 65
+}
+
+create_object STONE
+{
+    number_of_objects 9999
+    set_gaia_object_only
+    min_distance_group_placement 0
+    terrain_to_place_on DIRT2
+}
+
+create_object JAGUAR
+{
+   number_of_objects            1
+   number_of_groups 3
+   set_gaia_object_only
+   set_scaling_to_map_size
+   terrain_to_place_on DIRT
+}
+
+
+create_object CYPRESS_TREE 
+{ 
+	number_of_objects				1
+	number_of_groups				4
+	group_placement_radius			1
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players			4
+	max_distance_to_players			4
+	min_distance_group_placement	0
+} 
+
+create_object CYPRESS_TREE 
+{ 
+	number_of_objects				1
+	number_of_groups				2
+	group_placement_radius			1
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players			3
+	max_distance_to_players			3
+	min_distance_group_placement	0
+} 
+create_object GOLD 
+{ 
+	number_of_objects				4
+	number_of_groups				4
+	group_placement_radius			1
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+    avoid_forest_zone 3
+	min_distance_to_players			10
+	max_distance_to_players			12
+	min_distance_group_placement	0
+} 
+
+create_object STONE 
+{ 
+	number_of_objects				5
+	number_of_groups				2
+	group_placement_radius			2
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+    avoid_forest_zone 3
+	min_distance_to_players			7
+	max_distance_to_players			9
+	min_distance_group_placement	0
+} 
+
+create_object SHEEP 
+{ 
+	number_of_objects				1
+	number_of_groups				8
+	group_placement_radius			2
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players			3
+	max_distance_to_players			4
+	min_distance_group_placement	0
+} 
+
+create_object BOAR 
+{ 
+	number_of_objects				1
+	number_of_groups				2
+	group_placement_radius			2
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players			8
+	max_distance_to_players			10
+	min_distance_group_placement	0
+}
+
+create_object FORAGE
+{ 
+	number_of_objects				7
+	number_of_groups				1
+	group_placement_radius			
+	set_tight_grouping 
+	set_gaia_object_only
+	set_place_for_every_player
+    avoid_forest_zone 3
+	min_distance_to_players			12
+	max_distance_to_players			14
+	min_distance_group_placement	0
+}
+
+create_object DEER 
+{ 
+	number_of_objects				4
+	number_of_groups				1
+	group_placement_radius			4
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players			12
+	max_distance_to_players			14
+}
+
+create_object MACAW
+{
+	number_of_objects 12
+	set_gaia_object_only
+	set_scaling_to_map_size
+}
+
+create_object FLOWER_BED
+{
+	number_of_objects					1
+	number_of_groups					1
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players				0
+	max_distance_to_players				1
+}
+
+create_object SIGN
+{
+	number_of_objects					1
+	number_of_groups					1
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players				10
+	max_distance_to_players				14
+}
+
+create_object GOODS
+{
+	number_of_objects					1
+	number_of_groups					1
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players				8
+	max_distance_to_players				12
+	terrain_to_place_on					ROAD
+}
+
+create_object HUNTABLE
+{
+	number_of_objects 4
+	number_of_groups 3
+	set_gaia_object_only
+	min_distance_to_players 25
+	temp_min_distance_group_placement 8
+}
+
+
+create_object SNAPPER
+{
+	number_of_objects				24
+	set_scaling_to_map_size
+	set_gaia_object_only
+	min_distance_group_placement	3
+	max_distance_to_other_zones	4
+}
+
+
+
+
+<CONNECTION_GENERATION>
+
+create_connect_teams_lands
+{
+	replace_terrain	FOREST	GRASS
+	terrain_cost	ROAD		0
+	terrain_cost	DLC_MANGROVESHALLOW		9
+	terrain_cost	WATER		99
+	terrain_cost    PINE_FOREST 	99
+	terrain_cost    FOREST	7
+	terrain_size	FOREST	3	0
+}
+
+
+
+
+
+
+
+
+
