@@ -13,6 +13,7 @@ the maps appear under Custom maps.
 | **AbP Trio Ford** | Mangrove ford middle with two solid stone gate-walls and a relic alley between them — mid can't be crossed without mining through. Great Marlins and oysters live in the walkable water. |
 | **AbP Michi Relic Pond** | Classic seasons michi: 10 relics per player, dockable fish ponds (1–2 per player), standard 8 herdables, lighter woodlines, no-collision trade carts. |
 | **AbP Michi Official Relic Pond** | Same treatment on the official 2023 Michi base (per-team-size layouts, neutral 1v1 markets), plus grouped teams on fallback placement and ordered spawns. |
+| **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade carts added. |
 
 ## Notable techniques used
 
