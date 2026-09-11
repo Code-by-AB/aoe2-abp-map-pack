@@ -561,48 +561,48 @@ create_object DLC_OSTRICH
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	MED_WATER
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  min_distance_group_placement 2
 }
 
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	MED_WATER
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  min_distance_group_placement 3
 }
 
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	MED_WATER
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  min_distance_group_placement 4
 }
 
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	DLC_NEWSHALLOW
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  second_object SHORE_FISH
  min_distance_group_placement 5
 }
@@ -610,24 +610,24 @@ create_object SKELETON
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	DLC_NEWSHALLOW
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  second_object SHORE_FISH
  min_distance_group_placement 5
 }
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 8
+ number_of_groups 12
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
  terrain_to_place_on	DLC_NEWSHALLOW
- temp_min_distance_group_placement 35
+ temp_min_distance_group_placement 9
  second_object SHORE_FISH
  min_distance_group_placement 5
 }
@@ -641,6 +641,7 @@ create_object RELIC
  temp_min_distance_group_placement 11
  terrain_to_place_on ICE
 }
+
 
 
 
