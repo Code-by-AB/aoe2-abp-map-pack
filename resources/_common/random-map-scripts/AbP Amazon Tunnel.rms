@@ -1,0 +1,1244 @@
+
+/* The Amazon Tunnel 2023 */
+/* updated for ANTIQUITY_MODE November 2023 */
+
+/* PH SEASONS */
+if ANTIQUITY_MODE
+	#define PH_MEDISOUTH
+else 
+	#define PH_TROPHICALSOUTH
+endif
+#include_drs F_seasons.inc
+
+/* ****************************************************** */
+<PLAYER_SETUP>
+
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
+  grouped_by_team
+  ai_info_map_type BLACK_FOREST 0 0 0
+
+
+/* ****************************************************** */
+
+
+
+
+/* defining AMAZTUN_FFA */
+
+
+if 1_PLAYER_GAME
+elseif 2_PLAYER_GAME
+	#define AMAZTUN_PFOR2
+	if TINY_MAP
+	#define AMAZTUN_TINYPFOR2
+	endif
+elseif 3_PLAYER_GAME
+	if 1_TEAM_GAME
+	#define AMAZTUN_PFOR21
+	else
+			#define AMAZTUN_FFA 
+			#define AMAZTUN_PFOR3
+	endif
+elseif 4_PLAYER_GAME
+	if 2_TEAM_GAME
+			#define POS_2V2
+			#define AMAZTUN_PFOR22
+	elseif 1_TEAM_GAME
+		if TEAM1_SIZE3
+		elseif TEAM2_SIZE3
+		else
+			#define AMAZTUN_FFA 
+		endif
+	else
+			#define AMAZTUN_FFA 
+	endif
+elseif 5_PLAYER_GAME
+	if 2_TEAM_GAME
+		if TEAM1_SIZE3
+			#define AMAZTUN_PFOR32
+		elseif TEAM2_SIZE3
+			#define AMAZTUN_PFOR32
+		else
+			#define AMAZTUN_FFA 
+		endif
+	else
+			#define AMAZTUN_FFA 
+	endif
+elseif 6_PLAYER_GAME
+	if 2_TEAM_GAME
+		if TEAM0_SIZE0
+			if TEAM1_SIZE3
+				#define AMAZTUN_PFOR33
+			elseif TEAM2_SIZE3
+				#define AMAZTUN_PFOR33
+			elseif TEAM1_SIZE4
+			elseif TEAM2_SIZE4
+			else
+			#define AMAZTUN_FFA 
+			endif
+		else
+			#define AMAZTUN_FFA 
+		endif
+	else
+			#define AMAZTUN_FFA 
+	endif
+elseif 7_PLAYER_GAME
+	if 2_TEAM_GAME
+		if TEAM1_SIZE4
+				#define AMAZTUN_PFOR43
+		elseif TEAM2_SIZE4
+				#define AMAZTUN_PFOR43
+		else
+			#define AMAZTUN_FFA 
+		endif
+	else
+			#define AMAZTUN_FFA 
+	endif
+elseif 8_PLAYER_GAME
+	if 2_TEAM_GAME
+		if TEAM1_SIZE4
+				#define AMAZTUN_PFOR44
+		elseif TEAM2_SIZE4
+				#define AMAZTUN_PFOR44
+		else
+			#define AMAZTUN_FFA 
+		endif
+	else
+			#define AMAZTUN_FFA 
+	endif
+else 
+
+endif
+
+
+
+
+<LAND_GENERATION>
+base_terrain DESERT
+enable_waves 0 
+
+if AMAZTUN_TINYPFOR2
+
+create_land
+{
+  terrain_type				LAYER_A
+  number_of_tiles				   0
+  base_size                        2
+  land_position 49 51
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  number_of_tiles				   0
+  base_size                        2
+  land_position 53 51
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  number_of_tiles				   0
+  base_size                        2
+  land_position 49 52
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  number_of_tiles				   0
+  base_size                        2
+  land_position 52 48
+}
+
+create_land
+{
+  terrain_type				LAYER_A
+  number_of_tiles				   0
+  base_size                        0
+  land_position 50 50
+  land_id 40
+}
+
+
+create_player_lands 
+{
+  terrain_type				LAYER_C
+  land_percent                     6
+  base_size                        12
+  circle_radius 				   60 0
+  other_zone_avoidance_distance    1
+}
+
+else
+
+create_land
+{
+  terrain_type				LAYER_A
+  land_percent                     1
+  base_size                        2
+  land_position 50 50
+}
+
+
+create_player_lands 
+{
+  terrain_type				LAYER_C
+  land_percent                     6
+  base_size                        14
+  circle_radius 				   48 0
+  other_zone_avoidance_distance    12
+}
+
+endif
+
+
+/* ****************************************************** */
+<TERRAIN_GENERATION>
+
+#include_drs F_ColorCorrection.inc
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain WOODIES
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               100
+  if AMAZTUN_TINYPFOR2
+  spacing_to_other_terrain_types 8 /* originally 8 */
+  set_avoid_player_start_areas 30
+  else
+  spacing_to_other_terrain_types 11 /* originally 8 */
+  set_avoid_player_start_areas 36
+  endif
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_B
+{
+   base_terrain DESERT
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_B
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_B
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_B
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_B
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+
+
+   create_terrain LAYER_E
+{
+   base_terrain LAYER_C
+  land_percent                   100
+  number_of_clumps               1000
+  spacing_to_other_terrain_types 9
+}
+
+
+
+/* player forests */
+
+if AMAZTUN_PFOR2
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		170
+  number_of_clumps               3
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		170
+  number_of_clumps               3
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+elseif AMAZTUN_PFOR21
+
+	#define AMAZTUN_RANDFOREST
+
+elseif AMAZTUN_PFOR3
+
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		170
+  number_of_clumps               3
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		170
+  number_of_clumps               3
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 3 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		170
+  number_of_clumps               3
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+
+elseif AMAZTUN_PFOR22
+
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		330
+  number_of_clumps               6
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		330
+  number_of_clumps               6
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+elseif AMAZTUN_PFOR32
+
+	#define AMAZTUN_RANDFOREST
+
+
+elseif AMAZTUN_PFOR33
+
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		470
+  number_of_clumps               9
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		470
+  number_of_clumps               9
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+
+elseif AMAZTUN_PFOR43
+
+
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		550
+  number_of_clumps               11
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		550
+  number_of_clumps               11
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+
+
+
+
+elseif AMAZTUN_PFOR44
+
+
+/* 1 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		630
+  number_of_clumps               12
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+/* 2 */
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  number_of_tiles		630
+  number_of_clumps               12
+  set_avoid_player_start_areas  12
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+
+
+endif
+
+
+if AMAZTUN_FFA 
+
+#define AMAZTUN_RANDFOREST
+
+endif
+
+
+if AMAZTUN_RANDFOREST
+
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_F
+{
+   base_terrain LAYER_E
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain WOODIES_B
+{
+   base_terrain LAYER_F
+  land_percent 		3
+  number_of_clumps               6
+  set_avoid_player_start_areas  12
+  set_scale_by_groups
+}
+
+endif
+
+
+
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_F
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+
+   create_terrain LAYER_C
+{
+   base_terrain LAYER_B
+  land_percent                   100
+  number_of_clumps               1000
+}
+
+create_terrain LAYER_B
+{
+   base_terrain 			LAYER_C
+  spacing_to_other_terrain_types 1
+  land_percent                   3
+  number_of_clumps               26
+  terrain_mask 2
+}
+
+create_terrain LAYER_B
+{
+   base_terrain 			LAYER_C
+  spacing_to_other_terrain_types 1
+  land_percent                   2
+  number_of_clumps               40
+  terrain_mask 2
+}
+
+   create_terrain LAYER_E
+{
+   base_terrain LAYER_C
+  land_percent                   1
+  number_of_clumps               2
+  set_scale_by_groups
+  terrain_mask 1
+}
+
+
+   create_terrain LAYER_A
+{
+   base_terrain LAYER_C
+  land_percent                   6
+  number_of_clumps               4
+  set_scale_by_groups
+  terrain_mask 1
+}
+
+
+/*
+
+   create_terrain VODA
+{
+  base_terrain 			WOODIES
+  spacing_to_other_terrain_types 12
+  land_percent                   2
+  number_of_clumps               4
+  set_avoid_player_start_areas
+  set_flat_terrain_only     
+  set_scale_by_groups
+}
+
+#define WMASK_VODA
+#include_drs F_WaterMasking.inc
+
+*/
+
+/* ****************************************************** */
+<OBJECTS_GENERATION>
+
+/* hacky decorative fish beneath the town centers (invisible placeholder 1543 + second_object) */
+
+#const FISH_PAD 1543
+
+create_object FISH_PAD
+{
+ number_of_objects 3
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 2
+ max_distance_to_players 4
+ second_object SALMON
+}
+
+create_object FISH_PAD
+{
+ number_of_objects 3
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 2
+ max_distance_to_players 5
+ second_object SHORE_FISH
+}
+
+if INFINITE_RESOURCES
+else
+
+#const BLANKOBJECT 647
+
+create_object BLANKOBJECT
+{
+   number_of_objects 5
+   set_place_for_every_player
+   max_distance_to_players 2
+   set_gaia_object_only
+   actor_area 8401
+   actor_area_radius 23
+}
+
+endif
+
+#define GNR_NORMALTC
+#define GNR_STARTVILLS
+#define GNR_CLASSICSCOUT
+
+#define GNR_RESCLOSE
+
+#define GNR_REGICIDECLASSIC
+#define GNR_6KER
+
+#define GNR_STARTINGGOLD
+#define GNR_STARTINGSTONE
+
+/* originally 66 and 44 - third gold pile added separately */
+
+#define GNR_STARTGOLD66M
+#define GNR_STARTSTONE44M
+#define GNR_SPLITSTARTGOLDS
+
+#define GNR_GIVEHERD_A
+#define GNR_GIVEHERD_B
+
+#define GNR_HERD4CLASSIC_A
+#define GNR_HERD22CLASSIC_B
+
+#define GNR_GIVEHUNT
+
+#define GNR_HUNT3OR4CLASSIC
+
+#define GNR_GIVELURES
+#define GNR_CLASSICLURES_THREE
+#define GNR_CLASSICPRED
+
+/* relics, gold, and stone established on layer_c */
+
+#define GNR_HOMESTRAGGLE
+#define GNR_NORMALBIRDS
+
+#define GNR_SMALLFISHONLY
+
+/* no stragglers per map */
+
+#include_drs GeneratingObjects.inc
+
+
+/* third pile per player */
+
+if INFINITE_RESOURCES
+else
+
+create_object GOLD
+{
+   number_of_objects 6
+   number_of_groups 1
+   set_tight_grouping
+   find_closest
+   set_place_for_every_player
+   min_distance_group_placement 3
+   set_gaia_object_only
+   actor_area 8400
+   actor_area_radius 6
+   avoid_actor_area 8401
+   avoid_forest_zone 2
+}
+
+endif
+
+
+if INFINITE_RESOURCES
+else
+   if 2_PLAYER_GAME
+   create_object GOLD
+   {
+      place_on_specific_land_id 40
+      set_gaia_object_only
+      max_distance_to_players 12
+      number_of_groups 2
+      min_distance_to_players 8
+      temp_min_distance_group_placement 16
+      number_of_objects          3
+      group_placement_radius     2
+      set_tight_grouping
+      avoid_forest_zone 2
+      max_distance_to_other_zones 2
+      actor_area 66
+      actor_area_radius 5
+      min_distance_group_placement  2
+   }
+   create_object STONE
+   {
+      place_on_specific_land_id 40
+      set_gaia_object_only
+      max_distance_to_players 12
+      number_of_groups 2
+      min_distance_to_players 8
+      temp_min_distance_group_placement 16
+      number_of_objects          3
+      group_placement_radius     2
+      set_tight_grouping
+      avoid_forest_zone 2
+      max_distance_to_other_zones 2
+      actor_area 67
+      avoid_actor_area 66
+      actor_area_radius 5
+      min_distance_group_placement  2
+   }
+
+
+   else
+   create_object GOLD
+   {
+      number_of_objects          3
+      number_of_groups           9999
+      temp_min_distance_group_placement  21
+      group_placement_radius     2
+      set_tight_grouping
+      set_gaia_object_only
+      min_distance_to_players	   30
+      avoid_forest_zone 3
+      max_distance_to_other_zones 5
+      actor_area 66
+      actor_area_radius 5
+      terrain_to_place_on LAYER_A
+      min_distance_group_placement  3
+   }
+
+   create_object STONE
+   {
+      number_of_objects          3
+      number_of_groups           9999
+      temp_min_distance_group_placement  29
+      group_placement_radius     2
+      set_tight_grouping
+      set_gaia_object_only
+      min_distance_to_players	   30
+      avoid_forest_zone 3
+      max_distance_to_other_zones 5
+      actor_area 67
+      actor_area_radius 5
+      avoid_actor_area 66
+      terrain_to_place_on LAYER_A
+      min_distance_group_placement  3
+   }
+   endif
+
+endif
+
+
+create_object RELIC
+{
+		if TINY_MAP
+   number_of_objects            5
+   temp_min_distance_group_placement 6
+		elseif SMALL_MAP
+   number_of_objects            5
+   temp_min_distance_group_placement 10
+		elseif MEDIUM_MAP
+   number_of_objects            5
+   temp_min_distance_group_placement 10
+		elseif LARGE_MAP
+   number_of_objects            7
+   temp_min_distance_group_placement 10
+		elseif HUGE_MAP
+   number_of_objects            8
+   temp_min_distance_group_placement 10
+		elseif GIGANTIC_MAP
+   number_of_objects            999
+   temp_min_distance_group_placement 15
+		elseif LUDIKRIS_MAP
+   number_of_objects            999
+   temp_min_distance_group_placement 40
+		endif
+
+   min_distance_to_players     35
+   set_gaia_object_only
+   avoid_forest_zone 1
+
+if TINY_MAP
+   min_distance_to_map_edge	   30
+elseif SMALL_MAP
+elseif MEDIUM_MAP
+else
+   terrain_to_place_on LAYER_A
+endif
+}
+
+
+/* ****************************************************** */
+
+<ELEVATION_GENERATION>
+
+
+create_elevation        7
+{
+  base_terrain			LAYER_A
+  number_of_clumps 		7
+  number_of_tiles               4300
+}
+
+#const LAYER_D 14
+
+#define GNRELEV_HEIGHT04
+#define GNRELEV_INTENSITY_D
+#define GNRELEV_LAY_D
+
+#include_drs GeneratingElevation.inc
+
+/* ****************************************************** */
+
+<CONNECTION_GENERATION>
+
+if AMAZTUN_FFA
+
+create_connect_to_nonplayer_land
+{
+  replace_terrain WOODIES	LAYER_A
+  terrain_cost    WOODIES 	9 /* rasied from 4 */
+  terrain_cost    LAYER_C 	1
+  terrain_size    WOODIES  	6       0
+}
+
+else
+
+
+create_connect_all_players_land 
+{
+  replace_terrain WOODIES	LAYER_A
+  terrain_cost    WOODIES 	9
+  terrain_cost    LAYER_C 	1
+  if TINY_MAP
+  terrain_size    WOODIES  	7       0
+  else
+  terrain_size    WOODIES  	6       0
+  endif
+}
+
+endif
+
+create_connect_teams_lands
+{
+  replace_terrain LAYER_A	CESTA
+  replace_terrain LAYER_B	CESTA
+  replace_terrain LAYER_C	CESTA
+  replace_terrain WOODIES 	CESTA
+  replace_terrain WOODIES_B	CESTA
+  replace_terrain VODA	MELCINA
+  replace_terrain MED_WATER     MELCINA
+  terrain_cost    VODA	7
+  terrain_cost    MED_WATER     7 
+  terrain_cost    ICE           7
+  terrain_cost    WOODIES	7
+  terrain_cost    WOODIES_B		7
+  terrain_cost    LAYER_A	2
+  terrain_cost    LAYER_B	2
+  terrain_cost    LAYER_C	2
+  terrain_cost    BEACH         4
+  terrain_cost    CESTA 	1
+if LUDIKRIS_MAP
+  terrain_size    VODA		3	1
+  terrain_size    MED_WATER     3       1
+  terrain_size    ICE           3       1
+  terrain_size    LAYER_A	3       0
+  terrain_size    LAYER_B	3       0
+  terrain_size    LAYER_C	3       0
+  terrain_size    WOODIES 	3       0
+  terrain_size    WOODIES_B	3       0
+else
+  terrain_size    VODA	2       1
+  terrain_size    MED_WATER     2       1
+  terrain_size    ICE           2       1
+  terrain_size    LAYER_A	1       0
+  terrain_size    LAYER_B	1       0
+  terrain_size    LAYER_C	1       0
+  terrain_size    WOODIES 	1       0
+  terrain_size    WOODIES_B	1       0
+endif
+}
+
+
