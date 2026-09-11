@@ -97,30 +97,30 @@ create_land
  zone 6
 }
 
-/* fixed position player spawns, 4v4 rework v2 - full team sides, two plots per player on own side */
+/* fixed position player spawns, 4v4 rework v3 - deterministic assign_to_player, two plots each */
+/* LOBBY RULE: team 1 = lobby slots 1-4 (left side), team 2 = slots 5-8 (right side) */
 /* original 1v1 spawn concept courtesy Mike Hasselbach dude */
 
-/* team 1 inner homes - left of the burrito */
-create_land { land_position 26 15 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 26 38 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 26 61 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 26 84 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-/* team 2 inner homes - right of the burrito */
-create_land { land_position 74 15 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 74 38 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 74 61 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 74 84 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-/* outer second homes - flags 1 resets assignment so each player gets a second plot, row-paired */
-/* team 1 outer */
-create_land { land_position 12 15 zone 1 assign_to AT_TEAM 1 -1 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 12 38 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 12 61 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 12 84 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-/* team 2 outer */
-create_land { land_position 88 15 zone 2 assign_to AT_TEAM 2 -1 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 88 38 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 88 61 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
-create_land { land_position 88 84 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* players 1-4 inner homes - left of the burrito */
+create_land { land_position 26 15 zone 1 assign_to_player 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 26 38 zone 1 assign_to_player 2 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 26 61 zone 1 assign_to_player 3 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 26 84 zone 1 assign_to_player 4 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* players 5-8 inner homes - right of the burrito */
+create_land { land_position 74 15 zone 2 assign_to_player 5 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 74 38 zone 2 assign_to_player 6 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 74 61 zone 2 assign_to_player 7 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 74 84 zone 2 assign_to_player 8 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* players 1-4 outer second homes */
+create_land { land_position 12 15 zone 1 assign_to_player 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 12 38 zone 1 assign_to_player 2 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 12 61 zone 1 assign_to_player 3 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 12 84 zone 1 assign_to_player 4 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* players 5-8 outer second homes */
+create_land { land_position 88 15 zone 2 assign_to_player 5 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 88 38 zone 2 assign_to_player 6 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 88 61 zone 2 assign_to_player 7 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 88 84 zone 2 assign_to_player 8 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
 /* ****************************************************** */
 <ELEVATION_GENERATION>
 
@@ -632,5 +632,6 @@ create_object RELIC
  temp_min_distance_group_placement 11
  terrain_to_place_on ICE
 }
+
 
 
