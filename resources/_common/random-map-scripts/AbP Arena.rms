@@ -5171,6 +5171,30 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 
 <OBJECTS_GENERATION>
 
+/* AbP: hacky decorative fish beneath the town centers (invisible placeholder 1543 + second_object) */
+
+#const FISH_PAD 1543
+
+create_object FISH_PAD
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 2
+	max_distance_to_players 4
+	second_object SALMON
+}
+
+create_object FISH_PAD
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 2
+	max_distance_to_players 5
+	second_object SHORE_FISH
+}
+
 /* AbP: pond life - marlins swim it, oysters for villager food (mangrove recipe from Trio Ford) */
 
 create_object MARLIN1
@@ -5637,6 +5661,7 @@ create_object OYSTERS
 			endif
 		endif
 	endif
+
 
 
 
