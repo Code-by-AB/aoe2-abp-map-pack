@@ -295,6 +295,30 @@ create_object smokey
   temp_min_distance_group_placement  3
 }
 
+/* hacky decorative fish beneath the town centers (invisible placeholder 1543 + second_object) */
+
+#const FISH_PAD 1543
+
+create_object FISH_PAD
+{
+ number_of_objects 3
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 2
+ max_distance_to_players 4
+ second_object SALMON
+}
+
+create_object FISH_PAD
+{
+ number_of_objects 3
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 2
+ max_distance_to_players 5
+ second_object SHORE_FISH
+}
+
 /* stragglers */
 
 create_object TREE_J
@@ -641,6 +665,7 @@ create_object RELIC
  temp_min_distance_group_placement 11
  terrain_to_place_on ICE
 }
+
 
 
 
