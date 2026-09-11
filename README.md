@@ -26,7 +26,7 @@ Download ZIP) and drop its contents into that same folder.
 | **AbP Michi Relic Pond** | Classic seasons michi: 10 relics per player, dockable fish ponds (1–2 per player), standard 8 herdables, lighter woodlines, no-collision trade carts. |
 | **AbP Michi Official Relic Pond** | Same treatment on the official 2023 Michi base (per-team-size layouts, neutral 1v1 markets), plus grouped teams on fallback placement and ordered spawns. |
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade carts added. |
-| **AbP Arena** | Official Arena + no-collision trade carts. (Back-pond experiment shelved — it broke Arena's wall/forest generation.) |
+| **AbP Arena** | Official Arena + no-collision trade carts, and the neutral berry sprinkle replaced by 8 neutral fish ponds (8–10 tiles wide, shore fish + tuna) kept 30 tiles clear of every base so walls generate untouched. Home berry patch stays. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel + no-collision trade carts + decorative fish beneath every TC. |
 | **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: the two-homes-per-player gimmick becomes diagonal team pockets (team 1 left-top + right-bottom, team 2 the opposite), burrito wall and corner lakes intact, 8 relics. Play on Large or bigger. |
 
