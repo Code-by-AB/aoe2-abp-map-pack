@@ -4581,7 +4581,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 
 	/* AbP: small in-base ponds - placed right after spawn terrain restoration, constraints minimal */
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4590,7 +4590,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4599,7 +4599,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4608,7 +4608,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4617,7 +4617,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4626,7 +4626,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4635,7 +4635,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4644,7 +4644,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4653,7 +4653,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4662,7 +4662,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4671,7 +4671,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -4680,7 +4680,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain WATER
+	create_terrain DLC_MANGROVESHALLOW
 	{
 		base_terrain SPAWN_TERRAIN
 		number_of_tiles rnd(28,40)
@@ -5088,24 +5088,40 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 
 <OBJECTS_GENERATION>
 
-/* AbP: fish in the ponds */
+/* AbP: pond life - marlins swim it, oysters for villager food (mangrove recipe from Trio Ford) */
 
-create_object SHORE_FISH
+create_object MARLIN1
 {
-	number_of_objects 16
-	set_gaia_object_only
-	set_scaling_to_map_size
-	min_distance_group_placement 3
-	terrain_to_place_on WATER
-}
-
-create_object TUNA
-{
-	number_of_objects 6
+	number_of_objects 8
 	set_gaia_object_only
 	set_scaling_to_map_size
 	min_distance_group_placement 4
-	terrain_to_place_on WATER
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
+}
+
+create_object MARLIN2
+{
+	number_of_objects 8
+	set_gaia_object_only
+	set_scaling_to_map_size
+	min_distance_group_placement 4
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
+}
+
+create_object OYSTERS
+{
+	second_object PLANT_WEEDS
+	number_of_objects 2
+	number_of_groups 12
+	set_loose_grouping
+	group_placement_radius 2
+	set_gaia_object_only
+	set_scaling_to_map_size
+	temp_min_distance_group_placement 8
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
 }
 	if TERRAIN_DEBUGGING
 	else
@@ -5538,6 +5554,7 @@ create_object TUNA
 			endif
 		endif
 	endif
+
 
 
 
