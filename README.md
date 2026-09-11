@@ -28,6 +28,13 @@ Download ZIP) and drop its contents into that same folder.
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade carts added. |
 | **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: the two-homes-per-player gimmick becomes diagonal team pockets (team 1 left-top + right-bottom, team 2 the opposite), burrito wall and corner lakes intact, 8 relics. Play on Large or bigger. |
 
+## Lobby notes
+
+- The Trio maps assign spawns by team (`AT_TEAM`): the lobby needs **two real teams
+  of 2+ players** — AoE2 does not count a 1-player team as a team, so these maps
+  cannot generate a plain 1v1. Use the Michi maps for 1v1s.
+- Burrito Brawl 4v4 assigns by lobby slot: **team 1 = slots 1-4, team 2 = slots 5-8.**
+
 ## Notable techniques used
 
 - `assign_to AT_TEAM <n> -1 0` — ordered (lobby-order) team member placement
