@@ -48,8 +48,39 @@ foreach ($prof in $profiles) {
         continue
     }
 
-    # no git available: zip fallback (only works if the repo is public)
-    Write-Host "Git not found - trying direct download (works only if the repo is public)..."
+    # no git: try GitHub CLI (authenticated zipball, no git needed)
+    $ghCmd = Get-Command gh -ErrorAction SilentlyContinue
+    if ($ghCmd) {
+        gh auth status 2>$null | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Updating via GitHub CLI: $dest"
+            $tmp = Join-Path $env:TEMP ("abp-pack-" + [guid]::NewGuid())
+            New-Item -ItemType Directory -Path $tmp | Out-Null
+            try {
+                $zip = Join-Path $tmp 'pack.zip'
+                cmd /c "gh api repos/Code-by-AB/aoe2-abp-map-pack/zipball/main > `"$zip`""
+                if ($LASTEXITCODE -ne 0) { throw "gh api download failed" }
+                Expand-Archive -Path $zip -DestinationPath $tmp
+                $src = (Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName
+                New-Item -ItemType Directory -Path $dest -Force | Out-Null
+                robocopy $src $dest /MIR /XD .git /NFL /NDL /NJH /NJS | Out-Null
+                if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
+                Write-Host "  done." -ForegroundColor Green
+            }
+            catch {
+                Write-Host "GitHub CLI download failed: $_" -ForegroundColor Red
+            }
+            finally {
+                Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
+            }
+            continue
+        }
+        Write-Host "GitHub CLI found but not signed in - run 'gh auth login' once, then rerun this." -ForegroundColor Yellow
+        continue
+    }
+
+    # neither git nor gh: anonymous zip fallback (only works if the repo is public)
+    Write-Host "Git/gh not found - trying direct download (works only if the repo is public)..."
     $tmp = Join-Path $env:TEMP ("abp-pack-" + [guid]::NewGuid())
     New-Item -ItemType Directory -Path $tmp | Out-Null
     try {

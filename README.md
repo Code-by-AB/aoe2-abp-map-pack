@@ -20,6 +20,10 @@ remembers it). The script finds your game profile automatically and keeps
 `Games\Age of Empires 2 DE\<profile-id>\mods\local\AbP Map Pack\` up to date
 via git.
 
+Prefer the GitHub CLI instead of Git? That works too: install `gh`
+(cli.github.com), run `gh auth login` once in any terminal, and the script
+uses it automatically — no Git needed.
+
 Manual alternative: `git clone` this repo into that same folder yourself,
 then `git pull` whenever there are updates.
 
