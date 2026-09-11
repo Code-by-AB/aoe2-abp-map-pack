@@ -5072,6 +5072,128 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		height_limits 0 0
 	}
 
+	/* AbP: small in-base ponds carved into the spawn terrain - cannot touch the wall ring (blend terrains) */
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
+	create_terrain WATER
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles rnd(14,20)
+		number_of_clumps 1
+		clumping_factor 15
+		set_avoid_player_start_areas 8
+		spacing_to_other_terrain_types 2
+		set_flat_terrain_only
+		height_limits 0 0
+	}
+
 <OBJECTS_GENERATION>
 
 /* AbP: fish in the ponds */
@@ -5455,5 +5577,6 @@ create_object TUNA
 			endif
 		endif
 	endif
+
 
 
