@@ -2489,18 +2489,6 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		zone PLAYER_ZONE
 		circle_radius 38 0
 	}
-	/* AbP back pond - one per player behind the base (Sacred Springs style: all-water land, so nothing else can spawn on it) */
-	create_player_lands
-	{
-		terrain_type WATER
-		number_of_tiles 40
-		base_size 4
-		clumping_factor 15
-		zone 26
-		other_zone_avoidance_distance 2
-		land_id 490
-		circle_radius 45 0
-	}
 
 	if COLLAPSE
 		if MAPSIZE_MINI
@@ -4987,50 +4975,6 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	endif
 
 <OBJECTS_GENERATION>
-
-/* AbP: fish in the back ponds */
-
-create_object SHORE_FISH
-{
-	number_of_objects 5
-	set_gaia_object_only
-	set_place_for_every_player
-	place_on_specific_land_id 490
-	min_distance_group_placement 2
-}
-
-create_object TUNA
-{
-	number_of_objects 2
-	set_gaia_object_only
-	set_place_for_every_player
-	place_on_specific_land_id 490
-	min_distance_group_placement 2
-}
-
-/* AbP: hacky decorative fish beneath the town centers */
-
-#const FISH_PAD 1543
-
-create_object FISH_PAD
-{
-	number_of_objects 3
-	set_gaia_object_only
-	set_place_for_every_player
-	min_distance_to_players 2
-	max_distance_to_players 4
-	second_object SALMON
-}
-
-create_object FISH_PAD
-{
-	number_of_objects 3
-	set_gaia_object_only
-	set_place_for_every_player
-	min_distance_to_players 2
-	max_distance_to_players 5
-	second_object SHORE_FISH
-}
 	if TERRAIN_DEBUGGING
 	else
 		#define PRELIMINARIES
