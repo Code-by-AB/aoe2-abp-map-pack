@@ -1,0 +1,636 @@
+/* ************ Burrito Brawl 4v4 (AbP rework of Dragonmilk's original) ************ */
+/* 7 Jan 21 */
+/* Latest version: 7 Jan 22 */
+
+/* Note: random_map.def is automatically included in every rms script */
+
+/* ****************************************************** */
+<PLAYER_SETUP>
+ /* grouped_by_team */
+ direct_placement
+ 
+/* mods */
+#const EXTRA_TCS 218
+effect_amount MOD_RESOURCE EXTRA_TCS ATTR_ADD 7
+
+effect_amount SET_ATTRIBUTE VILLAGER_BASE_F ATTR_HITPOINTS 9
+effect_percent SET_ATTRIBUTE VILLAGER_BASE_F ATTR_MOVE_SPEED 110
+effect_amount SET_ATTRIBUTE VILLAGER_BASE_M ATTR_HITPOINTS 9
+effect_percent SET_ATTRIBUTE VILLAGER_BASE_M ATTR_MOVE_SPEED 110
+
+effect_percent SET_ATTRIBUTE TRANSPORT_SHIP ATTR_MOVE_SPEED 80
+effect_amount SET_ATTRIBUTE TRANSPORT_SHIP ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRANSPORT_SHIP ATTR_LINE_OF_SIGHT 2
+
+/* ****************************************************** */
+<LAND_GENERATION>
+
+base_terrain DLC_JUNGLEGRASS
+enable_waves 0
+
+/* One Burrito */
+create_land 
+{
+ terrain_type DLC_FORESTAUTUMN
+ land_percent 40
+ left_border 33
+ right_border 33
+ if 2_PLAYER_GAME
+	 top_border 19
+	 bottom_border 19
+ else
+	 top_border 11
+	 bottom_border 11
+ endif
+ border_fuzziness 69
+ zone 5
+}
+
+
+/* corners */
+
+create_land 
+{
+ terrain_type DLC_NEWSHALLOW
+ land_percent 40
+ left_border 2
+ right_border 92
+ top_border 2
+ bottom_border 87
+ border_fuzziness 69
+ zone 6
+}
+
+create_land 
+{
+ terrain_type DLC_NEWSHALLOW
+ land_percent 40
+ left_border 92
+ right_border 2
+ top_border 2
+ bottom_border 87
+ border_fuzziness 69
+ zone 6
+}
+
+create_land 
+{
+ terrain_type DLC_NEWSHALLOW
+ land_percent 40
+ left_border 2
+ right_border 92
+ top_border 87
+ bottom_border 2
+ border_fuzziness 69
+ zone 6
+}
+
+create_land 
+{
+ terrain_type DLC_NEWSHALLOW
+ land_percent 40
+ left_border 92
+ right_border 2
+ top_border 87
+ bottom_border 2
+ border_fuzziness 69
+ zone 6
+}
+
+/* fixed position player spawns, 4v4 rework - two homes per player, diagonal team pockets */
+/* original 1v1 spawn concept courtesy Mike Hasselbach dude */
+
+/* team 1 main homes - left top */
+create_land { land_position 30 12 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 23 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 34 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 45 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* team 2 main homes - left bottom */
+create_land { land_position 30 56 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 67 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 78 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 30 89 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* second homes across the burrito - flags 1 resets assignment so everyone gets a second plot */
+/* team 1 second homes - right bottom */
+create_land { land_position 71 56 zone 1 assign_to AT_TEAM 1 -1 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 67 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 78 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 89 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+/* team 2 second homes - right top */
+create_land { land_position 71 12 zone 2 assign_to AT_TEAM 2 -1 1 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 23 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 34 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+create_land { land_position 71 45 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type DLC_JUNGLEGRASS base_size 3 land_percent 0 other_zone_avoidance_distance 1 border_fuzziness 99 }
+
+/* ****************************************************** */
+<ELEVATION_GENERATION>
+
+/* grassy stuff, a few hills and such */
+
+/* Raise the Empanadas */
+
+create_elevation 5
+{
+ base_terrain DLC_FORESTAUTUMN
+ number_of_tiles 9000
+ number_of_clumps 1
+ set_scale_by_groups
+	spacing 5
+ enable_balanced_elevation
+}
+
+/* background */
+
+create_elevation 7
+{
+ base_terrain DLC_JUNGLEGRASS
+ number_of_tiles 2100
+ number_of_clumps 69
+ set_scale_by_groups
+ enable_balanced_elevation
+}
+
+
+/* ****************************************************** */
+/* <CLIFF_GENERATION> */
+
+<TERRAIN_GENERATION>
+
+/* 4 lakes */
+
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+
+
+/* Enchilada Fillings */
+
+create_terrain DIRT
+{
+ base_terrain DLC_FORESTAUTUMN
+ spacing_to_other_terrain_types 2
+ land_percent 80
+}
+
+/* added ice to prevent full walling */
+
+create_terrain ICE
+{
+ base_terrain DIRT
+ land_percent 80
+ spacing_to_other_terrain_types 8
+
+}
+
+/* the center */
+
+create_terrain DLC_MANGROVESHALLOW
+{
+ base_terrain ICE
+ spacing_to_other_terrain_types 2
+ land_percent 80
+}
+
+
+/* rest of map */
+create_terrain JUNGLE
+{
+ base_terrain DLC_JUNGLEGRASS
+ number_of_clumps 21
+ spacing_to_other_terrain_types 7
+ land_percent 5
+ set_avoid_player_start_areas
+}
+
+create_terrain DLC_RAINFOREST
+{
+ base_terrain DLC_JUNGLEGRASS
+ number_of_clumps 13
+ spacing_to_other_terrain_types 7
+ land_percent 4
+ set_avoid_player_start_areas
+}
+
+/* masking, Courtesy of Zetnus */
+#const WATER_BROWN 96
+create_terrain WATER_BROWN
+{
+    base_terrain DLC_MANGROVESHALLOW
+    land_percent 100
+    number_of_clumps 9320
+    terrain_mask 1
+}
+
+<CONNECTION_GENERATION>
+
+/* ****************************************************** */
+<OBJECTS_GENERATION>
+
+/* PLAYER STARTS */
+
+create_object TOWN_CENTER
+{
+ set_place_for_every_player
+ group_placement_radius 25
+ min_distance_to_players 0
+ max_distance_to_players 0
+}
+
+create_object VILLAGER
+{
+ set_place_for_every_player
+ min_distance_to_players 3
+ max_distance_to_players 6
+ terrain_to_place_on DLC_JUNGLEGRASS
+}
+
+create_object SCOUT
+{
+ number_of_objects 1
+ set_place_for_every_player
+ min_distance_to_players 4
+ max_distance_to_players 7
+ terrain_to_place_on DLC_JUNGLEGRASS
+}
+
+#const smokey 902
+create_object smokey
+{
+  number_of_objects             1
+
+  set_place_for_every_player
+  min_distance_to_players       1
+  max_distance_to_players       1
+  set_gaia_object_only
+  set_gaia_unconvertible
+  temp_min_distance_group_placement  3
+}
+
+/* stragglers */
+
+create_object TREE_J
+{
+ number_of_objects 4
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 5
+ max_distance_to_players 6
+}
+ 
+/* herdables */
+
+create_object DLC_WATERBUFFALO
+{
+ number_of_objects 3
+ set_tight_grouping
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 6
+ max_distance_to_players 7
+ min_distance_group_placement 5
+ spacing_to_other_terrain_types 3
+ min_distance_group_placement 2
+ avoid_forest_zone 2
+}
+
+create_object SHEEP
+{
+ number_of_objects 2
+ number_of_groups		2
+ set_tight_grouping
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 11
+ max_distance_to_players 13
+ min_distance_group_placement 5
+ spacing_to_other_terrain_types 3
+ terrain_to_place_on DLC_JUNGLEGRASS
+ min_distance_group_placement 2
+ avoid_forest_zone 2
+}
+
+/* forage */
+
+create_object DLC_ORANGEBUSH
+{
+ number_of_objects 3
+ group_placement_radius 2
+ set_loose_grouping
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 11
+ max_distance_to_players 12
+ terrain_to_place_on DLC_JUNGLEGRASS
+ min_distance_group_placement 3
+ avoid_forest_zone 2
+ second_object DEER
+}
+
+create_object BOAR
+{
+ number_of_objects 1
+ number_of_groups 2
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 14
+ max_distance_to_players 16
+ min_distance_group_placement 4
+ temp_min_distance_group_placement 11
+ terrain_to_place_on DLC_JUNGLEGRASS
+ min_distance_group_placement 2
+ avoid_forest_zone 2
+}
+
+/* 2 golds */
+
+create_object GOLD
+{
+ number_of_objects 3
+ number_of_groups	2
+ group_placement_radius 3
+ set_tight_grouping
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 11
+ max_distance_to_players 14
+ min_distance_group_placement 5
+ avoid_forest_zone 3
+ terrain_to_place_on DLC_JUNGLEGRASS
+}
+
+/* 1 stones */
+create_object STONE
+{
+ number_of_objects 2
+ number_of_groups	2
+ group_placement_radius 3
+ set_tight_grouping
+ set_gaia_object_only
+ set_place_for_every_player
+ min_distance_to_players 12
+ max_distance_to_players 15
+ min_distance_group_placement 5
+ avoid_forest_zone 3
+ terrain_to_place_on DLC_JUNGLEGRASS
+}
+
+
+
+/* Neutrals res in enchiladas */
+
+create_object STONE
+{
+
+ number_of_groups 105
+ number_of_objects 2
+
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_MANGROVESHALLOW
+ temp_min_distance_group_placement 11
+}
+
+create_object GOLD
+{
+ number_of_groups 105
+ number_of_objects 3
+
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DIRT
+ temp_min_distance_group_placement 11
+ min_distance_to_players 17
+}
+
+create_object GOLD
+{
+ number_of_groups 105
+ number_of_objects 3
+
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_CRACKED
+ temp_min_distance_group_placement 13
+}
+
+create_object GOLD
+{
+ number_of_groups 105
+ number_of_objects 3
+
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DESERT
+ temp_min_distance_group_placement 13
+}
+
+
+/* Mangrove fill */
+create_object SKELETON
+{
+ number_of_objects 3
+ number_of_groups 105
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	ICE
+ temp_min_distance_group_placement 12
+ second_object DLC_BOXTURTLE
+}
+
+/* reeds for less wood */
+#const StragReed 1350
+create_object StragReed
+{
+ number_of_objects 11
+ number_of_groups 105
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_MANGROVESHALLOW
+ temp_min_distance_group_placement 7
+}
+
+create_object DLC_KOMODO
+{
+ number_of_objects 1
+ number_of_groups 6
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_MANGROVESHALLOW
+ temp_min_distance_group_placement 16
+}
+
+#const DOLPHIN 61
+
+create_object SKELETON
+{
+ number_of_objects 1
+ number_of_groups 16
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_MANGROVESHALLOW
+ temp_min_distance_group_placement 7
+ second_object DOLPHIN
+}
+
+/* Empanada Fillers */
+
+create_object DLC_ELEPHANT
+{
+ number_of_objects 1
+ number_of_groups 6
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_MANGROVESHALLOW
+ temp_min_distance_group_placement 13
+}
+
+create_object DLC_IBEX
+{
+ number_of_objects 3
+ number_of_groups 105
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_CRACKED
+ temp_min_distance_group_placement 13
+}
+
+create_object DLC_ZEBRA
+{
+ number_of_objects 3
+ number_of_groups 105
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DIRT
+ temp_min_distance_group_placement 13
+ min_distance_to_players 16
+}
+
+create_object DLC_OSTRICH
+{
+ number_of_objects 3
+ number_of_groups 105
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DESERT
+ temp_min_distance_group_placement 13
+}
+
+
+
+create_object TUNA
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	MED_WATER
+ temp_min_distance_group_placement 35
+ min_distance_group_placement 2
+}
+
+create_object TUNA
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	MED_WATER
+ temp_min_distance_group_placement 35
+ min_distance_group_placement 3
+}
+
+create_object TUNA
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	MED_WATER
+ temp_min_distance_group_placement 35
+ min_distance_group_placement 4
+}
+
+create_object SKELETON
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_NEWSHALLOW
+ temp_min_distance_group_placement 35
+ second_object SHORE_FISH
+ min_distance_group_placement 5
+}
+
+create_object SKELETON
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_NEWSHALLOW
+ temp_min_distance_group_placement 35
+ second_object SHORE_FISH
+ min_distance_group_placement 5
+}
+create_object SKELETON
+{
+ number_of_objects 1
+ number_of_groups 4
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	DLC_NEWSHALLOW
+ temp_min_distance_group_placement 35
+ second_object SHORE_FISH
+ min_distance_group_placement 5
+}
+/* relics - roughly one per player in the burrito */
+
+create_object RELIC
+{
+ number_of_objects 1
+ number_of_groups 8
+ set_gaia_object_only
+ temp_min_distance_group_placement 11
+ terrain_to_place_on ICE
+}
+
