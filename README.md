@@ -7,22 +7,19 @@ Custom AoE2:DE random map scripts.
 This repo is **private** — you need to be added as a collaborator (accept the
 GitHub invite email first).
 
-One-time setup:
-
-1. Install **Git for Windows** from git-scm.com (default options are fine).
-2. Open [`update.ps1`](update.ps1) in this repo, click **Raw**, and save the
-   file somewhere handy (e.g. your Desktop).
+One-time setup: open [`update.ps1`](update.ps1) in this repo, click **Raw**,
+and save the file somewhere handy (e.g. your Desktop). That's it — no other
+installs needed.
 
 Then, whenever you want to install the pack or grab the latest map changes:
 **right-click `update.ps1` → Run with PowerShell**, and restart AoE2 DE.
-The very first run pops a GitHub sign-in window (sign in once; Windows
-remembers it). The script finds your game profile automatically and keeps
-`Games\Age of Empires 2 DE\<profile-id>\mods\local\AbP Map Pack\` up to date
-via git.
+On the very first run the script sets itself up: if you have neither Git nor
+the GitHub CLI, it installs the GitHub CLI automatically (via winget) and
+opens a one-time GitHub browser sign-in. Every run after that is silent. It
+finds your game profile automatically and keeps
+`Games\Age of Empires 2 DE\<profile-id>\mods\local\AbP Map Pack\` up to date.
 
-Prefer the GitHub CLI instead of Git? That works too: install `gh`
-(cli.github.com), run `gh auth login` once in any terminal, and the script
-uses it automatically — no Git needed.
+Already have Git or `gh`? The script just uses what you have.
 
 Manual alternative: `git clone` this repo into that same folder yourself,
 then `git pull` whenever there are updates.
