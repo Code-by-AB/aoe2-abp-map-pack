@@ -4579,114 +4579,197 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain SPAWN_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 }
 	create_terrain SPAWN_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 }
 
-	/* AbP: small in-base ponds - placed right after spawn terrain restoration, constraints minimal */
+	/* AbP: guaranteed one pond per base - Alpine Lakes address-label technique */
+
+	#const ABP_LBL_1 25
+	#const ABP_LBL_2 39
+	#const ABP_LBL_3 33
+	#const ABP_LBL_4 38
+	#const ABP_LBL_5 23
+	#const ABP_LBL_6 27
+	#const ABP_LBL_7 29
+	#const ABP_LBL_8 31
+
+	/* each label floods exactly one base (single contiguous clump) */
+
+	create_terrain ABP_LBL_1
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_2
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_3
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_4
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_5
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_6
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_7
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	create_terrain ABP_LBL_8
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 1
+	}
+
+	/* one mangrove pond per labelled base */
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_1
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_2
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_3
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_4
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_5
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_6
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_7
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
 	create_terrain DLC_MANGROVESHALLOW
 	{
-		base_terrain SPAWN_TERRAIN
+		base_terrain ABP_LBL_8
 		number_of_tiles rnd(28,40)
 		number_of_clumps 1
-		clumping_factor 15
 		set_avoid_player_start_areas 8
 	}
 
-	create_terrain DLC_MANGROVESHALLOW
+	/* repaint labels back to spawn terrain */
+
+	create_terrain SPAWN_TERRAIN
 	{
-		base_terrain SPAWN_TERRAIN
-		number_of_tiles rnd(28,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 8
+		base_terrain ABP_LBL_1
+		land_percent 100
+		number_of_clumps 512
 	}
 
-	create_terrain DLC_MANGROVESHALLOW
+	create_terrain SPAWN_TERRAIN
 	{
-		base_terrain SPAWN_TERRAIN
-		number_of_tiles rnd(28,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 8
+		base_terrain ABP_LBL_2
+		land_percent 100
+		number_of_clumps 512
 	}
 
-	create_terrain DLC_MANGROVESHALLOW
+	create_terrain SPAWN_TERRAIN
 	{
-		base_terrain SPAWN_TERRAIN
-		number_of_tiles rnd(28,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 8
+		base_terrain ABP_LBL_3
+		land_percent 100
+		number_of_clumps 512
 	}
 
-	create_terrain DLC_MANGROVESHALLOW
+	create_terrain SPAWN_TERRAIN
 	{
-		base_terrain SPAWN_TERRAIN
-		number_of_tiles rnd(28,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 8
+		base_terrain ABP_LBL_4
+		land_percent 100
+		number_of_clumps 512
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain ABP_LBL_5
+		land_percent 100
+		number_of_clumps 512
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain ABP_LBL_6
+		land_percent 100
+		number_of_clumps 512
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain ABP_LBL_7
+		land_percent 100
+		number_of_clumps 512
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain ABP_LBL_8
+		land_percent 100
+		number_of_clumps 512
 	}
 
 	create_terrain SPAWN_BLEND_A
@@ -5554,6 +5637,7 @@ create_object OYSTERS
 			endif
 		endif
 	endif
+
 
 
 
