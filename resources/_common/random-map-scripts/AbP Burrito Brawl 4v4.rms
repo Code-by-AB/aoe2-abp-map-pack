@@ -188,7 +188,7 @@ create_terrain MED_WATER
 create_terrain DIRT
 {
  base_terrain DLC_FORESTAUTUMN
- spacing_to_other_terrain_types 2
+ spacing_to_other_terrain_types 5
  land_percent 80
 }
 
@@ -210,24 +210,33 @@ create_terrain DLC_MANGROVESHALLOW
  spacing_to_other_terrain_types 2
  land_percent 80
 }
+/* center islands - explicit count for team games */
+
+create_terrain DIRT
+{
+ base_terrain DLC_MANGROVESHALLOW
+ number_of_clumps 6
+ land_percent 3
+ spacing_to_other_terrain_types 3
+}
 
 
 /* rest of map */
 create_terrain JUNGLE
 {
  base_terrain DLC_JUNGLEGRASS
- number_of_clumps 21
+ number_of_clumps 34
  spacing_to_other_terrain_types 7
- land_percent 5
+ land_percent 10
  set_avoid_player_start_areas
 }
 
 create_terrain DLC_RAINFOREST
 {
  base_terrain DLC_JUNGLEGRASS
- number_of_clumps 13
+ number_of_clumps 21
  spacing_to_other_terrain_types 7
- land_percent 4
+ land_percent 8
  set_avoid_player_start_areas
 }
 
@@ -552,7 +561,7 @@ create_object DLC_OSTRICH
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -564,7 +573,7 @@ create_object TUNA
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -576,7 +585,7 @@ create_object TUNA
 create_object TUNA
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -588,7 +597,7 @@ create_object TUNA
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -601,7 +610,7 @@ create_object SKELETON
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -613,7 +622,7 @@ create_object SKELETON
 create_object SKELETON
 {
  number_of_objects 1
- number_of_groups 4
+ number_of_groups 8
  group_placement_radius 2
  set_tight_grouping
  set_gaia_object_only
@@ -632,6 +641,7 @@ create_object RELIC
  temp_min_distance_group_placement 11
  terrain_to_place_on ICE
 }
+
 
 
 
