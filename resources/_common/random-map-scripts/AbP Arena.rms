@@ -5066,104 +5066,6 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 		}
 	endif
 
-	/* AbP: neutral fish ponds where the berry sprinkle used to be (8-10 tiles wide each) */
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
-	create_terrain WATER
-	{
-		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(24,40)
-		number_of_clumps 1
-		clumping_factor 15
-		set_avoid_player_start_areas 24
-		spacing_to_other_terrain_types 4
-		set_flat_terrain_only
-		height_limits 0 0
-	}
-
 
 
 <OBJECTS_GENERATION>
@@ -5355,7 +5257,76 @@ create_object TUNA
 
 		if INFINITE_RESOURCES
 		else
-			/* AbP: neutral forage sprinkle replaced by ponds */
+			create_object FORAGE_BUSH
+			{
+				second_object PLANT_DEAD
+				number_of_objects 6
+				number_of_groups 1024
+				set_tight_grouping
+				group_placement_radius 1
+				min_distance_to_players 32
+				temp_min_distance_group_placement 34
+				terrain_to_place_on BASE_TERRAIN
+
+				min_distance_group_placement 1
+				max_distance_to_other_zones 8
+				avoid_forest_zone 4
+				avoid_cliff_zone 4
+				min_distance_to_map_edge 6
+
+				actor_area 1000
+				actor_area_radius 2
+
+				avoid_actor_area 20 /* Villagers */
+				avoid_actor_area 21 /* Villagers, Additional A */
+				avoid_actor_area 22 /* Villagers, Additional B */
+				avoid_actor_area 30 /* Scout */
+				avoid_actor_area 31 /* Scout, Secondary */
+				avoid_actor_area 32 /* Scout, Tertiary */
+				avoid_actor_area 50 /* Walls */
+				avoid_actor_area 51 /* Walls, Second Layer */
+				avoid_actor_area 52 /* Walls, Third Layer */
+				avoid_actor_area 60 /* Straggler, Spawn */
+				avoid_actor_area 61 /* Straggler, Escalation Mode */
+
+				avoid_actor_area 100 /* Primary Forage Bush */
+				avoid_actor_area 110 /* Secondary Forage Bush */
+				avoid_actor_area 120 /* Tertiary Forage Bush */
+				avoid_actor_area 130 /* Additional Forage Bush */
+				avoid_actor_area 140 /* Custom Forage Bush */
+				avoid_actor_area 150 /* Custom Forage Bush */
+				avoid_actor_area 200 /* Primary Gold */
+				avoid_actor_area 210 /* Secondary Gold */
+				avoid_actor_area 220 /* Tertiary Gold */
+				avoid_actor_area 230 /* Additional Gold */
+				avoid_actor_area 240 /* Custom Gold */
+				avoid_actor_area 250 /* Custom Gold */
+				avoid_actor_area 300 /* Primary Stone */
+				avoid_actor_area 310 /* Secondary Stone */
+				avoid_actor_area 320 /* Tertiary Stone */
+				avoid_actor_area 330 /* Additional Stone */
+				avoid_actor_area 340 /* Custom Stone */
+				avoid_actor_area 350 /* Custom Stone */
+
+				avoid_actor_area 5100 /* King */
+				avoid_actor_area 5110 /* Tower & Castle */
+				avoid_actor_area 5350 /* Monastery */
+				avoid_actor_area 5400 /* Wonder */
+
+				avoid_actor_area 10100 /* Default Primary Forage Bush - Spacer */
+				avoid_actor_area 10200 /* Default Primary Gold - Spacer */
+				avoid_actor_area 10300 /* Default Primary Stone - Spacer */
+
+				avoid_actor_area 11000 /* Neutral Forage Bush - Spacer */
+				avoid_actor_area 11001 /* Neutral Forage Bush, Additional A - Spacer */
+				avoid_actor_area 11002 /* Neutral Forage Bush, Additional B - Spacer */
+				avoid_actor_area 11010 /* Neutral Gold - Spacer */
+				avoid_actor_area 11011 /* Neutral Gold, Additional A - Spacer */
+				avoid_actor_area 11012 /* Neutral Gold, Additional B - Spacer */
+				avoid_actor_area 11020 /* Neutral Stone - Spacer */
+				avoid_actor_area 11021 /* Neutral Stone, Additional - Spacer A */
+				avoid_actor_area 11022 /* Neutral Stone, Additional - Spacer B */
+			}
 
 			create_object PLACEHOLDER_GENERIC /* Neutral Forage Bush - Spacer */
 			{
@@ -5549,6 +5520,7 @@ create_object TUNA
 			endif
 		endif
 	endif
+
 
 
 
