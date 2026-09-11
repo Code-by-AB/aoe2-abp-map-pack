@@ -860,6 +860,7 @@ create_object MARLIN1 {
     min_distance_group_placement 5
     terrain_to_place_on DLC_MANGROVESHALLOW
     ignore_terrain_restrictions
+    second_object SNAPPER
 }
 
 create_object MARLIN2 {
@@ -869,6 +870,7 @@ create_object MARLIN2 {
     min_distance_group_placement 5
     terrain_to_place_on DLC_MANGROVESHALLOW
     ignore_terrain_restrictions
+    second_object DORADO
 }
 
 create_object GOLD
@@ -1093,6 +1095,7 @@ create_connect_teams_lands
 	terrain_cost    FOREST	7
 	terrain_size	FOREST	3	0
 }
+
 
 
 
