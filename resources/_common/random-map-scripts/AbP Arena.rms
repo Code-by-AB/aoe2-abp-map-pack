@@ -4979,10 +4979,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -4991,10 +4991,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5003,10 +5003,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5015,10 +5015,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5027,10 +5027,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5039,10 +5039,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5051,10 +5051,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5063,10 +5063,10 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 	create_terrain WATER
 	{
 		base_terrain BASE_TERRAIN
-		number_of_tiles rnd(60,90)
+		number_of_tiles rnd(24,40)
 		number_of_clumps 1
 		clumping_factor 15
-		set_avoid_player_start_areas 30
+		set_avoid_player_start_areas 24
 		spacing_to_other_terrain_types 4
 		set_flat_terrain_only
 		height_limits 0 0
@@ -5455,4 +5455,5 @@ create_object TUNA
 			endif
 		endif
 	endif
+
 
