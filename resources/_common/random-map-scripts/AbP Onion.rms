@@ -23,24 +23,171 @@ create_player_lands
 	land_percent 40
 	base_size 11
 	border_fuzziness 15
-	other_zone_avoidance_distance 16
-	circle_radius 38
+	other_zone_avoidance_distance 22
+	circle_radius 37
 }
 
-/* ------------------------------------------------ the onion (painted big to small, sequential lands overwrite) */
+/* ------------------------------------------------ the onion (scaled rings, painted big to small) */
 
-create_land { terrain_type FOREST land_position 50 50 base_size 24 number_of_tiles 0 zone 30 other_zone_avoidance_distance 10 }
-create_land { terrain_type DIRT2 land_position 50 50 base_size 20 number_of_tiles 0 zone 30 }
-create_land { terrain_type FOREST land_position 50 50 base_size 17 number_of_tiles 0 zone 30 }
-create_land { terrain_type DIRT land_position 50 50 base_size 13 number_of_tiles 0 zone 30 }
-create_land { terrain_type DIRT3 land_position 50 50 base_size 8 number_of_tiles 0 zone 30 }
-create_land { terrain_type DLC_MANGROVESHALLOW land_position 50 50 base_size 3 number_of_tiles 0 zone 30 }
-/* ------------------------------------------------ deep forest frame (Arena-style bottomless backwood) */
+create_land
+{
+	terrain_type FOREST
+	land_position 50 50
+	if TINY_MAP
+		base_size 20
+	elseif SMALL_MAP
+		base_size 23
+	elseif MEDIUM_MAP
+		base_size 26
+	elseif LARGE_MAP
+		base_size 28
+	elseif HUGE_MAP
+		base_size 30
+	elseif GIGANTIC_MAP
+		base_size 33
+	elseif LUDIKRIS_MAP
+		base_size 33
+	endif
+	number_of_tiles 0
+	zone 30
+	other_zone_avoidance_distance 10
+}
 
-create_land { terrain_type FOREST land_position 3 50 base_size 4 land_percent 7 border_fuzziness 24 right_border 92 zone 31 }
-create_land { terrain_type FOREST land_position 97 50 base_size 4 land_percent 7 border_fuzziness 24 left_border 92 zone 31 }
-create_land { terrain_type FOREST land_position 50 3 base_size 4 land_percent 7 border_fuzziness 24 bottom_border 92 zone 31 }
-create_land { terrain_type FOREST land_position 50 97 base_size 4 land_percent 7 border_fuzziness 24 top_border 92 zone 31 }
+create_land
+{
+	terrain_type DIRT2
+	land_position 50 50
+	if TINY_MAP
+		base_size 17
+	elseif SMALL_MAP
+		base_size 19
+	elseif MEDIUM_MAP
+		base_size 22
+	elseif LARGE_MAP
+		base_size 24
+	elseif HUGE_MAP
+		base_size 26
+	elseif GIGANTIC_MAP
+		base_size 28
+	elseif LUDIKRIS_MAP
+		base_size 28
+	endif
+	number_of_tiles 0
+	zone 30
+}
+
+create_land
+{
+	terrain_type FOREST
+	land_position 50 50
+	if TINY_MAP
+		base_size 15
+	elseif SMALL_MAP
+		base_size 17
+	elseif MEDIUM_MAP
+		base_size 20
+	elseif LARGE_MAP
+		base_size 22
+	elseif HUGE_MAP
+		base_size 24
+	elseif GIGANTIC_MAP
+		base_size 26
+	elseif LUDIKRIS_MAP
+		base_size 26
+	endif
+	number_of_tiles 0
+	zone 30
+}
+
+create_land
+{
+	terrain_type DIRT
+	land_position 50 50
+	if TINY_MAP
+		base_size 12
+	elseif SMALL_MAP
+		base_size 14
+	elseif MEDIUM_MAP
+		base_size 16
+	elseif LARGE_MAP
+		base_size 18
+	elseif HUGE_MAP
+		base_size 20
+	elseif GIGANTIC_MAP
+		base_size 22
+	elseif LUDIKRIS_MAP
+		base_size 22
+	endif
+	number_of_tiles 0
+	zone 30
+}
+
+create_land
+{
+	terrain_type DIRT3
+	land_position 50 50
+	if TINY_MAP
+		base_size 10
+	elseif SMALL_MAP
+		base_size 12
+	elseif MEDIUM_MAP
+		base_size 14
+	elseif LARGE_MAP
+		base_size 16
+	elseif HUGE_MAP
+		base_size 17
+	elseif GIGANTIC_MAP
+		base_size 19
+	elseif LUDIKRIS_MAP
+		base_size 19
+	endif
+	number_of_tiles 0
+	zone 30
+}
+
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 50 50 base_size 4 number_of_tiles 0 zone 30 }
+
+/* two mangrove creeks cut through every ring - walkable chokes into the core from day one */
+
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 32 32 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 34 34 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 36 36 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 38 38 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 40 40 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 42 42 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 44 44 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 46 46 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 48 48 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 50 50 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 52 52 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 54 54 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 56 56 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 58 58 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 60 60 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 62 62 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 64 64 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 66 66 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 68 68 base_size 2 number_of_tiles 0 zone 30 }
+
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 32 68 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 34 66 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 36 64 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 38 62 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 40 60 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 42 58 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 44 56 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 46 54 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 48 52 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 50 50 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 52 48 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 54 46 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 56 44 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 58 42 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 60 40 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 62 38 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 64 36 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 66 34 base_size 2 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 68 32 base_size 2 number_of_tiles 0 zone 30 }
 
 /* ------------------------------------------------ guaranteed pond per player (Alpine Lakes address labels) */
 
@@ -380,7 +527,7 @@ create_object RELIC
 
 create_object GOODS
 {
-	number_of_objects 5
+	number_of_objects 7
 	set_gaia_object_only
 	min_distance_group_placement 2
 	terrain_to_place_on DIRT3
@@ -394,12 +541,33 @@ create_object JAGUAR
 	terrain_to_place_on DIRT3
 }
 
+create_object FORAGE
+{
+	number_of_objects 6
+	number_of_groups 2
+	group_placement_radius 3
+	set_tight_grouping
+	set_gaia_object_only
+	min_distance_group_placement 6
+	terrain_to_place_on DIRT3
+}
+
+create_object DEER
+{
+	number_of_objects 4
+	set_loose_grouping
+	set_gaia_object_only
+	terrain_to_place_on DIRT3
+}
+
 create_object HAWK
 {
 	number_of_objects 6
 	set_gaia_object_only
 	set_scaling_to_map_size
 }
+
+
 
 
 
