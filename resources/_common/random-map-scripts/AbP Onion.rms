@@ -1,0 +1,380 @@
+/* ************ AbP Onion ************ */
+/* Peel it layer by layer: forest / stone wall / forest / gold wall / relic core / marlin pool */
+/* Every technique in this map is documented in the AbP Map Pack README */
+
+<PLAYER_SETUP>
+random_placement
+grouped_by_team
+
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
+
+<LAND_GENERATION>
+
+base_terrain GRASS3
+
+/* ------------------------------------------------ player lands */
+
+create_player_lands
+{
+	terrain_type GRASS
+	land_percent 40
+	base_size 11
+	border_fuzziness 15
+	other_zone_avoidance_distance 14
+	circle_radius 36
+}
+
+/* ------------------------------------------------ the onion (painted big to small, sequential lands overwrite) */
+
+create_land { terrain_type FOREST land_position 50 50 base_size 24 number_of_tiles 0 zone 30 other_zone_avoidance_distance 10 }
+create_land { terrain_type DIRT2 land_position 50 50 base_size 20 number_of_tiles 0 zone 30 }
+create_land { terrain_type FOREST land_position 50 50 base_size 17 number_of_tiles 0 zone 30 }
+create_land { terrain_type DIRT land_position 50 50 base_size 13 number_of_tiles 0 zone 30 }
+create_land { terrain_type DIRT3 land_position 50 50 base_size 8 number_of_tiles 0 zone 30 }
+create_land { terrain_type DLC_MANGROVESHALLOW land_position 50 50 base_size 3 number_of_tiles 0 zone 30 }
+
+/* ------------------------------------------------ guaranteed pond per player (Alpine Lakes address labels) */
+
+#const ABP_LBL_1 23
+#const ABP_LBL_2 25
+#const ABP_LBL_3 27
+#const ABP_LBL_4 29
+#const ABP_LBL_5 31
+#const ABP_LBL_6 33
+#const ABP_LBL_7 38
+#const ABP_LBL_8 39
+
+<TERRAIN_GENERATION>
+
+/* each label floods exactly one base (single contiguous clump) */
+
+create_terrain ABP_LBL_1 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_2 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_3 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_4 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_5 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_6 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_7 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+create_terrain ABP_LBL_8 { base_terrain GRASS land_percent 100 number_of_clumps 1 }
+
+/* one dockable walkable mangrove pond per labelled base */
+
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_1 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_2 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_3 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_4 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_5 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_6 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_7 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+create_terrain DLC_MANGROVESHALLOW { base_terrain ABP_LBL_8 number_of_tiles rnd(28,40) number_of_clumps 1 clumping_factor 15 set_avoid_player_start_areas 8 }
+
+/* repaint labels back to grass */
+
+create_terrain GRASS { base_terrain ABP_LBL_1 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_2 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_3 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_4 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_5 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_6 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_7 land_percent 100 number_of_clumps 512 }
+create_terrain GRASS { base_terrain ABP_LBL_8 land_percent 100 number_of_clumps 512 }
+
+/* ------------------------------------------------ field woodlines (moderate - trade friendly) */
+
+create_terrain FOREST
+{
+	base_terrain GRASS3
+	land_percent 12
+	number_of_clumps 12
+	spacing_to_other_terrain_types 4
+	set_avoid_player_start_areas 22
+	set_scale_by_groups
+}
+
+create_terrain GRASS2
+{
+	base_terrain GRASS3
+	land_percent 6
+	number_of_clumps 14
+	spacing_to_other_terrain_types 1
+	set_scale_by_size
+}
+
+<OBJECTS_GENERATION>
+
+/* ------------------------------------------------ player starts */
+
+create_object TOWN_CENTER
+{
+	set_place_for_every_player
+	group_placement_radius 18
+	min_distance_to_players 0
+	max_distance_to_players 0
+}
+
+create_object VILLAGER
+{
+	set_place_for_every_player
+	min_distance_to_players 6
+	max_distance_to_players 6
+}
+
+create_object SCOUT
+{
+	number_of_objects 1
+	set_place_for_every_player
+	min_distance_to_players 7
+	max_distance_to_players 9
+}
+
+/* hacky decorative fish beneath the town centers */
+
+#const FISH_PAD 1543
+
+create_object FISH_PAD
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 2
+	max_distance_to_players 4
+	second_object SALMON
+}
+
+create_object FISH_PAD
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 2
+	max_distance_to_players 5
+	second_object SHORE_FISH
+}
+
+/* ------------------------------------------------ standard eco (8 herdables, classic spreads) */
+
+create_object FORAGE
+{
+	number_of_objects 6
+	group_placement_radius 3
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 10
+	max_distance_to_players 12
+	min_distance_group_placement 6
+}
+
+create_object GOLD
+{
+	number_of_objects 7
+	group_placement_radius 3
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 12
+	max_distance_to_players 16
+	min_distance_group_placement 7
+}
+
+create_object GOLD
+{
+	number_of_objects 4
+	group_placement_radius 3
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 18
+	max_distance_to_players 26
+	min_distance_group_placement 7
+}
+
+create_object GOLD
+{
+	number_of_objects 4
+	group_placement_radius 3
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 25
+	max_distance_to_players 33
+	min_distance_group_placement 7
+}
+
+create_object STONE
+{
+	number_of_objects 5
+	group_placement_radius 2
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 14
+	max_distance_to_players 18
+	min_distance_group_placement 7
+}
+
+create_object STONE
+{
+	number_of_objects 4
+	group_placement_radius 2
+	set_tight_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 20
+	max_distance_to_players 26
+	min_distance_group_placement 7
+}
+
+create_object SHEEP
+{
+	number_of_objects 4
+	set_loose_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 10
+	max_distance_to_players 12
+}
+
+create_object SHEEP
+{
+	number_of_objects 2
+	number_of_groups 2
+	set_loose_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 14
+	max_distance_to_players 30
+}
+
+create_object BOAR
+{
+	number_of_objects 1
+	number_of_groups 2
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 16
+	max_distance_to_players 22
+}
+
+create_object DEER
+{
+	number_of_objects 4
+	group_placement_radius 4
+	set_loose_grouping
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 14
+	max_distance_to_players 22
+}
+
+create_object RELIC
+{
+	number_of_objects 2
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 18
+	max_distance_to_players 26
+	min_distance_group_placement 5
+}
+
+create_object OAKTREE
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 5
+	max_distance_to_players 8
+	min_distance_group_placement 2
+}
+
+/* ------------------------------------------------ pond life (all mangrove: home ponds + onion core pool) */
+
+create_object MARLIN1
+{
+	number_of_objects 8
+	set_gaia_object_only
+	set_scaling_to_map_size
+	min_distance_group_placement 4
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
+}
+
+create_object MARLIN2
+{
+	number_of_objects 8
+	set_gaia_object_only
+	set_scaling_to_map_size
+	min_distance_group_placement 4
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
+}
+
+create_object OYSTERS
+{
+	second_object PLANT_WEEDS
+	number_of_objects 2
+	number_of_groups 12
+	set_loose_grouping
+	group_placement_radius 2
+	set_gaia_object_only
+	set_scaling_to_map_size
+	temp_min_distance_group_placement 8
+	terrain_to_place_on DLC_MANGROVESHALLOW
+	ignore_terrain_restrictions
+}
+
+/* ------------------------------------------------ the onion walls: solid mineable rings */
+
+create_object STONE
+{
+	number_of_objects 9999
+	set_gaia_object_only
+	min_distance_group_placement 0
+	terrain_to_place_on DIRT2
+}
+
+create_object GOLD
+{
+	number_of_objects 9999
+	set_gaia_object_only
+	min_distance_group_placement 0
+	terrain_to_place_on DIRT
+}
+
+/* ------------------------------------------------ the core: relic sanctum */
+
+create_object RELIC
+{
+	number_of_objects 12
+	set_gaia_object_only
+	min_distance_group_placement 2
+	terrain_to_place_on DIRT3
+}
+
+#const GOODS 916
+
+create_object GOODS
+{
+	number_of_objects 5
+	set_gaia_object_only
+	min_distance_group_placement 2
+	terrain_to_place_on DIRT3
+}
+
+create_object JAGUAR
+{
+	number_of_objects 4
+	set_gaia_object_only
+	min_distance_group_placement 3
+	terrain_to_place_on DIRT3
+}
+
+create_object HAWK
+{
+	number_of_objects 6
+	set_gaia_object_only
+	set_scaling_to_map_size
+}
