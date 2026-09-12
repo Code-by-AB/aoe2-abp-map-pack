@@ -189,6 +189,17 @@ create_land { terrain_type DLC_MANGROVESHALLOW land_position 64 36 base_size 2 n
 create_land { terrain_type DLC_MANGROVESHALLOW land_position 66 34 base_size 2 number_of_tiles 0 zone 30 }
 create_land { terrain_type DLC_MANGROVESHALLOW land_position 68 32 base_size 2 number_of_tiles 0 zone 30 }
 
+/* ------------------------------------------------ deep forest frame (Arena-style bottomless backwood) */
+
+create_land { terrain_type FOREST land_position 3 50 base_size 4 land_percent 11 border_fuzziness 24 right_border 92 zone 31 }
+create_land { terrain_type FOREST land_position 97 50 base_size 4 land_percent 11 border_fuzziness 24 left_border 92 zone 31 }
+create_land { terrain_type FOREST land_position 50 3 base_size 4 land_percent 11 border_fuzziness 24 bottom_border 92 zone 31 }
+create_land { terrain_type FOREST land_position 50 97 base_size 4 land_percent 11 border_fuzziness 24 top_border 92 zone 31 }
+create_land { terrain_type FOREST land_position 4 4 base_size 5 land_percent 4 border_fuzziness 20 right_border 86 bottom_border 86 zone 31 }
+create_land { terrain_type FOREST land_position 96 4 base_size 5 land_percent 4 border_fuzziness 20 left_border 86 bottom_border 86 zone 31 }
+create_land { terrain_type FOREST land_position 4 96 base_size 5 land_percent 4 border_fuzziness 20 right_border 86 top_border 86 zone 31 }
+create_land { terrain_type FOREST land_position 96 96 base_size 5 land_percent 4 border_fuzziness 20 left_border 86 top_border 86 zone 31 }
+
 /* ------------------------------------------------ guaranteed pond per player (Alpine Lakes address labels) */
 
 #const ABP_LBL_1 23
@@ -566,6 +577,7 @@ create_object HAWK
 	set_gaia_object_only
 	set_scaling_to_map_size
 }
+
 
 
 
