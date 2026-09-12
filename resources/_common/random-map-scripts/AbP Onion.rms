@@ -87,8 +87,8 @@ create_terrain GRASS { base_terrain ABP_LBL_8 land_percent 100 number_of_clumps 
 create_terrain FOREST
 {
 	base_terrain GRASS3
-	land_percent 12
-	number_of_clumps 12
+	land_percent 16
+	number_of_clumps 16
 	spacing_to_other_terrain_types 4
 	set_avoid_player_start_areas 22
 	set_scale_by_groups
@@ -378,3 +378,4 @@ create_object HAWK
 	set_gaia_object_only
 	set_scaling_to_map_size
 }
+
