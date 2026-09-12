@@ -23,8 +23,8 @@ create_player_lands
 	land_percent 40
 	base_size 11
 	border_fuzziness 15
-	other_zone_avoidance_distance 14
-	circle_radius 36
+	other_zone_avoidance_distance 16
+	circle_radius 38
 }
 
 /* ------------------------------------------------ the onion (painted big to small, sequential lands overwrite) */
@@ -95,7 +95,8 @@ create_terrain FOREST
 	base_terrain GRASS3
 	land_percent 16
 	number_of_clumps 16
-	spacing_to_other_terrain_types 4
+	spacing_to_other_terrain_types 3
+	clumping_factor 12
 	set_avoid_player_start_areas 22
 	set_scale_by_groups
 }
@@ -136,7 +137,22 @@ create_object SCOUT
 	max_distance_to_players 9
 }
 
+
+create_object STONE
+{
+	number_of_objects 4
+	number_of_groups 5
+	group_placement_radius 2
+	set_tight_grouping
+	set_gaia_object_only
+	set_scaling_to_map_size
+	min_distance_to_players 30
+	min_distance_group_placement 9
+	avoid_forest_zone 2
+}
+
 /* hacky decorative fish beneath the town centers */
+
 
 #const FISH_PAD 1543
 
@@ -224,7 +240,7 @@ create_object STONE
 
 create_object STONE
 {
-	number_of_objects 4
+	number_of_objects 5
 	group_placement_radius 2
 	set_tight_grouping
 	set_gaia_object_only
@@ -384,5 +400,6 @@ create_object HAWK
 	set_gaia_object_only
 	set_scaling_to_map_size
 }
+
 
 
