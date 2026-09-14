@@ -22,6 +22,11 @@ effect_percent SET_ATTRIBUTE TRANSPORT_SHIP ATTR_MOVE_SPEED 80
 effect_amount SET_ATTRIBUTE TRANSPORT_SHIP ATTR_RADIUS_1 0
 effect_amount SET_ATTRIBUTE TRANSPORT_SHIP ATTR_LINE_OF_SIGHT 2
 
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
+
 /* ****************************************************** */
 <LAND_GENERATION>
 

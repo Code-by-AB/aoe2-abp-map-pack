@@ -37,7 +37,7 @@ then `git pull` whenever there are updates.
 | **AbP Onion** | Original map: a sealed concentric onion at the center — tree ring, solid stone wall, tree ring, solid gold wall, then a relic sanctum (12 relics, treasure, jaguars) around a marlin pool. Peel it layer by layer; every layer pays. Full AbP kit: guaranteed home mangrove pond, TC fish, ghost trade. |
 | **AbP Arena** | Official Arena + no-collision trade carts, plus experimental small in-base ponds (carved into spawn terrain, ~1 per base, stocked with fish). All official berries kept. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel + no-collision trade carts + decorative fish beneath every TC. |
-| **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: the two-homes-per-player gimmick becomes diagonal team pockets (team 1 left-top + right-bottom, team 2 the opposite), burrito wall and corner lakes intact, 8 relics. Play on Large or bigger. |
+| **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: full team sides (team 1 left, team 2 right), every player keeps the two-homes gimmick (2 TCs each), burrito wall, corner fish lakes and mangrove islands intact, 8 relics, TC fish, no-collision trade carts. Play on Large or bigger. |
 
 ## Lobby notes
 
