@@ -37,18 +37,22 @@ then `git pull` whenever there are updates.
 | **AbP Onion** | Original map: a sealed concentric onion at the center — tree ring, solid stone wall, tree ring, solid gold wall, then a relic sanctum (12 relics, treasure, jaguars) around a marlin pool. Peel it layer by layer; every layer pays. Full AbP kit: guaranteed home mangrove pond, TC fish, ghost trade. |
 | **AbP Arena** | Official Arena + no-collision trade carts, plus experimental small in-base ponds (carved into spawn terrain, ~1 per base, stocked with fish). All official berries kept. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel + no-collision trade carts + decorative fish beneath every TC. |
-| **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: full team sides (team 1 left, team 2 right), every player keeps the two-homes gimmick (2 TCs each), burrito wall, corner fish lakes and mangrove islands intact, 8 relics, TC fish, no-collision trade carts. Play on Large or bigger. |
+| **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: full team sides assigned by team (`AT_TEAM`, team 1 left, team 2 right), every player keeps the two-homes gimmick (2 TCs each), burrito wall, corner fish lakes and mangrove islands intact, 8 relics, TC fish, no-collision trade carts. Play on Large or bigger. |
 
 ## Lobby notes
 
-- The Trio maps assign spawns by team (`AT_TEAM`): the lobby needs **two real teams
-  of 2+ players** — AoE2 does not count a 1-player team as a team, so these maps
-  cannot generate a plain 1v1. Use the Michi maps for 1v1s.
-- Burrito Brawl 4v4 assigns by lobby slot: **team 1 = slots 1-4, team 2 = slots 5-8.**
+- The Trio maps and Burrito Brawl 4v4 assign spawns by team (`AT_TEAM`): the lobby
+  needs **two real teams of 2+ players** — AoE2 does not count a 1-player team as a
+  team, so these maps cannot generate a plain 1v1 or an FFA. Use the Michi maps for 1v1s.
+- Burrito Brawl 4v4 no longer cares about lobby slot order: each team fills its own side
+  of the burrito top-to-bottom in lobby order, so "Team Together" works as expected.
 
 ## Notable techniques used
 
 - `assign_to AT_TEAM <n> -1 0` — ordered (lobby-order) team member placement
+- `assign_to AT_TEAM <n> -1 2` immediately followed by `... -1 0` — gives the *same*
+  team member two lands (flags 2 = "do not remember this assignment"), as used for
+  Burrito Brawl's two-homes spawns
 - `effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0` + `ATTR_LINE_OF_SIGHT 4` —
   no-collision trade (RADIUS_2 deliberately left default, per Dragonmilk's Tres Leches 2)
 - `ignore_terrain_restrictions` — fish/oysters on mangrove (only Great Marlins survive there)
