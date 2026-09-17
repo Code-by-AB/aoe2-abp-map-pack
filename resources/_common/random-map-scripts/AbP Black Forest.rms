@@ -1,0 +1,1302 @@
+/*
+
+	Black Forest by Forgotten Empires
+
+	Created: 09/10/2024
+	Updated: 22/02/2025
+	
+	Version: 2.1
+
+*/
+
+#const MAPSCALE_MODIFIER 1
+#include_drs includes/scaling.inc
+
+start_random
+	percent_chance 50 #define POND_GENERATION
+end_random
+
+/* ----------------------------------- Debug Settings */
+
+/* #define DEBUG_MODE */
+/* #define TERRAIN_DEBUGGING */
+/* #define EMPIRE_WARS_TESTING */
+#define COLLAPSE
+
+/* ----------------------------------- Generation Settings */
+
+start_random
+	percent_chance 17 #define AFROTROPICAL_TROPICAL
+	percent_chance 16 #define NEOTROPICAL_TROPICAL
+	percent_chance 17 #define NEARCTIC_TEMPERATE
+	percent_chance 17 #define INDOMALAYAN_TROPICAL
+	percent_chance 16 #define PALAEARCTIC_ASIA_TEMPERATE
+	percent_chance 17 #define PALAEARCTIC_EUROPE_TEMPERATE
+end_random
+
+/* #define CENTRALISE_SPAWN */
+/* #define RESTRICTED_SPAWN */
+
+/* ----------------------------------- Nomad Settings */
+
+/* #define NOMAD_MAP */
+/* #define NOMAD_SCATTERED */
+#define NOMAD_UNIT
+/* #define NOMAD_TREATY */
+
+/* ----------------------------------- Themes & Overwrites */
+
+#define OVERWRITES
+if OVERWRITES
+endif
+
+#define MAP_CONSTANTS
+if MAP_CONSTANTS
+	if AFROTROPICAL_TROPICAL
+		#const STRAGGLER_SPAWN 1051 /* Dragon Tree */
+		#const STRAGGLER_NEUTRAL 1051 /* Dragon Tree */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 41
+		#const SPAWN_BLEND_A 6
+		#const SPAWN_BLEND_B 3
+		#const SPAWN_BLEND_C 42
+
+		#const BASE_FOREST 48
+		#const BASE_FOREST_VARIATION_A 48
+		#const BASE_FOREST_VARIATION_B 48
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 6
+		#const ROAD_TERRAIN 25
+		#const CONNECTION_BLOCKER 13
+		#const POCKET_TERRAIN 3
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 809
+		#const FALLEN_TREE 1539
+
+	elseif NEOTROPICAL_TROPICAL
+		#const STRAGGLER_SPAWN 414 /* Jungle Tree */
+		#const STRAGGLER_NEUTRAL 414 /* Jungle Tree */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 60
+		#const SPAWN_BLEND_A 77
+		#const SPAWN_BLEND_B 5
+		#const SPAWN_BLEND_C 3
+
+		#const BASE_FOREST 56
+		#const BASE_FOREST_VARIATION_A 17
+		#const BASE_FOREST_VARIATION_B 56
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 77
+		#const ROAD_TERRAIN 61
+		#const CONNECTION_BLOCKER 113
+		#const POCKET_TERRAIN 5
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 809
+		#const FALLEN_TREE 1539
+
+	elseif NEARCTIC_TEMPERATE
+		start_random
+			percent_chance 50 #define SEASON_WINTER
+			percent_chance 50 #define SEASON_SPRING
+		end_random
+
+		#const STRAGGLER_SPAWN 350 /* Pine Tree */
+		#const STRAGGLER_NEUTRAL 350 /* Pine Tree */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 3
+		#const SPAWN_BLEND_A 5
+		#const SPAWN_BLEND_B 9
+		#const SPAWN_BLEND_C 12
+
+		#const BASE_FOREST 19
+		#const BASE_FOREST_VARIATION_A 20
+		#const BASE_FOREST_VARIATION_B 89
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 5
+		#const ROAD_TERRAIN 103
+		#const CONNECTION_BLOCKER 10
+		#const POCKET_TERRAIN 71
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 809
+		#const FALLEN_TREE 1539
+
+	elseif INDOMALAYAN_TROPICAL
+		#const STRAGGLER_SPAWN 348 /* Bamboo */
+		#const STRAGGLER_NEUTRAL 1984 /* Lush Bamboo */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 100
+		#const SPAWN_BLEND_A 5
+		#const SPAWN_BLEND_B 60
+		#const SPAWN_BLEND_C 76
+
+		#const BASE_FOREST 113
+		#const BASE_FOREST_VARIATION_A 18
+		#const BASE_FOREST_VARIATION_B 18
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 5
+		#const ROAD_TERRAIN 78
+		#const CONNECTION_BLOCKER 56
+		#const POCKET_TERRAIN 71
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 1538
+		#const FALLEN_TREE 1542
+
+	elseif PALAEARCTIC_ASIA_TEMPERATE
+		#define SEASON_AUTUMN
+
+		#const STRAGGLER_SPAWN 1053 /* Bush B */
+		#const STRAGGLER_NEUTRAL 1248 /* Autumn Tree */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 0
+		#const SPAWN_BLEND_A 71
+		#const SPAWN_BLEND_B 100
+		#const SPAWN_BLEND_C 76
+
+		#const BASE_FOREST 104
+		#const BASE_FOREST_VARIATION_A 18
+		#const BASE_FOREST_VARIATION_B 10
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 71
+		#const ROAD_TERRAIN 78
+		#const CONNECTION_BLOCKER 17
+		#const POCKET_TERRAIN 5
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 1536
+		#const FALLEN_TREE 1540
+
+	elseif PALAEARCTIC_EUROPE_TEMPERATE
+		start_random
+			percent_chance 35 #define SEASON_SPRING
+			percent_chance 35 #define SEASON_SUMMER
+		end_random
+
+		#const STRAGGLER_SPAWN 349 /* Oak Tree */
+		#const STRAGGLER_NEUTRAL 349 /* Oak Tree */
+		
+		#const BEACH_TERRAIN 52
+
+		#const SPAWN_FOREST 19
+		#const SPAWN_TERRAIN 0
+		#const SPAWN_BLEND_A 5
+		#const SPAWN_BLEND_B 100
+		#const SPAWN_BLEND_C 3
+
+		#const BASE_FOREST 10
+		#const BASE_FOREST_VARIATION_A 19
+		#const BASE_FOREST_VARIATION_B 89
+		#const BASE_FOREST_BLEND 3
+		
+		#const CLEARING_TERRAIN 40
+		#const EDGE_TERRAIN 5
+		#const ROAD_TERRAIN 25
+		#const CONNECTION_BLOCKER 17
+		#const POCKET_TERRAIN 71
+
+		#const AESTHETIC_FLAT 1366
+		#const AESTHETIC_GROUPED 809
+		#const AESTHETIC_SCATTER 1366
+
+		#const FOREST_DECORATION 809
+		#const FALLEN_TREE 1539
+	endif
+endif
+
+#include_drs includes/themes.inc
+#include_drs includes/constants.inc
+#include_drs includes/decay.inc
+
+<PLAYER_SETUP>
+
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
+	#include_drs includes/preliminaries.inc
+	#include_drs includes/gaia_civilisation.inc
+
+	#define WATER_POND
+	#include_drs includes/water_preset.inc
+	water_definition WATER_PRESET
+
+	random_placement
+	ai_info_map_type BLACK_FOREST 0 0
+
+	if CONFINED_SETUP
+		#const CONFINED_INCREASE 1.2
+	else
+		#const CONFINED_INCREASE 1
+	endif
+
+<LAND_GENERATION>
+	base_terrain BASE_FOREST
+
+	if KING_OT_HILL
+		#define MIDDLE_LAND
+	elseif CAPTURE_THE_RELIC
+		#define MIDDLE_LAND
+	endif
+
+	create_land
+	{
+		terrain_type BASE_FOREST
+		land_percent 0
+		base_size 0
+		land_position 50 50
+		land_id 420
+	}
+
+	create_player_lands
+	{
+		terrain_type SPAWN_PLACEHOLDER
+		land_percent 44
+		base_size 14
+		set_circular_base
+		clumping_factor 2
+		other_zone_avoidance_distance 6
+	}
+
+<ELEVATION_GENERATION>
+	create_elevation 3
+	{
+		enable_balanced_elevation
+		base_terrain SPAWN_PLACEHOLDER
+
+		number_of_tiles (32 * MAPSCALE_AREA)
+		number_of_clumps (4 * MAPSCALE_AREA)
+	}
+
+	create_elevation 7
+	{
+		enable_balanced_elevation
+		base_terrain BASE_FOREST
+
+		number_of_tiles (1024 * MAPSCALE_AREA)
+		number_of_clumps (32 * MAPSCALE_AREA)
+	}
+
+<CLIFF_GENERATION>
+	#include_drs includes/cliffs.inc
+	cliff_type CLIFF_TYPE
+
+<TERRAIN_GENERATION>
+	#include_drs includes/colour.inc
+	color_correction COLOUR_MOOD
+
+	/*
+	create_terrain POCKET_TERRAIN
+	{
+		base_terrain BASE_FOREST
+		number_of_tiles (128 * MAPSCALE_SIDE)
+		number_of_clumps (2 * MAPSCALE_SIDE)
+		spacing_to_other_terrain_types 8
+		terrain_mask 2
+	}
+	*/
+
+	if POND_GENERATION
+		if 1_PLAYER_GAME
+			#define ONE_GENERATION
+		elseif 2_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+		elseif 3_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+		elseif 4_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+			#define FOUR_GENERATION
+		elseif 5_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+			#define FOUR_GENERATION
+			#define FIVE_GENERATION
+		elseif 6_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+			#define FOUR_GENERATION
+			#define FIVE_GENERATION
+			#define SIX_GENERATION
+		elseif 7_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+			#define FOUR_GENERATION
+			#define FIVE_GENERATION
+			#define SIX_GENERATION
+			#define SEVEN_GENERATION
+		elseif 8_PLAYER_GAME
+			#define ONE_GENERATION
+			#define TWO_GENERATION
+			#define THREE_GENERATION
+			#define FOUR_GENERATION
+			#define FIVE_GENERATION
+			#define SIX_GENERATION
+			#define SEVEN_GENERATION
+			#define EIGHT_GENERATION
+		endif
+
+		#const POND_INNER_DISTANCE 26
+
+		#const POND_TILES 32
+		#const POND_CLUMPS 1
+		#const POND_SPACING 1
+		#const POND_AVOIDANCE 14
+
+		if ONE_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if TWO_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if THREE_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if FOUR_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if FIVE_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if SIX_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if SEVEN_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+
+		if EIGHT_GENERATION
+			create_terrain PLACEHOLDER_TERRAIN_A
+			{
+				base_terrain SPAWN_PLACEHOLDER
+				land_percent 100
+				number_of_clumps 1
+				spacing_to_other_terrain_types 1
+			}
+
+			create_terrain PLACEHOLDER_TERRAIN_B
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				land_percent 100
+				number_of_clumps 512
+				set_scale_by_groups
+				set_avoid_player_start_areas POND_INNER_DISTANCE
+			}
+
+			create_terrain WATER_SHALLOW
+			{
+				base_terrain PLACEHOLDER_TERRAIN_A
+				number_of_tiles POND_TILES
+				number_of_clumps POND_CLUMPS
+				clumping_factor 15
+				set_avoid_player_start_areas POND_AVOIDANCE
+				spacing_to_other_terrain_types POND_SPACING
+				set_flat_terrain_only
+				height_limits 0 0
+			}
+
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_A land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+			create_terrain EDGE_TERRAIN { base_terrain PLACEHOLDER_TERRAIN_B land_percent 100 number_of_clumps 512 set_scale_by_groups }
+		endif
+	endif
+
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+	create_terrain EDGE_TERRAIN { base_terrain SPAWN_PLACEHOLDER land_percent 100 number_of_clumps 512 set_scale_by_groups }
+
+	create_terrain PLACEHOLDER_TERRAIN_A
+	{
+		base_terrain EDGE_TERRAIN
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+		spacing_to_other_terrain_types 1
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain EDGE_TERRAIN
+		land_percent 1
+		number_of_clumps 128
+		set_scale_by_groups
+		terrain_mask 1
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain PLACEHOLDER_TERRAIN_A
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+		spacing_to_other_terrain_types 2
+	}
+
+	create_terrain EDGE_TERRAIN
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles 512
+		number_of_clumps 256
+		set_scale_by_size
+		set_scale_by_groups
+		terrain_mask 1
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain PLACEHOLDER_TERRAIN_A
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+		spacing_to_other_terrain_types 4
+	}
+
+	create_terrain EDGE_TERRAIN
+	{
+		base_terrain SPAWN_TERRAIN
+		number_of_tiles 512
+		number_of_clumps 256
+		set_scale_by_size
+		set_scale_by_groups
+		terrain_mask 1
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain SPAWN_TERRAIN
+	{
+		base_terrain PLACEHOLDER_TERRAIN_A
+		land_percent 100
+		number_of_clumps 512
+		set_scale_by_groups
+	}
+
+	create_terrain BASE_FOREST_VARIATION_A
+	{
+		base_terrain BASE_FOREST
+		land_percent 10
+		number_of_clumps 48
+		set_scale_by_groups
+	}
+
+	create_terrain BASE_FOREST_VARIATION_B
+	{
+		base_terrain BASE_FOREST
+		land_percent 4
+		number_of_clumps 64
+		set_scale_by_groups
+	}
+
+	create_terrain BASE_FOREST_VARIATION_A
+	{
+		base_terrain BASE_FOREST
+		land_percent 2
+		number_of_clumps 256
+		set_scale_by_groups
+	}
+
+	create_terrain SPAWN_BLEND_A
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 8
+		number_of_clumps 32
+		set_scale_by_groups
+		clumping_factor -10
+		terrain_mask 1
+	}
+
+	create_terrain SPAWN_BLEND_B
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 4
+		number_of_clumps 24
+		set_scale_by_groups
+		terrain_mask 1
+	}
+
+	create_terrain SPAWN_BLEND_C
+	{
+		base_terrain SPAWN_TERRAIN
+		land_percent 4
+		number_of_clumps 24
+		set_scale_by_groups
+		terrain_mask 1
+	}
+
+<CONNECTION_GENERATION>
+	accumulate_connections
+
+	create_connect_all_players_land
+	{
+		replace_terrain BASE_FOREST EDGE_TERRAIN
+		replace_terrain BASE_FOREST_VARIATION_A EDGE_TERRAIN
+		replace_terrain BASE_FOREST_VARIATION_B EDGE_TERRAIN
+
+		terrain_cost BASE_FOREST 6
+		terrain_cost BASE_FOREST_VARIATION_A 8
+		terrain_cost BASE_FOREST_VARIATION_B 6
+		terrain_cost SPAWN_TERRAIN 1
+		terrain_cost EDGE_TERRAIN 6
+		terrain_cost CLEARING_TERRAIN 15
+		terrain_cost CONNECTION_BLOCKER 0
+
+		terrain_size BASE_FOREST 3 1
+		terrain_size BASE_FOREST_VARIATION_A 3 1
+		terrain_size BASE_FOREST_VARIATION_B 3 1
+		terrain_size SPAWN_TERRAIN 3 1
+		terrain_size EDGE_TERRAIN 3 1
+	}
+
+	create_connect_teams_lands
+	{
+		replace_terrain SPAWN_TERRAIN ROAD_TERRAIN
+		replace_terrain EDGE_TERRAIN ROAD_TERRAIN
+
+		terrain_cost BASE_FOREST 0
+		terrain_cost BASE_FOREST_VARIATION_A 0
+		terrain_cost BASE_FOREST_VARIATION_B 0
+		terrain_cost SPAWN_TERRAIN 10
+		terrain_cost EDGE_TERRAIN 10
+		terrain_cost CLEARING_TERRAIN 15
+		terrain_cost WATER_SHALLOW 15
+
+		terrain_size SPAWN_TERRAIN 1 0
+		terrain_size EDGE_TERRAIN 1 0
+	}
+
+	if KING_OT_HILL
+		create_connect_to_nonplayer_land
+		{
+			replace_terrain BASE_FOREST EDGE_TERRAIN
+			replace_terrain BASE_FOREST_VARIATION_A EDGE_TERRAIN
+			replace_terrain BASE_FOREST_VARIATION_B EDGE_TERRAIN
+
+			terrain_cost BASE_FOREST 4
+			terrain_cost BASE_FOREST_VARIATION_A 8
+			terrain_cost BASE_FOREST_VARIATION_B 4
+			terrain_cost SPAWN_TERRAIN 1
+			terrain_cost EDGE_TERRAIN 4
+			terrain_cost CLEARING_TERRAIN 15
+			terrain_cost CONNECTION_BLOCKER 0
+
+			terrain_size BASE_FOREST 3 0
+			terrain_size BASE_FOREST_VARIATION_A 3 0
+			terrain_size BASE_FOREST_VARIATION_B 3 0
+			terrain_size SPAWN_TERRAIN 3 0
+			terrain_size EDGE_TERRAIN 3 0
+		}
+	endif
+
+<OBJECTS_GENERATION>
+	if TERRAIN_DEBUGGING
+	else
+		#define PRELIMINARIES
+		if PRELIMINARIES
+			#const RESOURCE_SPACING_DEFAULT 6
+			#const RESOURCE_SPACING_FAR 10
+			#const RESOURCE_RESTRICTION 1
+
+			#include_drs includes/object_setup.inc
+			#include_drs includes/market_objects.inc
+		endif
+
+		#include_drs includes/town_centres.inc
+		#include_drs includes/villagers.inc
+		#include_drs includes/scouts.inc
+		#include_drs includes/walls.inc
+
+		#include_drs includes/defend_wonder.inc
+
+		#define REGICIDE_BACKWARD
+
+		#include_drs includes/regicide.inc
+		#include_drs includes/capture_relic.inc
+
+		if NOMAD_START
+		else
+			#include_drs includes/stragglers.inc
+
+			#define FORAGE_BUSH_PRIMARY_ZONE_AVOIDANCE 1
+			#define FORAGE_BUSH_PRIMARY
+
+			#define GOLD_PRIMARY_ZONE_AVOIDANCE 1
+			#define GOLD_PRIMARY
+
+			#define GOLD_SECONDARY_ZONE_AVOIDANCE 1
+			#const GOLD_SECONDARY_DISTANCE 16
+			#define GOLD_SECONDARY
+
+			#define GOLD_TERTIARY_ZONE_AVOIDANCE 1
+			#const GOLD_TERTIARY_DISTANCE 22
+			#define GOLD_TERTIARY
+
+			#define STONE_PRIMARY_ZONE_AVOIDANCE 1
+			#const STONE_PRIMARY_DISTANCE 14
+			#define STONE_PRIMARY
+
+			#define STONE_SECONDARY_ZONE_AVOIDANCE 1
+			#const STONE_SECONDARY_DISTANCE 20
+			#define STONE_SECONDARY
+
+			#const GOLD_ADDITIONAL_DISTANCE 36
+			#const GOLD_ADDITIONAL_ZONE_AVOIDANCE 1
+			#define GOLD_ADDITIONAL_NO_CLOSEST
+			#define GOLD_ADDITIONAL
+
+			#const STONE_ADDITIONAL_DISTANCE 36
+			#const STONE_ADDITIONAL_ZONE_AVOIDANCE 1
+			#define STONE_ADDITIONAL_NO_CLOSEST
+			#define STONE_ADDITIONAL
+
+			#include_drs includes/starting_resources.inc
+
+			if DEATH_MATCH
+			elseif INFINITE_RESOURCES
+			else
+				#define HERDABLE_STARTING_COUNT_FOUR
+				
+				#include_drs includes/herdable_starting.inc
+
+				#const HERDABLE_ZONE_AVOIDANCE 0
+
+				#include_drs includes/herdable.inc
+
+				start_random
+					percent_chance 50 #define GAME_HUNTABLE
+					percent_chance 50 #define GAME_CHICKEN
+				end_random
+
+				if GAME_HUNTABLE
+					#const HUNTABLE_GROUPS 1
+					#const HUNTABLE_ZONE_AVOIDANCE 0
+
+					start_random
+						percent_chance 30
+							#const HUNTABLE_COUNT 3
+						percent_chance 70
+							#const HUNTABLE_COUNT 4
+					end_random
+				endif
+
+				if GAME_CHICKEN
+					#const HUNTABLE_SMALL_GROUPS 1
+					#const HUNTABLE_SMALL_ZONE_AVOIDANCE 0
+
+					start_random
+						percent_chance 20
+							#const HUNTABLE_SMALL_COUNT 6
+						percent_chance 45
+							#const HUNTABLE_SMALL_COUNT 7
+						percent_chance 35
+							#const HUNTABLE_SMALL_COUNT 8
+					end_random
+				endif
+
+				#include_drs includes/huntable.inc
+
+				#const LUREABLE_ADDITIONAL_GROUPS 1
+				#const LUREABLE_ADDITIONAL_DISTANCE 38
+				#const LUREABLE_ADDITIONAL_ZONE_AVOIDANCE 0
+				#const LUREABLE_ADDITIONAL_FOREST_DISTANCE 1
+
+				#include_drs includes/lureable.inc
+				#include_drs includes/furbearers.inc
+			endif
+		endif
+
+		if INFINITE_RESOURCES
+		else
+			create_object GOLD
+			{
+				number_of_objects 3
+				number_of_groups 1024
+				set_tight_grouping
+				temp_min_distance_group_placement 16
+				layer_to_place_on BASE_FOREST
+
+				max_distance_to_other_zones 1
+				avoid_forest_zone 1
+				avoid_cliff_zone 1
+				min_distance_to_map_edge 1
+
+				actor_area 1010
+				actor_area_radius 2
+			}
+
+			create_object STONE
+			{
+				number_of_objects 2
+				number_of_groups 1024
+				set_tight_grouping
+				temp_min_distance_group_placement 16
+				layer_to_place_on BASE_FOREST
+
+				max_distance_to_other_zones 1
+				avoid_forest_zone 1
+				avoid_cliff_zone 1
+				min_distance_to_map_edge 1
+
+				actor_area 1020
+				actor_area_radius 2
+
+				avoid_actor_area 1010 /* Neutral Gold */
+			}
+		endif
+
+		if DEATH_MATCH
+		else
+			#const PREDATOR_DISTANCE 40
+			#const PREDATOR_SPACING 22
+
+			#include_drs includes/predators.inc
+			#include_drs includes/riparian.inc
+		endif
+
+		create_object NERITIC_A
+		{
+			number_of_objects 4096
+			temp_min_distance_group_placement 20
+
+			min_distance_group_placement 1
+
+			actor_area 1200
+			actor_area_radius 2
+
+			avoid_actor_area 1200 /* Neritic */
+		}
+
+		create_object NERITIC_A
+		{
+			number_of_objects 4096
+			temp_min_distance_group_placement 20
+
+			min_distance_group_placement 1
+
+			actor_area 1200
+			actor_area_radius 2
+
+			avoid_actor_area 1200 /* Neritic */
+		}
+
+		if DEATH_MATCH
+		else
+			#const PREDATOR_DISTANCE 40
+
+			#include_drs includes/predators.inc
+			#include_drs includes/riparian.inc
+		endif
+
+		if DEATH_MATCH
+		else
+			create_object FALLEN_TREE
+			{
+				number_of_objects 8
+				min_distance_to_players 16
+				temp_min_distance_group_placement 6
+				place_on_forest_zone
+
+				max_distance_to_other_zones 4
+
+				actor_area 1300
+				actor_area_radius 2
+			}
+
+			#include_drs includes/reeds.inc
+		endif
+
+		#define RELIC_TYPE_PLAYER
+		#const RELIC_DISTANCE 24
+		#const RELIC_SPACING 24
+		#const RELIC_EDGE_DISTANCE 2
+		#const RELIC_CAA_A 2000 /* Neutral Zone, Small */
+
+		#include_drs includes/relics.inc
+
+		#include_drs includes/remote_resources.inc
+
+		#define EXTRA_STUFF
+		if EXTRA_STUFF
+			if EMPIRE_WARS_MODE
+				#define EMPIRE_WARS_FORAGERS
+
+				#include_drs includes/empire_wars.inc
+				#include_drs includes/empire_food.inc
+				#include_drs includes/empire_gold.inc
+				#include_drs includes/empire_wood.inc
+				#include_drs includes/empire_buildings.inc
+			elseif ESCALATION_MODE
+				#include_drs includes/escalation_mode.inc
+			endif
+
+			#define AESTHETICS
+			if AESTHETICS
+				#include_drs includes/birds.inc
+
+				create_object FOREST_DECORATION
+				{
+					number_of_objects 1024
+					set_scaling_to_map_size
+					temp_min_distance_group_placement 12
+					terrain_to_place_on EDGE_TERRAIN
+					
+					actor_area 8000
+					actor_area_radius 0
+
+					avoid_actor_area 8000 /* Stump */
+				}
+				
+				create_object FOREST_DECORATION
+				{
+					number_of_objects 1024
+					set_scaling_to_map_size
+					temp_min_distance_group_placement 12
+					terrain_to_place_on EDGE_TERRAIN
+					
+					actor_area 8000
+					actor_area_radius 0
+
+					avoid_actor_area 8000 /* Stump */
+				}
+				
+				create_object FOREST_DECORATION
+				{
+					number_of_objects 1024
+					set_scaling_to_map_size
+					temp_min_distance_group_placement 12
+					terrain_to_place_on EDGE_TERRAIN
+					
+					actor_area 8000
+					actor_area_radius 0
+
+					avoid_actor_area 8000 /* Stump */
+				}
+			endif
+		endif
+	endif

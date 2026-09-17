@@ -34,6 +34,8 @@ then `git pull` whenever there are updates.
 | **AbP Michi Relic Pond** | Classic seasons michi: 10 relics per player, dockable fish ponds (1–2 per player), standard 8 herdables, lighter woodlines, no-collision trade carts. |
 | **AbP Michi Official Relic Pond** | Same treatment on the official 2023 Michi base (per-team-size layouts, neutral 1v1 markets), plus grouped teams on fallback placement and ordered spawns. |
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade carts added. |
+| **AbP Black Forest** | Official Black Forest (FE 2.1) with no-collision trade carts added. Nothing else changed. |
+| **AbP Sideways Black Forest** | MBA Sideways Black Forest with no-collision trade carts added. Nothing else changed. |
 | **AbP Onion** | Original map: a sealed concentric onion at the center — tree ring, solid stone wall, tree ring, solid gold wall, then a relic sanctum (12 relics, treasure, jaguars) around a marlin pool. Peel it layer by layer; every layer pays. Full AbP kit: guaranteed home mangrove pond, TC fish, ghost trade. |
 | **AbP Arena** | Official Arena + no-collision trade carts, plus experimental small in-base ponds (carved into spawn terrain, ~1 per base, stocked with fish). All official berries kept. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel + no-collision trade carts + decorative fish beneath every TC. |
