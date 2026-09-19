@@ -2,6 +2,22 @@
 
 Custom AoE2:DE random map scripts.
 
+> ### ⚠️ Disclaimer — these are not original creations
+>
+> With one exception, every map in this pack is a lightly tweaked copy of an
+> existing map — either an official game script or a community map from the
+> Steam Workshop — with small additions bolted on (no-collision trade carts,
+> extra fish, ordered spawns, relics, ponds). **All credit for the underlying
+> maps belongs to their original authors**, listed under [Credits](#credits).
+>
+> The one exception is **AbP Onion**, which is an original map.
+>
+> This pack is private and shared only among friends — nothing here is
+> published, redistributed or sold, and the "AbP" prefix exists purely so our
+> tweaked copies don't collide with the originals in the map list. If you are
+> one of the original authors and would rather your map not be included, say so
+> and it will be removed.
+
 ## Install / update
 
 This repo is **private** — you need to be added as a collaborator (accept the
@@ -41,6 +57,31 @@ then `git pull` whenever there are updates.
 | **AbP Amazon Tunnel** | Official Amazon Tunnel + no-collision trade carts + decorative fish beneath every TC. |
 | **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: full team sides assigned by team (`AT_TEAM`, team 1 left, team 2 right), every player keeps the two-homes gimmick (2 TCs each), burrito wall, corner fish lakes and mangrove islands intact, 8 relics, TC fish, no-collision trade carts. Play on Large or bigger. |
 | **AbP Hideout** | WC25 - Hideout (Winter Cup 2025 map pack) with no-collision trade carts added. Nothing else changed. |
+
+## Credits
+
+Everything below except AbP Onion is someone else's map with our tweaks added.
+Community author names are the uploader handles from each source mod.
+
+| Map | Based on | Original author |
+| --- | --- | --- |
+| **AbP Trio Stone Lanes** | MBA Trio Stone Lanes | MBA Map Pack — StandingColt942 |
+| **AbP Trio Lanes** | MBA Trio Lanes | MBA Map Pack — StandingColt942 |
+| **AbP Trio Ford** | MBA Trio Lanes, with the middle rebuilt | MBA Map Pack — StandingColt942 |
+| **AbP Michi Relic Pond** | Michi (seasons), descended from "Over the River" (2001) | RF_Gandalf and MFO@Mapster, per the script header |
+| **AbP Michi Official Relic Pond** | Michi (official, 2023) | Official / Forgotten Empires |
+| **AbP Black Boarest v2** | MBA Black Boarest v2 | MBA Revenge Map Pack — Xi Draconis4989 |
+| **AbP Black Forest** | Black Forest (official, FE 2.1) | Official / Forgotten Empires |
+| **AbP Sideways Black Forest** | MBA Sideways Black Forest | MBA Map Pack — StandingColt942 |
+| **AbP Arena** | Arena (official) | Official / Forgotten Empires |
+| **AbP Amazon Tunnel** | The Amazon Tunnel (official, 2023) | Official / Forgotten Empires |
+| **AbP Burrito Brawl 4v4** | Burrito Brawl | Dragonmilks Delicious Dozen — StartedGorgon94; the original 1v1 spawn concept is credited in the script to Mike Hasselbach |
+| **AbP Hideout** | WC25 - Hideout | Winter Cup 2025 Map Pack — 2ez Scipi |
+| **AbP Onion** | — | Original map |
+
+Techniques were also learned by reading other people's scripts — Dragonmilk's
+Tres Leches 2 (no-collision trade), MBA Water Nomad (dockable mangrove) and the
+official Alpine Lakes (per-player terrain labels) in particular.
 
 ## Lobby notes
 
