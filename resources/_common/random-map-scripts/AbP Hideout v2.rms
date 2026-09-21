@@ -1,0 +1,587 @@
+<PLAYER_SETUP>
+/* AbP Hideout v2: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts, 9-villager start (6 at the TC, 3 at a pre-built lumber camp), 2 houses, stone wall + stone gates instead of palisade, 3 dolphins beneath the TC. */
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
+
+random_placement
+ai_info_map_type ARABIA 0 0 0
+#include_drs thebr_setup.inc
+start_random
+percent_chance 20 #define PH_SPRING
+percent_chance 25 #define PH_ALPINE
+percent_chance 10 #define PH_TROPHICALSOUTH
+percent_chance 10 #define PH_TROPHICALEAST
+percent_chance 25 #define PH_FROZEN
+percent_chance 10 #define PH_MEDISOUTH
+end_random
+#define FROZEN_WESTONLY
+#include_drs F_seasons.inc
+start_random
+percent_chance 50 #define CLOSE_HUNT
+percent_chance 50 #define FAR_HUNT
+end_random
+<LAND_GENERATION>
+base_terrain LAYER_A
+create_player_lands
+{
+terrain_type LAYER_B
+land_percent 16
+base_size 12
+top_border 18
+bottom_border 18
+right_border 18
+left_border 18
+clumping_factor 15
+other_zone_avoidance_distance 16
+if TINY_MAP
+circle_radius 21 0
+elseif SMALL_MAP
+circle_radius 22 0
+elseif MEDIUM_MAP
+circle_radius 23 0
+elseif LARGE_MAP
+circle_radius 24 0
+elseif HUGE_MAP
+circle_radius 25 0
+elseif GIGANTIC_MAP
+circle_radius 25 0
+else
+circle_radius 28 0
+endif
+}
+create_land
+{
+terrain_type WOODIES
+land_percent 90
+top_border 20
+bottom_border 20
+right_border 20
+left_border 20
+clumping_factor 15
+border_fuzziness 45
+zone 52
+other_zone_avoidance_distance 0
+}
+if TINY_MAP
+elseif SMALL_MAP
+else
+create_land
+{
+terrain_type LAYER_E
+number_of_tiles 1
+base_size 0
+land_position 50 50
+other_zone_avoidance_distance 0
+}
+endif
+<ELEVATION_GENERATION>
+#define GNRELEV_HEIGHT04
+#define GNRELEV_INTENSITY_I
+#define GNRELEV_LAY_A
+#include_drs GeneratingElevation.inc
+<TERRAIN_GENERATION>
+#include_drs F_ColorCorrection.inc
+create_terrain WOODIES_B
+{
+base_terrain LAYER_A
+spacing_to_other_terrain_types 0
+land_percent 4
+number_of_clumps 6
+set_avoid_player_start_areas
+set_scale_by_groups
+}
+create_terrain LAYER_C
+{
+base_terrain LAYER_B
+number_of_clumps 24
+spacing_to_other_terrain_types 0
+land_percent 5
+set_scale_by_size
+}
+create_terrain LAYER_A
+{
+base_terrain LAYER_B
+number_of_clumps 30
+spacing_to_other_terrain_types 0
+land_percent 2
+set_scale_by_size
+}
+create_terrain WOODIES
+{
+base_terrain LAYER_B
+number_of_clumps 10
+spacing_to_other_terrain_types 2
+number_of_tiles 20
+set_avoid_player_start_areas
+set_scale_by_size
+}
+create_terrain WOODIES_B
+{
+base_terrain WOODIES
+land_percent 8
+number_of_clumps 100
+}
+create_terrain LAYER_B
+{
+base_terrain LAYER_C
+number_of_clumps 1000
+land_percent 100
+}
+create_terrain LAYER_A
+{
+base_terrain LAYER_B
+number_of_clumps 1000
+land_percent 100
+}
+create_terrain LAYER_B
+{
+base_terrain LAYER_A
+number_of_clumps 36
+spacing_to_other_terrain_types 0
+land_percent rnd(14,28)
+set_scale_by_size
+}
+create_terrain ROAD
+{
+base_terrain LAYER_B
+number_of_clumps 1000
+spacing_to_other_terrain_types 2
+land_percent 100
+}
+create_terrain LAYER_A
+{
+base_terrain LAYER_B
+number_of_clumps 1000
+land_percent 100
+terrain_mask 2
+}
+create_terrain LAYER_A
+{
+base_terrain LAYER_B
+number_of_clumps 1000
+land_percent 100
+terrain_mask 2
+}
+create_terrain LAYER_B
+{
+base_terrain ROAD
+number_of_clumps 1000
+land_percent 100
+}
+create_terrain LAYER_B
+{
+base_terrain ROAD
+number_of_clumps 1000
+land_percent 100
+}
+create_terrain LAYER_C
+{
+base_terrain LAYER_A
+number_of_clumps 24
+spacing_to_other_terrain_types 0
+land_percent rnd(2,6)
+set_scale_by_size
+terrain_mask 1
+}
+<OBJECTS_GENERATION>
+/* AbP: 3 dolphins beneath every town center (invisible placeholder 1543 + second_object, same recipe as the other AbP maps) */
+#const FISH_PAD 1543
+#const DOLPHIN 61
+create_object FISH_PAD {
+number_of_objects 3
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 2
+max_distance_to_players 4
+second_object DOLPHIN
+}
+if HUGE_MAP
+create_actor_area 109 109 1 45
+endif
+create_object STRAGGLER {
+number_of_objects 99
+set_gaia_object_only
+terrain_to_place_on LAYER_E
+actor_area 2
+actor_area_radius 40
+}
+create_object HERDABLE_A {
+if PREPARE_FOR_COWS_A
+number_of_objects 3
+else
+number_of_objects 4
+endif
+set_loose_grouping
+set_place_for_every_player
+min_distance_to_players 8
+max_distance_to_players 10
+set_circular_placement
+avoid_forest_zone 2
+actor_area 3
+actor_area_radius 3
+}
+if EMPIRE_WARS
+#define GNR_STARTVILLS
+endif
+#define GNR_CLASSICSCOUT
+#define GNR_REGICIDECLASSIC
+#define GNR_GIVELURES
+#define GNR_CLASSICLURES
+#define GNR_LUREDIST_CL
+#define GNR_HIDEOUTGS_DISTANCE
+#define GNR_HIDEOUT_SECONDGTOEDGE
+#define GNR_HOMESTRAGGLE
+#define GNR_MAPSTRAGGLE
+create_object RELIC {
+number_of_objects 6
+min_distance_to_players 25
+min_distance_group_placement 1
+temp_min_distance_group_placement 70
+avoid_forest_zone 1
+min_distance_to_map_edge 8
+avoid_actor_area 1
+}
+create_object KERICEK {
+number_of_objects 6
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 9
+max_distance_to_players 12
+actor_area 4
+actor_area_radius 4
+min_distance_group_placement 2
+avoid_forest_zone 4
+}
+create_object GOLD {
+number_of_objects 5
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 10
+find_closest
+avoid_actor_area 6157
+max_distance_to_other_zones 7
+avoid_forest_zone 2
+min_distance_group_placement 2
+avoid_actor_area 4
+actor_area 5
+actor_area_radius 5
+}
+create_object STONE {
+number_of_objects 4
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 10
+max_distance_to_players 13
+min_distance_group_placement 3
+avoid_forest_zone 2
+actor_area 6
+actor_area_radius 5
+avoid_actor_area 4
+avoid_actor_area 5
+}
+create_object GOLD {
+number_of_objects 4
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 22
+find_closest
+max_distance_to_other_zones 7
+avoid_forest_zone 2
+actor_area 7
+actor_area_radius 5
+avoid_actor_area 4
+avoid_actor_area 5
+avoid_actor_area 6
+min_distance_group_placement 3
+avoid_actor_area 1
+}
+create_object STONE {
+number_of_objects 4
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players 25
+find_closest
+min_distance_group_placement 3
+max_distance_to_other_zones 7
+avoid_forest_zone 2
+actor_area 8
+avoid_actor_area 4
+avoid_actor_area 5
+avoid_actor_area 6
+avoid_actor_area 7
+avoid_actor_area 1
+}
+create_object HERDABLE_B {
+number_of_objects 2
+if PREPARE_FOR_COWS_B
+number_of_groups 1
+#define ADD_ANOTHER_COW
+else
+number_of_groups 2
+endif
+set_loose_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players rnd(10,12)
+find_closest
+avoid_forest_zone 2
+max_distance_to_other_zones 2
+avoid_actor_area 3
+actor_area 9
+actor_area_radius 3
+}
+if ADD_ANOTHER_COW
+create_object HERDABLE_B {
+number_of_objects 1
+number_of_groups 1
+set_loose_grouping
+set_gaia_object_only
+set_place_for_every_player
+min_distance_to_players rnd(10,12)
+find_closest
+avoid_forest_zone 2
+max_distance_to_other_zones 2
+avoid_actor_area 9
+}
+endif
+create_object HUNTABLE {
+number_of_objects rnd(3,4)
+group_placement_radius 3
+set_loose_grouping
+set_gaia_object_only
+set_place_for_every_player
+if CLOSE_HUNT
+min_distance_to_players 10
+max_distance_to_players 13
+elseif FAR_HUNT
+min_distance_to_players 24
+avoid_actor_area 1
+find_closest
+endif
+avoid_forest_zone 2
+max_distance_to_other_zones 2
+}
+if BATTLE_ROYALE
+elseif INFINITE_RESOURCES
+else
+create_object PREDATOR_A {
+number_of_groups 3
+set_loose_grouping
+number_of_objects 1
+set_scaling_to_map_size
+set_gaia_object_only
+min_distance_group_placement 12
+min_distance_to_players 40
+avoid_actor_area 2
+}
+if LARGE_MAP
+elseif HUGE_MAP
+elseif GIGANTIC_MAP
+elseif LUDIKRIS_MAP
+else
+create_object BLANKOBJECT {
+number_of_objects rnd(160,180)
+set_gaia_object_only
+set_place_for_every_player
+find_closest
+min_distance_to_players 33
+actor_area 10
+actor_area_radius 0
+}
+create_object BLANKOBJECT {
+number_of_objects rnd(180,220)
+set_gaia_object_only
+set_place_for_every_player
+find_closest
+min_distance_to_players 39
+actor_area 11
+actor_area_radius 0
+}
+endif
+create_object GOLD {
+number_of_groups 1
+set_tight_grouping
+number_of_objects 3
+set_gaia_object_only
+min_distance_group_placement 3
+if LARGE_MAP
+min_distance_to_players 52
+elseif HUGE_MAP
+min_distance_to_players 56
+elseif GIGANTIC_MAP
+min_distance_to_players 60
+elseif LUDIKRIS_MAP
+min_distance_to_players 63
+else
+min_distance_to_players 40
+endif
+find_closest
+set_place_for_every_player
+actor_area 12
+actor_area_radius 16
+avoid_forest_zone 2
+avoid_actor_area 2
+avoid_actor_area 11
+}
+create_object GOLD {
+number_of_groups 1
+set_tight_grouping
+number_of_objects 3
+set_gaia_object_only
+min_distance_group_placement 3
+if LARGE_MAP
+min_distance_to_players 44
+elseif HUGE_MAP
+min_distance_to_players 48
+elseif GIGANTIC_MAP
+min_distance_to_players 52
+elseif LUDIKRIS_MAP
+min_distance_to_players 56
+else
+min_distance_to_players 34
+endif
+find_closest
+set_place_for_every_player
+actor_area 13
+actor_area_radius 16
+avoid_actor_area 12
+avoid_forest_zone 2
+avoid_actor_area 2
+avoid_actor_area 10
+}
+create_object STONE {
+number_of_groups 1
+set_tight_grouping
+number_of_objects 3
+set_gaia_object_only
+min_distance_group_placement 3
+if LARGE_MAP
+min_distance_to_players 49
+elseif HUGE_MAP
+min_distance_to_players 53
+elseif GIGANTIC_MAP
+min_distance_to_players 57
+elseif LUDIKRIS_MAP
+min_distance_to_players 60
+else
+min_distance_to_players 39
+endif
+find_closest
+set_place_for_every_player
+actor_area 14
+actor_area_radius 16
+avoid_actor_area 12
+avoid_actor_area 13
+avoid_forest_zone 2
+avoid_actor_area 2
+}
+create_object STONE {
+number_of_groups 1
+set_tight_grouping
+number_of_objects 3
+set_gaia_object_only
+min_distance_group_placement 3
+if LARGE_MAP
+min_distance_to_players 54
+elseif HUGE_MAP
+min_distance_to_players 58
+elseif GIGANTIC_MAP
+min_distance_to_players 62
+elseif LUDIKRIS_MAP
+min_distance_to_players 67
+else
+min_distance_to_players 46
+endif
+find_closest
+set_place_for_every_player
+avoid_actor_area 12
+avoid_actor_area 13
+avoid_actor_area 14
+avoid_forest_zone 2
+avoid_actor_area 2
+}
+endif
+/* AbP: town center, stone wall and custom start. This replaces the include's GNR_NORMALTC / GNR_HIDEOUTWALL / GNR_STARTVILLS blocks */
+/* (same placement values as the include, only PALISADE_WALL -> STONE_WALL; gates follow the wall type automatically). */
+/* Order matters: TC first, then the wall with the include's actor area 6730 so later objects keep avoiding the wall line. */
+if EMPIRE_WARS
+create_object TOWN_CENTER {
+set_place_for_every_player
+group_placement_radius 18
+min_distance_to_players 0
+max_distance_to_players 0
+actor_area 100
+actor_area_radius 2
+}
+else
+create_object TOWN_CENTER {
+set_place_for_every_player
+group_placement_radius 18
+min_distance_to_players 0
+max_distance_to_players 0
+}
+endif
+create_object STONE_WALL {
+set_place_for_every_player
+min_distance_to_players 17
+max_distance_to_players 17
+actor_area 6730
+actor_area_radius 3
+}
+if EMPIRE_WARS
+/* Empire Wars keeps the include's own start (GNR_STARTVILLS is defined above for EW only) */
+else
+/* 6 villagers at the town center */
+create_object VILLAGER {
+set_place_for_every_player
+number_of_objects 6
+min_distance_to_players 6
+max_distance_to_players 6
+min_distance_group_placement 2
+}
+/* 2 houses */
+create_object HOUSE {
+number_of_objects 2
+set_place_for_every_player
+min_distance_to_players 7
+max_distance_to_players 10
+min_distance_group_placement 3
+avoid_actor_area 6730
+}
+/* lumber camp on the nearest woodline, inside the wall (wall is at 17). The game swaps it for a Mule Cart for Armenians/Georgians. */
+create_object LUMBER_CAMP {
+set_place_for_every_player
+number_of_objects 1
+max_distance_to_players 15
+place_on_forest_zone
+find_closest
+actor_area 8201
+actor_area_radius 4
+}
+/* 3 villagers next to the lumber camp (official Empire Wars recipe) */
+create_object VILLAGER {
+set_place_for_every_player
+number_of_objects 3
+actor_area_to_place_in 8201
+place_on_forest_zone
+find_closest
+force_placement
+}
+endif
+#include_drs GeneratingObjects.inc
+create_object BIRDS_A {
+number_of_objects 4
+set_scaling_to_map_size
+}
