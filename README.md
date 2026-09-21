@@ -58,6 +58,7 @@ then `git pull` whenever there are updates.
 | **AbP Burrito Brawl 4v4** | 4v4 rework of Dragonmilk's Burrito Brawl: full team sides assigned by team (`AT_TEAM`, team 1 left, team 2 right), every player keeps the two-homes gimmick (2 TCs each), burrito wall, corner fish lakes and mangrove islands intact, 8 relics, TC fish, no-collision trade carts. Play on Large or bigger. |
 | **AbP Hideout** | WC25 - Hideout (Winter Cup 2025 map pack) with no-collision trade carts added. Nothing else changed. |
 | **AbP Hideout v2** | AbP Hideout plus a bigger start: 9 villagers (6 at the TC, 3 at a pre-built Lumber Camp on the nearest woodline; Armenians/Georgians get a Mule Cart instead), 2 houses, a stone wall with stone gates instead of the palisade, and 3 dolphins beneath the TC. No-collision trade carts kept. |
+| **AbP Mountain Hideout** | Mountain Hideout v1.2 (Mad Random Maps): snow clearings walled in stone inside a tree-filled mountain forest, relics and stone hidden in the trees. AbP changes: 9 starting villagers, the starting wall fixed so every player gets one, 3 dolphins beneath the TC. No trade-cart tweak (nothing else changed). |
 
 ## Credits
 
@@ -79,6 +80,7 @@ Community author names are the uploader handles from each source mod.
 | **AbP Burrito Brawl 4v4** | Burrito Brawl | Dragonmilks Delicious Dozen — StartedGorgon94; the original 1v1 spawn concept is credited in the script to Mike Hasselbach |
 | **AbP Hideout** | WC25 - Hideout | Winter Cup 2025 Map Pack — 2ez Scipi |
 | **AbP Hideout v2** | WC25 - Hideout | Winter Cup 2025 Map Pack — 2ez Scipi |
+| **AbP Mountain Hideout** | Mountain Hideout v1.2 | Mad Random Maps — TheMadCADer (per the script header) |
 | **AbP Onion** | — | Original map |
 
 Techniques were also learned by reading other people's scripts — Dragonmilk's
