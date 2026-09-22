@@ -1,24 +1,12 @@
 # AbP Map Pack installer / updater for Age of Empires 2 DE
-# First run installs the pack; running it again updates to the latest maps.
-# Private repo: you must be a collaborator (accept the GitHub invite email).
-# Needs Git OR GitHub CLI - and if neither is installed, this script installs
-# the GitHub CLI itself via winget and walks you through a one-time sign-in.
+# First run installs the pack; running it again updates it to the latest maps.
+# No setup needed - no Git, no accounts, nothing to install. Just run it.
 # Restart AoE2 DE afterwards - the maps appear under Custom maps.
 
 $ErrorActionPreference = 'Stop'
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $packName = 'AbP Map Pack'
-$repo = 'Code-by-AB/aoe2-abp-map-pack'
-$repoUrl = "https://github.com/$repo.git"
-$zipUrl = "https://github.com/$repo/archive/refs/heads/main.zip"
-
-function Find-Gh {
-    $c = Get-Command gh -ErrorAction SilentlyContinue
-    if ($c) { return $c.Source }
-    foreach ($cand in @("$env:ProgramFiles\GitHub CLI\gh.exe", "$env:LOCALAPPDATA\Programs\GitHub CLI\gh.exe")) {
-        if (Test-Path $cand) { return $cand }
-    }
-    return $null
-}
+$zipUrl = 'https://github.com/Code-by-AB/aoe2-abp-map-pack/archive/refs/heads/main.zip'
 
 $gameRoot = Join-Path $env:USERPROFILE 'Games\Age of Empires 2 DE'
 if (-not (Test-Path $gameRoot)) {
@@ -31,111 +19,50 @@ if (-not $profiles) {
     return
 }
 
-$gitCmd = Get-Command git -ErrorAction SilentlyContinue
-$ghExe = Find-Gh
-
-# bootstrap: no git and no gh -> install GitHub CLI via winget
-if (-not $gitCmd -and -not $ghExe) {
-    $winget = Get-Command winget -ErrorAction SilentlyContinue
-    if (-not $winget) {
-        Write-Host "Neither Git nor GitHub CLI is installed, and winget is unavailable." -ForegroundColor Red
-        Write-Host "Install Git (git-scm.com) or GitHub CLI (cli.github.com) and rerun this script."
-        return
-    }
-    Write-Host "Installing GitHub CLI (one-time)..." -ForegroundColor Yellow
-    winget install -e --id GitHub.cli --accept-source-agreements --accept-package-agreements
-    $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
-    $ghExe = Find-Gh
-    if (-not $ghExe) {
-        Write-Host "GitHub CLI install did not complete - rerun this script (or install it manually from cli.github.com)." -ForegroundColor Red
-        return
-    }
+if (Get-Process 'AoE2DE*' -ErrorAction SilentlyContinue) {
+    Write-Host "Age of Empires 2 DE is running - close it first, then rerun this." -ForegroundColor Red
+    return
 }
 
-# if gh is our tool, make sure it is signed in (one-time browser sign-in)
-if (-not $gitCmd -and $ghExe) {
-    & $ghExe auth status 2>$null | Out-Null
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "One-time GitHub sign-in (a browser window will open)..." -ForegroundColor Yellow
-        & $ghExe auth login --hostname github.com --git-protocol https --web
-        & $ghExe auth status 2>$null | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Sign-in did not complete - rerun this script to try again." -ForegroundColor Red
-            return
-        }
+$tmp = Join-Path $env:TEMP ("abp-pack-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $tmp | Out-Null
+try {
+    Write-Host "Downloading the latest maps..."
+    $zip = Join-Path $tmp 'pack.zip'
+    Invoke-WebRequest -Uri $zipUrl -OutFile $zip -UseBasicParsing
+    Expand-Archive -Path $zip -DestinationPath $tmp
+    $src = Join-Path $tmp 'aoe2-abp-map-pack-main'
+    if (-not (Test-Path $src)) {
+        $src = (Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName
     }
-}
-
-foreach ($prof in $profiles) {
-    $dest = Join-Path $prof.FullName "mods\local\$packName"
-
-    if ($gitCmd -and (Test-Path (Join-Path $dest '.git'))) {
-        Write-Host "Updating via git: $dest"
-        git -C $dest pull
-        continue
+    # the copy below mirrors, i.e. it deletes anything not in the download, so make
+    # sure the download really is the map pack before pointing it at the mod folder
+    if (-not (Test-Path (Join-Path $src 'resources\_common\random-map-scripts'))) {
+        Write-Host "That download does not look like the map pack - stopping so nothing is deleted." -ForegroundColor Red
+        return
     }
-
-    if ($gitCmd) {
-        if (Test-Path $dest) {
-            $backup = "$dest.old"
-            Write-Host "Existing non-git copy found - moving it to '$backup'"
-            if (Test-Path $backup) { Remove-Item -Recurse -Force $backup }
-            Move-Item $dest $backup
-        }
-        Write-Host "Cloning the pack (a GitHub sign-in window may appear the first time)..."
-        git clone $repoUrl $dest
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Clone failed. Make sure you accepted the GitHub collaborator invite and signed in." -ForegroundColor Red
+    foreach ($prof in $profiles) {
+        $dest = Join-Path $prof.FullName "mods\local\$packName"
+        Write-Host "Installing into $dest"
+        New-Item -ItemType Directory -Path $dest -Force | Out-Null
+        # /MIR makes the folder an exact copy of the download: new maps in,
+        # removed maps out, and any leftover .git from an older install cleared.
+        # /XF update.ps1 leaves this script alone in case it is being run from
+        # inside the mod folder - it is neither overwritten nor deleted.
+        robocopy $src $dest /MIR /XF update.ps1 /NFL /NDL /NJH /NJS | Out-Null
+        if ($LASTEXITCODE -ge 8) {
+            Write-Host "  copy failed with robocopy exit code $LASTEXITCODE" -ForegroundColor Red
             continue
         }
-        Write-Host "  installed." -ForegroundColor Green
-        continue
-    }
-
-    if ($ghExe) {
-        Write-Host "Updating via GitHub CLI: $dest"
-        $tmp = Join-Path $env:TEMP ("abp-pack-" + [guid]::NewGuid())
-        New-Item -ItemType Directory -Path $tmp | Out-Null
-        try {
-            $zip = Join-Path $tmp 'pack.zip'
-            cmd /c "`"$ghExe`" api repos/$repo/zipball/main > `"$zip`""
-            if ($LASTEXITCODE -ne 0) { throw "gh api download failed - did you accept the collaborator invite?" }
-            Expand-Archive -Path $zip -DestinationPath $tmp
-            $src = (Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName
-            New-Item -ItemType Directory -Path $dest -Force | Out-Null
-            robocopy $src $dest /MIR /XD .git /NFL /NDL /NJH /NJS | Out-Null
-            if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
-            Write-Host "  done." -ForegroundColor Green
-        }
-        catch {
-            Write-Host "GitHub CLI update failed: $_" -ForegroundColor Red
-        }
-        finally {
-            Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
-        }
-        continue
-    }
-
-    # last resort: anonymous zip (only works if the repo is public)
-    Write-Host "Trying direct download (works only if the repo is public)..."
-    $tmp = Join-Path $env:TEMP ("abp-pack-" + [guid]::NewGuid())
-    New-Item -ItemType Directory -Path $tmp | Out-Null
-    try {
-        $zip = Join-Path $tmp 'pack.zip'
-        Invoke-WebRequest -Uri $zipUrl -OutFile $zip -UseBasicParsing
-        Expand-Archive -Path $zip -DestinationPath $tmp
-        $src = Join-Path $tmp 'aoe2-abp-map-pack-main'
-        New-Item -ItemType Directory -Path $dest -Force | Out-Null
-        robocopy $src $dest /MIR /XD .git /NFL /NDL /NJH /NJS | Out-Null
-        if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
         Write-Host "  done." -ForegroundColor Green
     }
-    catch {
-        Write-Host "Download failed - the repo is private and no tools are available." -ForegroundColor Red
-    }
-    finally {
-        Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
-    }
+}
+catch {
+    Write-Host "Update failed: $_" -ForegroundColor Red
+    Write-Host "Check your internet connection and try again." -ForegroundColor Red
+}
+finally {
+    Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
 }
 
 Write-Host ""
