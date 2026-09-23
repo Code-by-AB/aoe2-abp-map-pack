@@ -1,5 +1,5 @@
 /* Mountain Hideout (12-6-19) by TheMadCADer */
-/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, starting wall fixed so every player gets one, 3 dolphins beneath the TC. Nothing else changed. */
+/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, a fortified wall for every player in every game mode, and fish beneath the TC. Nothing else changed. */
 /* Changes from 1.0: Uses direct placement, Start with Siege Onager in KotH */
 /* Changes from 1.1: Uses circle placement for DE */
 	
@@ -446,9 +446,9 @@ create_terrain DIRT_SNOW
 }
 	
 <OBJECTS_GENERATION>
-/* AbP: 3 dolphins beneath every town center (invisible placeholder 1543 + second_object, same recipe as the other AbP maps) */
+/* AbP: fish beneath every town center (invisible placeholder 1543 + second_object). */
+/* Same recipe and counts as AbP Arena: 3 salmon plus 3 shore fish per player. */
 #const FISH_PAD 1543
-#const DOLPHIN 61
 create_object FISH_PAD
 {
 	number_of_objects 3
@@ -456,7 +456,16 @@ create_object FISH_PAD
 	set_place_for_every_player
 	min_distance_to_players 2
 	max_distance_to_players 4
-	second_object DOLPHIN
+	second_object SALMON
+}
+create_object FISH_PAD
+{
+	number_of_objects 3
+	set_gaia_object_only
+	set_place_for_every_player
+	min_distance_to_players 2
+	max_distance_to_players 5
+	second_object SHORE_FISH
 }
 create_object TOWN_CENTER
 {
@@ -485,21 +494,14 @@ create_object SIEGE_ONAGER
 	max_distance_to_players 9
 }
 endif
-if DEATH_MATCH
+/* AbP: fortified wall for everyone. The source map gave a fortified wall only in Death Match */
+/* and a plain stone wall (WALL = 117) otherwise; both branches used the same placement. */
 create_object FORTIFIED_WALL
 {
 set_place_for_every_player
 min_distance_to_players 20
 max_distance_to_players 20
 }
-else
-create_object WALL
-{
-set_place_for_every_player
-min_distance_to_players 20
-max_distance_to_players 20
-}
-endif
 create_object STONE
 {
 	number_of_objects 2
