@@ -1,5 +1,5 @@
 /* Mountain Hideout (12-6-19) by TheMadCADer */
-/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, starting wall fixed so every player gets one, 3 dolphins beneath the TC. Nothing else changed. */
+/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, starting wall fixed so every player gets one, boars kept inside the wall, 3 dolphins beneath the TC. Nothing else changed. */
 /* Changes from 1.0: Uses direct placement, Start with Siege Onager in KotH */
 /* Changes from 1.1: Uses circle placement for DE */
 	
@@ -611,7 +611,7 @@ create_object BOAR
 	set_place_for_every_player
 	set_gaia_object_only
 	min_distance_to_players 16
-	max_distance_to_players 22
+	max_distance_to_players 18 /* AbP: was 22. The wall is a square at 20; circular 22 put boars outside it and the AI deletes a wall tile to lure a boar from outside */
 	set_circular_placement
 }
 create_object DEER
