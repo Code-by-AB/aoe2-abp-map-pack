@@ -1,5 +1,5 @@
 <PLAYER_SETUP>
-/* AbP Hideout v2: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts, 9-villager start (6 at the TC, 3 at a pre-built lumber camp), 2 houses, stone wall + stone gates instead of palisade, 3 dolphins beneath the TC. */
+/* AbP Hideout v2: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts, 9-villager start (6 at the TC, 3 at a pre-built lumber camp), 2 houses, fortified wall + fortified gates instead of palisade, 3 dolphins beside the TC. */
 /* no-collision trade carts (Tres Leches 2 proven config) */
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
@@ -186,15 +186,18 @@ set_scale_by_size
 terrain_mask 1
 }
 <OBJECTS_GENERATION>
-/* AbP: 3 dolphins beneath every town center (invisible placeholder 1543 + second_object, same recipe as the other AbP maps) */
+/* AbP: 3 dolphins next to every town center (invisible placeholder 1543 + second_object, same recipe as the other AbP maps). */
+/* Distance 3-4 keeps all three outside the 4x4 town center footprint (distance 2 could land under the TC and be hidden); */
+/* min_distance_group_placement 1 keeps them on separate tiles so every player gets exactly 3 visible fish. */
 #const FISH_PAD 1543
 #const DOLPHIN 61
 create_object FISH_PAD {
 number_of_objects 3
 set_gaia_object_only
 set_place_for_every_player
-min_distance_to_players 2
+min_distance_to_players 3
 max_distance_to_players 4
+min_distance_group_placement 1
 second_object DOLPHIN
 }
 if HUGE_MAP
@@ -513,8 +516,9 @@ avoid_forest_zone 2
 avoid_actor_area 2
 }
 endif
-/* AbP: town center, stone wall and custom start. This replaces the include's GNR_NORMALTC / GNR_HIDEOUTWALL / GNR_STARTVILLS blocks */
-/* (same placement values as the include, only PALISADE_WALL -> STONE_WALL; gates follow the wall type automatically). */
+/* AbP: town center, fortified wall and custom start. This replaces the include's GNR_NORMALTC / GNR_HIDEOUTWALL / GNR_STARTVILLS blocks */
+/* (same placement values as the include, only PALISADE_WALL -> FORTIFIED_WALL; gates follow the wall type automatically). */
+/* FORTIFIED_WALL is a spawned object, so every player gets it regardless of whether their civ can research Fortified Wall. */
 /* Order matters: TC first, then the wall with the include's actor area 6730 so later objects keep avoiding the wall line. */
 if EMPIRE_WARS
 create_object TOWN_CENTER {
@@ -533,7 +537,7 @@ min_distance_to_players 0
 max_distance_to_players 0
 }
 endif
-create_object STONE_WALL {
+create_object FORTIFIED_WALL {
 set_place_for_every_player
 min_distance_to_players 17
 max_distance_to_players 17
