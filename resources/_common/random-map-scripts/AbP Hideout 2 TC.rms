@@ -1,5 +1,5 @@
 <PLAYER_SETUP>
-/* AbP Hideout v2: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts, 9-villager start (6 at the TC, 3 at a pre-built lumber camp), 2 houses, a fortified wall instead of the palisade, and fish beneath the TC. */
+/* AbP Hideout 2 TC: AbP Hideout plus a second town center outside the wall (3 villagers, gold, berries, deer and extra woodlines around it). Base: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts, 9-villager start (6 at the TC, 3 at a pre-built lumber camp), 2 houses, a fortified wall instead of the palisade, and fish beneath the TC. */
 /* no-collision trade carts (Tres Leches 2 proven config) */
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
@@ -115,6 +115,17 @@ number_of_clumps 10
 spacing_to_other_terrain_types 2
 number_of_tiles 20
 set_avoid_player_start_areas
+set_scale_by_size
+}
+/* AbP 2 TC: extra woodlines outside the walls so the outer town center has wood close by. */
+/* Kept 20 tiles off every start so they never sit on the wall line (radius 17, actor radius 3). */
+create_terrain WOODIES
+{
+base_terrain LAYER_A
+number_of_clumps 12
+spacing_to_other_terrain_types 2
+number_of_tiles 40
+set_avoid_player_start_areas 20
 set_scale_by_size
 }
 create_terrain WOODIES_B
@@ -588,6 +599,88 @@ find_closest
 force_placement
 }
 endif
+/* ---- AbP 2 TC: a second town center outside the wall ---- */
+/* Placed after the wall so it lands outside actor area 6730 (the wall line). Its actor area 8300 */
+/* is where the villagers go; an invisible marker next to it opens actor area 8301, the ring the */
+/* resources are placed in. Resources also stay >= 21 tiles from the start, i.e. outside the wall. */
+create_object TOWN_CENTER {
+set_place_for_every_player
+min_distance_to_players 24
+max_distance_to_players 30
+min_distance_to_map_edge 6
+avoid_forest_zone 3
+avoid_actor_area 6730
+avoid_actor_area 4
+avoid_actor_area 5
+avoid_actor_area 6
+avoid_actor_area 7
+avoid_actor_area 8
+avoid_actor_area 9
+actor_area 8300
+actor_area_radius 4
+}
+/* 3 villagers at the outer town center */
+create_object VILLAGER {
+set_place_for_every_player
+number_of_objects 3
+actor_area_to_place_in 8300
+find_closest
+force_placement
+}
+/* invisible marker (placeholder 1543) next to the outer TC: its area 8301 is the resource ring */
+create_object FISH_PAD {
+set_place_for_every_player
+number_of_objects 1
+set_gaia_object_only
+actor_area_to_place_in 8300
+find_closest
+actor_area 8301
+actor_area_radius 9
+}
+/* gold, berries and deer in that ring, kept off the TC and off the wall line */
+create_object GOLD {
+number_of_objects 5
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+actor_area_to_place_in 8301
+min_distance_to_players 21
+avoid_actor_area 8300
+avoid_actor_area 6730
+avoid_forest_zone 2
+min_distance_group_placement 2
+actor_area 8302
+actor_area_radius 4
+}
+create_object FORAGE {
+number_of_objects 6
+group_placement_radius 3
+set_tight_grouping
+set_gaia_object_only
+set_place_for_every_player
+actor_area_to_place_in 8301
+min_distance_to_players 21
+avoid_actor_area 8300
+avoid_actor_area 8302
+avoid_actor_area 6730
+avoid_forest_zone 2
+min_distance_group_placement 2
+actor_area 8303
+actor_area_radius 3
+}
+create_object HUNTABLE {
+number_of_objects 4
+set_loose_grouping
+set_gaia_object_only
+set_place_for_every_player
+actor_area_to_place_in 8301
+min_distance_to_players 21
+avoid_actor_area 8300
+avoid_actor_area 8302
+avoid_actor_area 8303
+avoid_actor_area 6730
+}
 #include_drs GeneratingObjects.inc
 create_object BIRDS_A {
 number_of_objects 4
