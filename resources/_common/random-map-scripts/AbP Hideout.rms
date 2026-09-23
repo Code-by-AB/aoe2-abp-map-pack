@@ -1,5 +1,5 @@
 <PLAYER_SETUP>
-/* AbP Hideout: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts. Nothing else changed. */
+/* AbP Hideout: WC25 - Hideout (Winter Cup 2025 map pack) + no-collision trade carts and a fortified wall instead of the palisade. Nothing else changed. */
 /* no-collision trade carts (Tres Leches 2 proven config) */
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
 effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
@@ -211,11 +211,9 @@ avoid_forest_zone 2
 actor_area 3
 actor_area_radius 3
 }
-#define GNR_NORMALTC
 #define GNR_STARTVILLS
 #define GNR_CLASSICSCOUT
 #define GNR_REGICIDECLASSIC
-#define GNR_HIDEOUTWALL
 #define GNR_GIVELURES
 #define GNR_CLASSICLURES
 #define GNR_LUREDIST_CL
@@ -502,6 +500,34 @@ avoid_forest_zone 2
 avoid_actor_area 2
 }
 endif
+/* AbP: town center then a fortified wall, replacing the include's GNR_NORMALTC and GNR_HIDEOUTWALL */
+/* blocks (both left undefined above). Same placement values as the include, only PALISADE_WALL -> */
+/* FORTIFIED_WALL. The order matters: walls anchor to the town center, so it has to exist first, and */
+/* both come before the include so the resources it generates still avoid actor area 6730 (the wall line). */
+if EMPIRE_WARS
+create_object TOWN_CENTER {
+set_place_for_every_player
+group_placement_radius 18
+min_distance_to_players 0
+max_distance_to_players 0
+actor_area 100
+actor_area_radius 2
+}
+else
+create_object TOWN_CENTER {
+set_place_for_every_player
+group_placement_radius 18
+min_distance_to_players 0
+max_distance_to_players 0
+}
+endif
+create_object FORTIFIED_WALL {
+set_place_for_every_player
+min_distance_to_players 17
+max_distance_to_players 17
+actor_area 6730
+actor_area_radius 3
+}
 #include_drs GeneratingObjects.inc
 create_object BIRDS_A {
 number_of_objects 4

@@ -28,9 +28,9 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Arena** | Official Arena with no-collision trade, fish under the TC and a small dockable pond in every base. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel with no-collision trade and fish under the TC. |
 | **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito. |
-| **AbP Hideout** | WC25 Hideout with no-collision trade. |
-| **AbP Hideout v2** | AbP Hideout with a bigger start: 9 villagers, a lumber camp, 2 houses, stone walls and gates, fish under the TC. |
-| **AbP Mountain Hideout** | Mountain Hideout with 9 starting villagers, a fixed starting wall and fish under the TC. |
+| **AbP Hideout** | WC25 Hideout with no-collision trade and a fortified wall instead of the palisade. |
+| **AbP Hideout v2** | AbP Hideout with a bigger start: 9 villagers, a lumber camp, 2 houses, fortified walls, fish under the TC. |
+| **AbP Mountain Hideout** | Mountain Hideout with 9 starting villagers, fortified walls and fish under the TC. |
 | **AbP Onion** | Original map. A sealed onion at the centre: forest, stone wall, forest, gold wall, then a relic core. Peel it layer by layer. |
 
 ## Lobby notes
