@@ -27,7 +27,7 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest with no-collision trade. |
 | **AbP Arena** | Official Arena with no-collision trade, fish under the TC and a small dockable pond in every base. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel with no-collision trade and fish under the TC. |
-| **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito; the burrito's centre is a desert full of gold, stone and wood, and the corner ponds are shallows. No docks on this map. |
+| **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito; the burrito's centre is a desert full of gold, stone and wood; the corner ponds are dockable. |
 | **AbP Hideout** | WC25 Hideout with no-collision trade, fortified walls and a bigger start: 9 villagers, a lumber camp, 2 houses, fish under the TC. |
 | **AbP Hideout 2 TC** | AbP Hideout with a second town centre outside the wall: 3 more villagers, plus gold, berries, deer and extra woodlines around it. |
 | **AbP Mountain Hideout** | Mountain Hideout with 9 starting villagers, fortified walls and fish under the TC. |

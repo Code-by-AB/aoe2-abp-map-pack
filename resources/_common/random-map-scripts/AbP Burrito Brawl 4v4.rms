@@ -1,5 +1,5 @@
 /* ************ Burrito Brawl 4v4 (AbP rework of Dragonmilk's original) ************ */
-/* AbP 2026-09: no water on the map (corner ponds are shallows, centre is desert with resources) so the DE AI plays it as a land map. */
+/* AbP 2026-09: the centre is desert with resources (no sailable water between the teams) and fish are kept under the DE AI's water-map threshold, so the AI plays it as a land map. Corner ponds stay dockable. */
 /* 7 Jan 21 */
 /* Latest version: 7 Jan 22 */
 
@@ -164,7 +164,31 @@ create_elevation 7
 
 <TERRAIN_GENERATION>
 
-/* AbP: the corner ponds are shallows only - walkable, shore fish for villagers, and no deep water so nobody can dock. */
+/* 4 lakes - dockable corner ponds (AbP: kept deep on purpose; the sailable route between the teams was the mangrove middle, now land) */
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
+create_terrain MED_WATER
+{
+ base_terrain DLC_NEWSHALLOW
+ spacing_to_other_terrain_types 1
+ land_percent 30
+}
 /* Enchilada Fillings */
 
 create_terrain DIRT
@@ -511,6 +535,20 @@ create_object DLC_OSTRICH
 }
 
 
+
+/* AbP: tuna capped at 8 on the whole map. The DE AI counts every gaia fish to decide land vs water; */
+/* under 13 ocean-class fish (Large) it calls this a land map and uses its modern attack system. */
+create_object TUNA
+{
+ number_of_objects 1
+ number_of_groups 8
+ group_placement_radius 2
+ set_tight_grouping
+ set_gaia_object_only
+ terrain_to_place_on	MED_WATER
+ temp_min_distance_group_placement 9
+ min_distance_group_placement 2
+}
 
 create_object SKELETON
 {
