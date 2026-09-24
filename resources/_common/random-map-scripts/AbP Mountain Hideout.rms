@@ -1,5 +1,5 @@
 /* Mountain Hideout (12-6-19) by TheMadCADer */
-/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, a fortified wall for every player in every game mode, and fish beneath the TC. Nothing else changed. */
+/* AbP Mountain Hideout: Mountain Hideout v1.2 (Mad Random Maps) + 9 starting villagers, a fortified wall for every player in every game mode, fish beneath the TC, and paths through the forest band so bases are not sealed (bigger clearings, wall moved inside them). */
 /* Changes from 1.0: Uses direct placement, Start with Siege Onager in KotH */
 /* Changes from 1.1: Uses circle placement for DE */
 	
@@ -34,7 +34,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			if ANGLE1
 				land_position 50 20
 			else
@@ -46,7 +46,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			if ANGLE1
 				land_position 50 80
 			else
@@ -59,7 +59,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 18
 			assign_to AT_TEAM -10 0 0
 		}
@@ -67,7 +67,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 20 70
 			assign_to AT_TEAM -10 0 0
 		}
@@ -75,7 +75,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 80 70
 			assign_to AT_TEAM -10 0 0
 		}
@@ -84,7 +84,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 18
 			if TEAM1_SIZE2
 				assign_to AT_TEAM 1 0 0
@@ -96,7 +96,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 82 50
 			if TEAM1_SIZE2
 				assign_to AT_TEAM 1 0 0
@@ -108,7 +108,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 82
 			if TEAM1_SIZE2
 				assign_to AT_TEAM 2 0 0
@@ -120,7 +120,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 18 50
 			if TEAM1_SIZE2
 				assign_to AT_TEAM 2 0 0
@@ -133,7 +133,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 15
 			assign_to AT_TEAM -10 0 0
 		}
@@ -141,7 +141,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 87 42
 			assign_to AT_TEAM -10 0 0
 		}
@@ -149,7 +149,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 73 85
 			assign_to AT_TEAM -10 0 0
 		}
@@ -157,7 +157,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 27 85
 			assign_to AT_TEAM -10 0 0
 		}
@@ -165,7 +165,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 13 42
 			assign_to AT_TEAM -10 0 0
 		}
@@ -174,7 +174,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 17 31
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 1 0 0
@@ -186,7 +186,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 15
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 1 0 0
@@ -198,7 +198,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 83 31
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 1 0 0
@@ -210,7 +210,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 83 69
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 2 0 0
@@ -222,7 +222,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 85
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 2 0 0
@@ -234,7 +234,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 17 69
 			if TEAM1_SIZE3
 				assign_to AT_TEAM 2 0 0
@@ -247,7 +247,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 50 15
 			assign_to AT_TEAM -10 0 0
 		}
@@ -255,7 +255,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 79 29
 			assign_to AT_TEAM -10 0 0
 		}
@@ -263,7 +263,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 86 60
 			assign_to AT_TEAM -10 0 0
 		}
@@ -271,7 +271,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 66 85
 			assign_to AT_TEAM -10 0 0
 		}
@@ -279,7 +279,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 34 85
 			assign_to AT_TEAM -10 0 0
 		}
@@ -287,7 +287,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 14 60
 			assign_to AT_TEAM -10 0 0
 		}
@@ -295,7 +295,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 21 29
 			assign_to AT_TEAM -10 0 0
 		}
@@ -304,7 +304,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 15 35
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 1 0 0
@@ -316,7 +316,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 35 15
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 1 0 0
@@ -328,7 +328,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 65 15
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 1 0 0
@@ -340,7 +340,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 85 35
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 1 0 0
@@ -352,7 +352,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 85 65
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 2 0 0
@@ -364,7 +364,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 65 85
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 2 0 0
@@ -376,7 +376,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 35 85
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 2 0 0
@@ -388,7 +388,7 @@ if VALID_SETUP
 		{
 			terrain_type SNOW
 			number_of_tiles 150
-			base_size 15
+			base_size 19
 			land_position 15 65
 			if TEAM1_SIZE4
 				assign_to AT_TEAM 2 0 0
@@ -402,7 +402,7 @@ else
 	{
 		terrain_type SNOW
 		land_percent 5
-		base_size 15
+		base_size 19
 		circle_placement
 		circle_radius 38 1
 	}
@@ -436,7 +436,7 @@ create_terrain SNOW_FOREST
 	land_percent 3
 	number_of_clumps 24
 	spacing_to_other_terrain_types 7
-	set_avoid_player_start_areas
+	set_avoid_player_start_areas 20 /* AbP: was the default 13 - keep clumps off the wall line (16) and the strip outside it */
 }
 create_terrain DIRT_SNOW
 {
@@ -445,6 +445,24 @@ create_terrain DIRT_SNOW
 	number_of_clumps 24
 }
 	
+<CONNECTION_GENERATION>
+/* AbP: dirt trails between every base. Without them each clearing is sealed - the GRASS_SNOW pass */
+/* keeps a 3-tile SNOW_FOREST band round all snow, and everything beyond it is GRASS_SNOW carpeted */
+/* with 9999 loose pines - and an AI that cannot path out of its base deletes its entire wall trying */
+/* to free itself. Trails are DIRT_SNOW because the pine fill only targets GRASS_SNOW, so they stay */
+/* clear. Costs favour reusing an existing trail over cutting a new one (accumulate_connections). */
+accumulate_connections
+create_connect_all_players_land
+{
+	replace_terrain SNOW_FOREST DIRT_SNOW
+	replace_terrain GRASS_SNOW DIRT_SNOW
+	terrain_size SNOW_FOREST 2 0
+	terrain_size GRASS_SNOW 2 0
+	terrain_cost SNOW_FOREST 7
+	terrain_cost GRASS_SNOW 5
+	terrain_cost DIRT_SNOW 1
+	terrain_cost SNOW 1
+}
 <OBJECTS_GENERATION>
 /* AbP: fish beneath every town center (invisible placeholder 1543 + second_object). */
 /* Same recipe and counts as AbP Arena: 3 salmon plus 3 shore fish per player. */
@@ -494,13 +512,15 @@ create_object SIEGE_ONAGER
 	max_distance_to_players 9
 }
 endif
-/* AbP: fortified wall for everyone. The source map gave a fortified wall only in Death Match */
-/* and a plain stone wall (WALL = 117) otherwise; both branches used the same placement. */
+/* AbP: fortified wall for everyone (the source gave fortified only in Death Match, stone otherwise). */
+/* Radius 16, down from 20: the clearings are base_size 19, so 16 keeps the whole ring on open snow */
+/* with a walkable strip outside it. At 20 the ring ran through the forest band round the clearing */
+/* and came out as fragments with no usable gate. Primary gold/stone (12-15) stay inside. */
 create_object FORTIFIED_WALL
 {
 set_place_for_every_player
-min_distance_to_players 20
-max_distance_to_players 20
+min_distance_to_players 16
+max_distance_to_players 16
 }
 create_object STONE
 {
