@@ -31,7 +31,7 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito. |
 | **AbP Hideout** | WC25 Hideout with no-collision trade, fortified walls and a bigger start: 9 villagers, a lumber camp, 2 houses, fish under the TC. |
 | **AbP Hideout 2 TC** | AbP Hideout with a second town centre outside the wall: 3 more villagers, plus gold, berries, deer and extra woodlines around it. |
-| **AbP Mountain Hideout** | Mountain Hideout with 9 starting villagers, fortified walls and fish under the TC. |
+| **AbP Mountain Hideout** | Mountain Hideout with 9 starting villagers, fortified walls, fish under the TC, and dirt trails linking the bases through the forest. |
 | **AbP Onion** | Original map. A sealed onion at the centre: forest, stone wall, forest, gold wall, then a relic core. Peel it layer by layer. |
 
 ## Lobby notes
