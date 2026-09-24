@@ -25,7 +25,7 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade. |
 | **AbP Black Forest** | Official Black Forest with no-collision trade. |
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest with no-collision trade. |
-| **AbP Sideways Black Forest 2 TC** | AbP Sideways Black Forest with two town centers per player, Budapest style: each TC has its own villagers, scout and starting resources. |
+| **AbP Sideways Black Forest 2 TC** | AbP Sideways Black Forest with two town centers per player: fixed team-side spawns (team 1 left, team 2 right, lobby order top to bottom), an outer home and an inner home nearer the middle, each with its own villagers, scout and starting resources. |
 | **AbP Arena** | Official Arena with no-collision trade, fish under the TC and a small dockable pond in every base. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel with no-collision trade and fish under the TC. |
 | **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito; the burrito's centre is a desert full of gold, stone and wood; the corner ponds are dockable. |
@@ -36,9 +36,9 @@ running it again any time updates it. Start the game and the maps are under
 
 ## Lobby notes
 
-- The Trio maps and Burrito Brawl 4v4 need **two real teams of 2+ players** — AoE2
+- The Trio maps, Burrito Brawl 4v4 and Sideways Black Forest 2 TC need **two real teams of 2+ players** — AoE2
   does not count a 1-player team as a team, so they cannot generate a 1v1 or an FFA.
-- Burrito Brawl 4v4 wants **Large** or bigger.
+- Burrito Brawl 4v4 and Sideways Black Forest 2 TC want **Large** or bigger.
 
 ## Credits
 

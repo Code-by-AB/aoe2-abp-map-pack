@@ -1,4 +1,4 @@
-/* AbP Sideways Black Forest 2 TC: MBA Sideways Black Forest + a second town center for every player. Budapest recipe: two player lands, so the shared include gives each TC its own villagers, scout and starting resources. No-collision trade carts. */
+/* AbP Sideways Black Forest 2 TC: MBA Sideways Black Forest + a second town center for every player. Burrito recipe: fixed team-side spawns with two lands per player (direct_placement + assign_to AT_TEAM), so the shared include gives each TC its own villagers, scout and starting resources. No-collision trade carts. */
 
 /* PH SEASONS */
 
@@ -17,7 +17,7 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 /* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
 
 	base_terrain GRASS3
-  grouped_by_team
+  direct_placement /* AbP: fixed team-side spawns, see LAND_GENERATION */
   ai_info_map_type BLACK_FOREST 0 0 0
 
 
@@ -26,32 +26,31 @@ effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
 base_terrain GRASS3
 enable_waves 1 
 
-/* AbP: two lands per player = two town centers (Budapest recipe). base_size 15 each, so both lands together
-   take about the same open ground as the original single base_size 20 land. circle_placement / circle_radius
-   removed: the guide lists circle_radius + grouped_by_team + multiple player lands as a DE bug. */
-create_player_lands
-{
-	terrain_type                     GRASS
-	base_size                        15
-	land_percent                     2
-	clumping_factor                  1
-	border_fuzziness                 1
-	set_zone_by_team
-	base_elevation                   2
-	other_zone_avoidance_distance    20
-}
-
-create_player_lands
-{
-	terrain_type                     GRASS
-	base_size                        15
-	land_percent                     2
-	clumping_factor                  1
-	border_fuzziness                 1
-	set_zone_by_team
-	base_elevation                   2
-	other_zone_avoidance_distance    20
-}
+/* AbP: fixed team-side spawns, the recipe proven in AbP Burrito Brawl 4v4. direct_placement + assign_to AT_TEAM:
+   team 1 fills the left side top-to-bottom in lobby order, team 2 the right. Each player gets an inner home
+   nearer the middle forest (listed first with flags 2 = "do not remember", so the paired land resolves to the
+   same player) and an outer home (flags 0 records the player, the next pair moves on). 33x33 clearings each.
+   The shared include then places a town center, 3 villagers, a scout and the full starting kit on both lands.
+   REQUIRES two real teams of 2+ players (a 1-player team does not count): no 1v1, no FFA. Large or bigger.
+   Two create_player_lands with team grouping is NOT usable: DE piles every second land on one spot. */
+/* team 1 - left: inner home, then outer home, per player */
+create_land { land_position 23 15 zone 1 assign_to AT_TEAM 1 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 9 15 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 23 38 zone 1 assign_to AT_TEAM 1 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 9 38 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 23 61 zone 1 assign_to AT_TEAM 1 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 9 61 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 23 84 zone 1 assign_to AT_TEAM 1 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 9 84 zone 1 assign_to AT_TEAM 1 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+/* team 2 - right: inner home, then outer home, per player */
+create_land { land_position 77 15 zone 2 assign_to AT_TEAM 2 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 91 15 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 77 38 zone 2 assign_to AT_TEAM 2 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 91 38 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 77 61 zone 2 assign_to AT_TEAM 2 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 91 61 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 77 84 zone 2 assign_to AT_TEAM 2 -1 2 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
+create_land { land_position 91 84 zone 2 assign_to AT_TEAM 2 -1 0 terrain_type GRASS base_size 16 land_percent 0 base_elevation 2 other_zone_avoidance_distance 1 }
 
 /* ----------------------------------Middle forest and lake----------------------------------- */
 create_land 
