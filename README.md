@@ -25,6 +25,7 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade. |
 | **AbP Black Forest** | Official Black Forest with no-collision trade. |
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest with no-collision trade. |
+| **AbP Sideways Black Forest 2 TC** | AbP Sideways Black Forest with two town centers per player, Budapest style: each TC has its own villagers, scout and starting resources. |
 | **AbP Arena** | Official Arena with no-collision trade, fish under the TC and a small dockable pond in every base. |
 | **AbP Amazon Tunnel** | Official Amazon Tunnel with no-collision trade and fish under the TC. |
 | **AbP Burrito Brawl 4v4** | Dragonmilk's Burrito Brawl reworked for 4v4. Two town centres each, one on either side of the burrito. |
@@ -51,6 +52,7 @@ The community maps these are built on. Maps based on official scripts aren't lis
 | **AbP Michi Relic Pond** | Michi (seasons) |
 | **AbP Black Boarest v2** | MBA Black Boarest v2 (MBA Revenge Map Pack) |
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest (MBA Map Pack) |
+| **AbP Sideways Black Forest 2 TC** | MBA Sideways Black Forest (MBA Map Pack) |
 | **AbP Burrito Brawl 4v4** | Burrito Brawl (Dragonmilks Delicious Dozen) |
 | **AbP Hideout**, **AbP Hideout 2 TC** | WC25 - Hideout (Winter Cup 2025 Map Pack) |
 | **AbP Mountain Hideout** | Mountain Hideout (Mad Random Maps) |
