@@ -1,3 +1,4 @@
+/* AbP Black Boarest: MBA Black Boarest + no-collision trade carts + three times the neutral boars. Nothing else changed. */
 
 /* Black Forest 2021 */
 
@@ -16,6 +17,11 @@ end_random
 
 /* ****************************************************** */
 <PLAYER_SETUP>
+
+/* no-collision trade carts (Tres Leches 2 proven config) */
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_1 0
+effect_amount SET_ATTRIBUTE TRADE_CART ATTR_LINE_OF_SIGHT 4
+/* effect_amount SET_ATTRIBUTE TRADE_CART ATTR_RADIUS_2 0 */ /* kept off - both radii zeroed = carts walk on water */
   grouped_by_team
 	ai_info_map_type BLACK_FOREST 0 0 0
 
@@ -325,7 +331,7 @@ create_object BOAR
 create_object BOAR
 {
 	number_of_objects					3
-	number_of_groups					3
+	number_of_groups					9 /* AbP: was 3 - three times the neutral boars */
 	set_gaia_object_only
 	set_scaling_to_map_size
 	min_distance_to_players			20
