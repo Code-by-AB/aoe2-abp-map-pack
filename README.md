@@ -22,6 +22,7 @@ running it again any time updates it. Start the game and the maps are under
 | **AbP Trio Ford** | Trio Lanes with a walkable water middle, stone gate-walls and a relic alley. Mid is sealed until someone mines through. |
 | **AbP Michi Relic Pond** | Seasons Michi with 10 relics per player, dockable fish ponds and no-collision trade. |
 | **AbP Michi Official Relic Pond** | Official Michi with the same relics, ponds and no-collision trade. |
+| **AbP Black Boarest** | MBA Black Boarest with no-collision trade and three times the neutral boars. |
 | **AbP Black Boarest v2** | MBA Black Boarest v2 with no-collision trade. |
 | **AbP Black Forest** | Official Black Forest with no-collision trade. |
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest with no-collision trade. |
@@ -50,6 +51,7 @@ The community maps these are built on. Maps based on official scripts aren't lis
 | **AbP Trio Lanes** | MBA Trio Lanes (MBA Map Pack) |
 | **AbP Trio Ford** | MBA Trio Lanes (MBA Map Pack), middle rebuilt |
 | **AbP Michi Relic Pond** | Michi (seasons) |
+| **AbP Black Boarest** | MBA Black Boarest (MBA Map Pack) |
 | **AbP Black Boarest v2** | MBA Black Boarest v2 (MBA Revenge Map Pack) |
 | **AbP Sideways Black Forest** | MBA Sideways Black Forest (MBA Map Pack) |
 | **AbP Sideways Black Forest 2 TC** | MBA Sideways Black Forest (MBA Map Pack) |
